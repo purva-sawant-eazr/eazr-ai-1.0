@@ -1,0 +1,21 @@
+{
+  "extends": ["next/core-web-vitals", "plugin:@typescript-eslint/recommended"],
+  "rules": {
+    "@typescript-eslint/no-explicit-any": ["error"],
+    "@typescript-eslint/no-unused-vars": ["warn"],
+    "react/no-unescaped-entities": "off",
+    "prefer-const": "warn"
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/actions/**/*.ts",
+        "**/reducers/**/*.ts",
+        "**/store/**/*.ts"
+      ],
+      "rules": {
+        "@typescript-eslint/no-explicit-any": "off"
+      }
+    }
+  ]
+}
