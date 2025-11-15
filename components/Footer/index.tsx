@@ -65,21 +65,6 @@ const Footer = () => {
               Empowering developers to build incredible web applications with the power of AI. Fast, reliable, and innovative solutions for the modern web.
             </p>
 
-            {/* Feature Badges */}
-            <div className="flex flex-wrap gap-2">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#028678]/10 rounded-full text-xs font-medium text-[#028678]">
-                <Zap className="w-3.5 h-3.5" />
-                Lightning Fast
-              </div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#00A896]/10 rounded-full text-xs font-medium text-[#00A896]">
-                <Shield className="w-3.5 h-3.5" />
-                Secure
-              </div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#05665B]/10 rounded-full text-xs font-medium text-[#05665B]">
-                <MessageCircle className="w-3.5 h-3.5" />
-                24/7 Support
-              </div>
-            </div>
           </div>
 
           {/* Spacer */}
@@ -95,7 +80,6 @@ const Footer = () => {
               {[
                 { href: "/about", label: "About Us" },
                 { href: "/career", label: "Careers" },
-                { href: "/press", label: "Press Kit" },
                 { href: "/contact", label: "Contact" },
               ].map((link) => (
                 <li key={link.href}>

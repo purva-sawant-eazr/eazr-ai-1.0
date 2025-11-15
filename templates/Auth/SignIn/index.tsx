@@ -35,7 +35,10 @@ const SignIn = ({ isOpen = true, onClose = () => {}, onSwitchToSignUp }: SignInP
 
   const handleSendOtp = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!phone.match(/^\d{10}$/)) return alert("Enter valid phone");
+    if (!phone.match(/^\d{10}$/)) {
+      alert("Enter valid 10-digit phone number");
+      return;
+    }
     await dispatch(sendOtp(phone));
   };
 

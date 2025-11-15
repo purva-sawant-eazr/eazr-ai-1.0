@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import {
   Menu,
@@ -32,6 +33,7 @@ interface SessionData {
 
 const Navbar = () => {
   const dispatch = useAppDispatch();
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [showSignIn, setShowSignIn] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
@@ -73,6 +75,8 @@ const Navbar = () => {
     setUserData(null);
     setLoggedIn(false);
     setIsOpen(false);
+    // Redirect to home page after logout
+    router.push("/");
   };
 
   return (

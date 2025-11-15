@@ -28,7 +28,7 @@ const Answer = ({ children, isLoading = false }: Props) => (
     {/* Message Content */}
     <div className="ml-3 max-w-[80%] bg-white text-[#0E121B] border border-[#00A896]/40 rounded-2xl px-4 py-2 shadow-sm hover:shadow-md transition-all duration-200">
       <div className="mb-1 text-label-sm font-semibold text-[#028678]">
-        Odyssey AI
+      Eazr AI
       </div>
       <div className="text-label-sm leading-[1.6]">{children}</div>
     </div>

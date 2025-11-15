@@ -272,7 +272,7 @@ const SidebarChats = memo(() => {
   const dispatch = useAppDispatch();
   const router = useRouter();
 
-  // ✅ Chat list state from Redux (isolated from messages)
+  //  Chat list state from Redux (isolated from messages)
 const { data, chatListLoading, error, hasLoadedChatList } = useSelector(
   (state: RootState) => ({
     data: state.chat.data,
@@ -280,7 +280,7 @@ const { data, chatListLoading, error, hasLoadedChatList } = useSelector(
     error: state.chat.error,
     hasLoadedChatList: state.chat.hasLoadedChatList,
   }),
-  shallowEqual // ✅ prevents re-render unless one of these values changes
+  shallowEqual //  prevents re-render unless one of these values changes
 );
 
   // ✅ Load all user chats ONLY ONCE on initial mount
@@ -432,7 +432,7 @@ const { data, chatListLoading, error, hasLoadedChatList } = useSelector(
 
   // 🔹 Render grouped chats
   return (
-    <div className="h-full overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent hover:scrollbar-thumb-gray-400 px-2 py-4">
+    <div className="h-full overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent hover:scrollbar-thumb-gray-400 py-1.5">
       {renderChatGroup("Today", organized.today)}
       {renderChatGroup("Yesterday", organized.yesterday)}
       {renderChatGroup("Last 7 Days", organized.last_7_days)}
