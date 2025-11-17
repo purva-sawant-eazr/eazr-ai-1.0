@@ -24,7 +24,7 @@ const features = [
 
 export default function CTASection() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[#028678] via-[#00A896] to-[#05665B] py-24 max-md:py-16 max-sm:py-12">
+    <section className="relative overflow-hidden bg-gradient-to-br from-brand-primary via-brand-secondary to-brand-dark py-24 max-md:py-16 max-sm:py-12">
       {/* Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-20 -left-20 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-pulse" />
@@ -90,7 +90,7 @@ export default function CTASection() {
         >
           <Link
             href="/write-copy"
-            className="inline-flex items-center gap-3 bg-white text-[#028678] px-10 py-5 max-md:px-8 max-md:py-4 max-sm:px-6 max-sm:py-3 rounded-2xl font-bold text-xl max-md:text-lg max-sm:text-base hover:bg-[#F9FAFB] transition-all duration-300 shadow-2xl hover:shadow-[0_20px_60px_rgba(0,0,0,0.3)] hover:scale-105 active:scale-95 group"
+            className="inline-flex items-center gap-3 bg-white text-brand-primary px-10 py-5 max-md:px-8 max-md:py-4 max-sm:px-6 max-sm:py-3 rounded-2xl font-bold text-xl max-md:text-lg max-sm:text-base hover:bg-bg-light transition-all duration-300 shadow-2xl hover:shadow-[0_20px_60px_rgba(0,0,0,0.3)] hover:scale-105 active:scale-95 group"
           >
             Get Started
             <ArrowRight className="w-6 h-6 max-sm:w-5 max-sm:h-5 group-hover:translate-x-1 transition-transform duration-300" />

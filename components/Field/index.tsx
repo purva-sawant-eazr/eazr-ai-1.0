@@ -32,7 +32,7 @@ const Field = ({
             {label && (
                 <div className="mb-1 text-label-md">
                     {label}
-                    {required && <span className="text-[#E93544]">*</span>}
+                    {required && <span className="text-status-error">*</span>}
                 </div>
             )}
             <div className={`relative ${textarea ? "flex" : ""}`}>

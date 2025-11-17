@@ -119,7 +119,7 @@
 
 //         <div className="mt-6 text-center text-sm text-gray-500">
 //           Didn’t get the code?{" "}
-//           <button className="text-[#0E121B] font-medium">Resend</button>
+//           <button className="text-text-primary font-medium">Resend</button>
 //         </div>
 //       </div>
 //     </div>
@@ -273,7 +273,7 @@ const VerifyOtpPopup = ({
 
         <div className="mt-6 text-center text-sm text-gray-500">
           Didn’t get the code?{" "}
-          <button className="text-[#0E121B] font-medium">Resend</button>
+          <button className="text-text-primary font-medium">Resend</button>
         </div>
       </div>
     </div>

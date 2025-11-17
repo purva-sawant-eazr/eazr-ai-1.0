@@ -109,7 +109,7 @@ const ReviewSubmit = ({
   return (
     <div className="mt-4 bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden">
       {/* Header */}
-      <div className="bg-gradient-to-r from-[#028678] to-[#00A896] p-6 text-white">
+      <div className="bg-gradient-to-r from-brand-primary to-brand-secondary p-6 text-white">
         <h2 className="text-2xl font-bold mb-1">{title}</h2>
         {subtitle && <p className="text-white/90 text-sm">{subtitle}</p>}
       </div>
@@ -128,7 +128,7 @@ const ReviewSubmit = ({
             return (
               <div
                 key={field.field_key}
-                className="border border-gray-200 rounded-lg p-4 hover:border-[#028678]/30 transition-colors"
+                className="border border-gray-200 rounded-lg p-4 hover:border-brand-primary/30 transition-colors"
               >
                 <div className="flex items-start justify-between mb-2">
                   <div className="flex-1">
@@ -140,7 +140,7 @@ const ReviewSubmit = ({
                   {!isEditing && (
                     <button
                       onClick={() => handleEditClick(field.field_key, field.current_answer)}
-                      className="ml-2 text-[#028678] hover:text-[#00A896] text-sm font-medium flex items-center gap-1"
+                      className="ml-2 text-brand-primary hover:text-brand-secondary text-sm font-medium flex items-center gap-1"
                     >
                       <svg
                         className="w-4 h-4"
@@ -166,7 +166,7 @@ const ReviewSubmit = ({
                       <select
                         value={editedAnswers[field.field_key] || ""}
                         onChange={(e) => handleFieldChange(field.field_key, e.target.value)}
-                        className="w-full px-3 py-2 border-2 border-[#028678] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#028678]/20"
+                        className="w-full px-3 py-2 border-2 border-brand-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-[#028678]/20"
                         autoFocus
                       >
                         <option value="">Select an option</option>
@@ -181,7 +181,7 @@ const ReviewSubmit = ({
                         type="date"
                         value={editedAnswers[field.field_key] || ""}
                         onChange={(e) => handleFieldChange(field.field_key, e.target.value)}
-                        className="w-full px-3 py-2 border-2 border-[#028678] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#028678]/20"
+                        className="w-full px-3 py-2 border-2 border-brand-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-[#028678]/20"
                         autoFocus
                       />
                     ) : field.field_type === "number" ? (
@@ -189,7 +189,7 @@ const ReviewSubmit = ({
                         type="number"
                         value={editedAnswers[field.field_key] || ""}
                         onChange={(e) => handleFieldChange(field.field_key, e.target.value)}
-                        className="w-full px-3 py-2 border-2 border-[#028678] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#028678]/20"
+                        className="w-full px-3 py-2 border-2 border-brand-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-[#028678]/20"
                         autoFocus
                       />
                     ) : field.field_type === "email" ? (
@@ -197,7 +197,7 @@ const ReviewSubmit = ({
                         type="email"
                         value={editedAnswers[field.field_key] || ""}
                         onChange={(e) => handleFieldChange(field.field_key, e.target.value)}
-                        className="w-full px-3 py-2 border-2 border-[#028678] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#028678]/20"
+                        className="w-full px-3 py-2 border-2 border-brand-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-[#028678]/20"
                         autoFocus
                       />
                     ) : field.field_type === "tel" ? (
@@ -205,7 +205,7 @@ const ReviewSubmit = ({
                         type="tel"
                         value={editedAnswers[field.field_key] || ""}
                         onChange={(e) => handleFieldChange(field.field_key, e.target.value)}
-                        className="w-full px-3 py-2 border-2 border-[#028678] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#028678]/20"
+                        className="w-full px-3 py-2 border-2 border-brand-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-[#028678]/20"
                         autoFocus
                       />
                     ) : (
@@ -213,14 +213,14 @@ const ReviewSubmit = ({
                         type="text"
                         value={editedAnswers[field.field_key] || ""}
                         onChange={(e) => handleFieldChange(field.field_key, e.target.value)}
-                        className="w-full px-3 py-2 border-2 border-[#028678] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#028678]/20"
+                        className="w-full px-3 py-2 border-2 border-brand-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-[#028678]/20"
                         autoFocus
                       />
                     )}
                     <div className="flex gap-2">
                       <button
                         onClick={() => handleSaveEdit(field.field_key)}
-                        className="px-3 py-1.5 bg-[#028678] text-white text-sm rounded-lg hover:bg-[#00A896] transition-colors"
+                        className="px-3 py-1.5 bg-brand-primary text-white text-sm rounded-lg hover:bg-brand-secondary transition-colors"
                       >
                         Save
                       </button>
@@ -276,7 +276,7 @@ const ReviewSubmit = ({
               className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 ${
                 editingFieldKey !== null
                   ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                  : "bg-gradient-to-r from-[#028678] to-[#00A896] text-white hover:shadow-lg"
+                  : "bg-gradient-to-r from-brand-primary to-brand-secondary text-white hover:shadow-lg"
               }`}
             >
               {next_action.title}

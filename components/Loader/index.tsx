@@ -9,7 +9,7 @@ const Loader = ({ }: Props) => {
   return (
     <div className="flex items-center justify-center gap-3 py-4">
       {/* Animated Text */}
-      <h6 className="text-[#028678] font-semibold text-sm tracking-wide animate-slide">
+      <h6 className="text-brand-primary font-semibold text-sm tracking-wide animate-slide">
         Eazr AI Thinking...
       </h6>
 

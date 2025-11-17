@@ -4,7 +4,10 @@
       "Bash(find:*)",
       "Bash(npm run build:*)",
       "Bash(npx tsc:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(mkdir:*)",
+      "Bash(node scripts/migrate-colors.js:*)",
+      "Bash(node scripts/migrate-colors-simple.js:*)"
     ],
     "deny": [],
     "ask": []

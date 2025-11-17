@@ -16,10 +16,10 @@ export default function ContactInfoSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12 max-md:mb-10 max-sm:mb-8"
         >
-          <h2 className="text-4xl font-bold text-[#0E121B] mb-4 max-md:text-3xl max-sm:text-2xl">
+          <h2 className="text-4xl font-bold text-text-primary mb-4 max-md:text-3xl max-sm:text-2xl">
             Get In Touch
           </h2>
-          <p className="text-lg text-[#4B5563] max-w-2xl mx-auto max-md:text-base max-sm:text-sm">
+          <p className="text-lg text-text-secondary max-w-2xl mx-auto max-md:text-base max-sm:text-sm">
             Choose the best way to reach us. We're here to help!
           </p>
         </motion.div>
@@ -38,7 +38,7 @@ export default function ContactInfoSection() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ y: -8, scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="group relative bg-white border-2 border-[#E5E7EB] rounded-2xl p-8 max-md:p-6 max-sm:p-5 shadow-lg hover:shadow-2xl hover:border-[#028678] transition-all duration-300 cursor-pointer overflow-hidden"
+                className="group relative bg-white border-2 border-border-light rounded-2xl p-8 max-md:p-6 max-sm:p-5 shadow-lg hover:shadow-2xl hover:border-brand-primary transition-all duration-300 cursor-pointer overflow-hidden"
               >
                 {/* Gradient Overlay on Hover */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${info.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>
@@ -69,13 +69,13 @@ export default function ContactInfoSection() {
                 </div>
 
                 {/* Content */}
-                <h3 className="text-xl font-bold text-[#0E121B] mb-2 max-sm:text-lg group-hover:text-[#028678] transition-colors duration-300">
+                <h3 className="text-xl font-bold text-text-primary mb-2 max-sm:text-lg group-hover:text-brand-primary transition-colors duration-300">
                   {info.title}
                 </h3>
-                <p className="text-lg font-semibold text-[#028678] mb-2 max-sm:text-base break-words">
+                <p className="text-lg font-semibold text-brand-primary mb-2 max-sm:text-base break-words">
                   {info.details}
                 </p>
-                <p className="text-sm text-[#6B7280] max-sm:text-xs">
+                <p className="text-sm text-text-tertiary max-sm:text-xs">
                   {info.subtitle}
                 </p>
 
@@ -85,15 +85,15 @@ export default function ContactInfoSection() {
                   initial={{ x: -10 }}
                   whileHover={{ x: 0 }}
                 >
-                  <div className="w-8 h-8 max-sm:w-7 max-sm:h-7 bg-[#028678]/10 rounded-full flex items-center justify-center">
-                    <svg className="w-4 h-4 max-sm:w-3.5 max-sm:h-3.5 text-[#028678]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <div className="w-8 h-8 max-sm:w-7 max-sm:h-7 bg-brand-primary/10 rounded-full flex items-center justify-center">
+                    <svg className="w-4 h-4 max-sm:w-3.5 max-sm:h-3.5 text-brand-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
                   </div>
                 </motion.div>
 
                 {/* Decorative corner element */}
-                <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-[#028678]/5 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500" />
+                <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-brand-primary/5 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500" />
               </motion.a>
             );
           })}
@@ -107,14 +107,14 @@ export default function ContactInfoSection() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center"
         >
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#028678]/10 to-[#00A896]/10 rounded-full px-4 py-2 mb-6 border border-[#028678]/20">
-            <span className="text-sm font-semibold text-[#028678] max-sm:text-xs">Follow Us</span>
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-brand-primary/10 to-brand-secondary/10 rounded-full px-4 py-2 mb-6 border border-brand-primary/20">
+            <span className="text-sm font-semibold text-brand-primary max-sm:text-xs">Follow Us</span>
           </div>
 
-          <h3 className="text-3xl font-bold text-[#0E121B] mb-4 max-md:text-2xl max-sm:text-xl">
+          <h3 className="text-3xl font-bold text-text-primary mb-4 max-md:text-2xl max-sm:text-xl">
             Connect With Us on Social Media
           </h3>
-          <p className="text-base text-[#4B5563] mb-8 max-w-2xl mx-auto max-sm:text-sm max-sm:mb-6">
+          <p className="text-base text-text-secondary mb-8 max-w-2xl mx-auto max-sm:text-sm max-sm:mb-6">
             Stay updated with the latest news, features, and insights from EAZR.
           </p>
 
@@ -138,9 +138,9 @@ export default function ContactInfoSection() {
                   transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
                   whileHover={{ scale: 1.15, y: -6, rotate: [0, -5, 5, 0] }}
                   whileTap={{ scale: 0.95 }}
-                  className={`group flex items-center justify-center w-16 h-16 max-md:w-14 max-md:h-14 max-sm:w-12 max-sm:h-12 bg-white border-2 border-[#E5E7EB] ${social.color} ${social.bg} rounded-xl shadow-md hover:shadow-xl transition-all duration-300 relative overflow-hidden`}
+                  className={`group flex items-center justify-center w-16 h-16 max-md:w-14 max-md:h-14 max-sm:w-12 max-sm:h-12 bg-white border-2 border-border-light ${social.color} ${social.bg} rounded-xl shadow-md hover:shadow-xl transition-all duration-300 relative overflow-hidden`}
                 >
-                  <SocialIcon className="w-7 h-7 max-md:w-6 max-md:h-6 max-sm:w-5 max-sm:h-5 text-[#4B5563] group-hover:text-[#028678] relative z-10 transition-colors duration-300" />
+                  <SocialIcon className="w-7 h-7 max-md:w-6 max-md:h-6 max-sm:w-5 max-sm:h-5 text-text-secondary group-hover:text-brand-primary relative z-10 transition-colors duration-300" />
 
                   {/* Tooltip */}
                   <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-[#0E121B] text-white text-xs font-medium px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
@@ -155,8 +155,8 @@ export default function ContactInfoSection() {
       </div>
 
       {/* Background decorative elements */}
-      <div className="absolute top-20 right-10 w-72 h-72 bg-[#028678]/5 rounded-full blur-3xl -z-10" />
-      <div className="absolute bottom-20 left-10 w-96 h-96 bg-[#00A896]/5 rounded-full blur-3xl -z-10" />
+      <div className="absolute top-20 right-10 w-72 h-72 bg-brand-primary/5 rounded-full blur-3xl -z-10" />
+      <div className="absolute bottom-20 left-10 w-96 h-96 bg-brand-secondary/5 rounded-full blur-3xl -z-10" />
     </section>
   );
 }

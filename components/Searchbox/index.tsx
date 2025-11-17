@@ -72,17 +72,17 @@ const SearchBox = () => {
   };
 
   return (
-    <div className="flex flex-col items-center bg-gradient-to-br from-[#F9FAFB] via-white to-[#F3F7F6] px-4 sm:px-6 py-12 max-md:py-8 max-sm:py-0 max-sm:h-screen max-sm:overflow-hidden max-sm:relative">
+    <div className="flex flex-col items-center bg-gradient-to-br from-bg-light via-white to-brand-light px-4 sm:px-6 py-12 max-md:py-8 max-sm:py-0 max-sm:h-screen max-sm:overflow-hidden max-sm:relative">
       {/* Hero Section - Desktop: top, Mobile: center */}
       <div className="text-center mb-12 max-w-4xl max-md:mb-8 max-sm:mb-0 max-sm:flex max-sm:flex-col max-sm:justify-center max-sm:flex-1 max-sm:pt-16 max-sm:pb-32">
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#0E121B] mb-4 leading-tight max-md:text-3xl max-md:mb-3 max-sm:text-2xl max-sm:mb-2">
-          <span className="bg-gradient-to-r from-[#028678] to-[#00A896] bg-clip-text text-transparent">
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-text-primary mb-4 leading-tight max-md:text-3xl max-md:mb-3 max-sm:text-2xl max-sm:mb-2">
+          <span className="bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
             Eazr AI
           </span>
           -Your Intelligent Insurance Partner{" "}
         </h1>
 
-        <p className="text-lg sm:text-xl text-[#6B7280] max-w-2xl mx-auto leading-relaxed max-md:text-base max-md:px-2 max-sm:text-base max-sm:px-4">
+        <p className="text-lg sm:text-xl text-text-tertiary max-w-2xl mx-auto leading-relaxed max-md:text-base max-md:px-2 max-sm:text-base max-sm:px-4">
           Just tell us what you need—AI finds the perfect coverage and brings
           the right insurance plan to life.
         </p>
@@ -90,14 +90,14 @@ const SearchBox = () => {
 
       {/* Main Search Container - Desktop: inline, Mobile: fixed bottom */}
       <div className="w-2xl max-w-4xl max-md:w-full md:mb-8 max-sm:fixed max-sm:bottom-0 max-sm:left-0 max-sm:right-0 max-sm:px-4 max-sm:pb-4 max-sm:bg-gradient-to-t max-sm:from-white max-sm:via-white/95 max-sm:to-transparent max-sm:pt-4">
-        <div className="relative bg-white rounded-2xl border-2 border-[#E5E7EB] hover:border-[#00A896]/50 focus-within:border-[#028678] transition-all duration-300 shadow-xl hover:shadow-2xl max-md:rounded-xl max-md:border max-sm:rounded-3xl max-sm:shadow-lg max-sm:border">
+        <div className="relative bg-white rounded-2xl border-2 border-border-light hover:border-brand-secondary/50 focus-within:border-brand-primary transition-all duration-300 shadow-xl hover:shadow-2xl max-md:rounded-xl max-md:border max-sm:rounded-3xl max-sm:shadow-lg max-sm:border">
           {/* Input Field */}
           <div className="flex items-center gap-3 p-5 max-md:p-4 max-sm:p-3 max-sm:py-2 max-sm:gap-2">
             {/* Left action buttons - Mobile only */}
             <div className="hidden max-sm:flex items-center gap-1">
               <button
                 onClick={() => handleAuthRequiredAction("Attach")}
-                className="flex items-center justify-center w-8 h-8 rounded-full text-[#4B5563] hover:bg-gray-100 transition-all"
+                className="flex items-center justify-center w-8 h-8 rounded-full text-text-secondary hover:bg-gray-100 transition-all"
                 aria-label="Attach"
               >
                 <Paperclip className="w-4 h-4" />
@@ -110,7 +110,7 @@ const SearchBox = () => {
               onChange={(e) => setInputValue(e.target.value)}
               onKeyPress={handleKeyPress}
               rows={3}
-              className="flex-1 bg-transparent outline-none text-[#0E121B] placeholder:text-[#9CA3AF] text-base sm:text-lg leading-relaxed font-normal resize-none min-h-[80px] max-h-[200px] max-md:text-sm max-md:min-h-[60px] max-sm:text-sm max-sm:min-h-6 max-sm:max-h-6 max-sm:rows-1 max-sm:leading-6 max-sm:placeholder:text-sm"
+              className="flex-1 bg-transparent outline-none text-text-primary placeholder:text-text-disabled text-base sm:text-lg leading-relaxed font-normal resize-none min-h-[80px] max-h-[200px] max-md:text-sm max-md:min-h-[60px] max-sm:text-sm max-sm:min-h-6 max-sm:max-h-6 max-sm:rows-1 max-sm:leading-6 max-sm:placeholder:text-sm"
             />
 
             {/* Right action buttons - Mobile only */}
@@ -120,7 +120,7 @@ const SearchBox = () => {
                 className={`flex items-center justify-center w-8 h-8 rounded-full transition-all ${
                   isRecording
                     ? "bg-red-100 text-red-600"
-                    : "text-[#4B5563] hover:bg-gray-100"
+                    : "text-text-secondary hover:bg-gray-100"
                 }`}
                 aria-label="Voice"
               >
@@ -133,7 +133,7 @@ const SearchBox = () => {
                 disabled={!inputValue.trim() || isLoading}
                 className={`flex items-center justify-center w-8 h-8 rounded-full transition-all duration-200 ${
                   inputValue.trim()
-                    ? "bg-gradient-to-r from-[#028678] to-[#00A896] text-white hover:opacity-90 active:scale-95"
+                    ? "bg-gradient-to-r from-brand-primary to-brand-secondary text-white hover:opacity-90 active:scale-95"
                     : "bg-gray-200 text-gray-400 cursor-not-allowed"
                 }`}
                 aria-label="Send"
@@ -144,7 +144,7 @@ const SearchBox = () => {
           </div>
 
           {/* Bottom Bar - Desktop and Tablet only */}
-          <div className="flex flex-wrap items-center justify-between gap-3 px-5 py-2 border-t border-[#F3F4F6] bg-gradient-to-r from-[#F9FAFB] to-white rounded-b-xl max-md:px-4 max-md:py-1.5 max-md:gap-2 max-md:rounded-b-lg max-sm:hidden">
+          <div className="flex flex-wrap items-center justify-between gap-3 px-5 py-2 border-t border-[#F3F4F6] bg-gradient-to-r from-bg-light to-white rounded-b-xl max-md:px-4 max-md:py-1.5 max-md:gap-2 max-md:rounded-b-lg max-sm:hidden">
             {/* Left Actions */}
             <div className="flex items-center gap-2 flex-wrap max-md:gap-1.5 max-sm:gap-1">
               {[
@@ -155,7 +155,7 @@ const SearchBox = () => {
                 <button
                   key={label}
                   onClick={() => handleAuthRequiredAction(label)}
-                  className="flex items-center gap-2 px-2 py-1.5 rounded-lg border border-[#E5E7EB] bg-white text-[#4B5563] text-xs font-medium hover:bg-[#F3F7F6] hover:border-[#00A896]/40 hover:text-[#028678] transition-all duration-200 shadow-sm hover:shadow group max-md:px-1.5 max-md:py-1 max-md:gap-1 max-sm:px-1 max-sm:py-0.5"
+                  className="flex items-center gap-2 px-2 py-1.5 rounded-lg border border-border-light bg-white text-text-secondary text-xs font-medium hover:bg-brand-light hover:border-brand-secondary/40 hover:text-brand-primary transition-all duration-200 shadow-sm hover:shadow group max-md:px-1.5 max-md:py-1 max-md:gap-1 max-sm:px-1 max-sm:py-0.5"
                 >
                   <Icon className="w-4 h-4 group-hover:scale-110 transition-transform max-md:w-3.5 max-md:h-3.5 max-sm:w-3 max-sm:h-3" />
                   <span className="hidden sm:inline">{label}</span>
@@ -169,7 +169,7 @@ const SearchBox = () => {
               disabled={!inputValue.trim() || isLoading}
               className={`flex items-center gap-2 px-2 py-1.5 rounded-lg font-semibold text- transition-all duration-200 shadow-lg hover:shadow-xl max-md:px-2 max-md:py-1 max-md:gap-1 max-md:text-xs max-sm:px-1.5 max-sm:py-0.5 max-sm:text-[10px] ${
                 inputValue.trim()
-                  ? "bg-gradient-to-r from-[#028678] to-[#00A896] text-white hover:from-[#05665B] hover:to-[#028678] active:scale-95"
+                  ? "bg-gradient-to-r from-brand-primary to-brand-secondary text-white hover:from-brand-dark hover:to-brand-primary active:scale-95"
                   : "bg-gray-100 text-gray-400 cursor-not-allowed"
               }`}
               aria-label="Send"
@@ -203,17 +203,17 @@ const SearchBox = () => {
       {/* Features Section - Hidden on mobile */}
       <div className="w-full max-w-6xl mt-16 grid grid-cols-1 md:grid-cols-2 gap-6 max-md:mt-10 max-md:gap-4 max-sm:hidden">
         {/* Use Credits Card */}
-        <div className="bg-white border border-[#E5E7EB] rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 max-md:rounded-xl max-md:p-6 max-sm:rounded-lg max-sm:p-4">
+        <div className="bg-white border border-border-light rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 max-md:rounded-xl max-md:p-6 max-sm:rounded-lg max-sm:p-4">
           <div className="flex items-center gap-3 mb-6 max-md:gap-2 max-md:mb-4 max-sm:gap-1.5 max-sm:mb-3">
-            <div className="flex items-center justify-center size-12 bg-gradient-to-br from-[#028678] to-[#00A896] rounded-xl shadow-lg max-md:size-10 max-md:rounded-lg max-sm:size-8 max-sm:rounded-md">
+            <div className="flex items-center justify-center size-12 bg-gradient-to-br from-brand-primary to-brand-secondary rounded-xl shadow-lg max-md:size-10 max-md:rounded-lg max-sm:size-8 max-sm:rounded-md">
               <Zap className="w-6 h-6 text-white max-md:w-5 max-md:h-5 max-sm:w-4 max-sm:h-4" />
             </div>
-            <h2 className="text-2xl font-bold text-[#0E121B] max-md:text-xl max-sm:text-lg">
+            <h2 className="text-2xl font-bold text-text-primary max-md:text-xl max-sm:text-lg">
               Use Eazr Credits
             </h2>
           </div>
 
-          <ul className="flex flex-col gap-4 text-[#4B5563] text-label-sm max-md:gap-3 max-sm:gap-2">
+          <ul className="flex flex-col gap-4 text-text-secondary text-label-sm max-md:gap-3 max-sm:gap-2">
             {[
               "Instantly redeem credits for AI-powered tools and insights.",
               "Unlock premium AI features with one click.",
@@ -225,8 +225,8 @@ const SearchBox = () => {
                 key={index}
                 className="flex items-start gap-3 group max-md:gap-2 max-sm:gap-1.5"
               >
-                <CheckCircle2 className="w-5 h-5 text-[#028678] mt-[2px] group-hover:scale-110 transition-transform flex-shrink-0 max-md:w-4 max-md:h-4 max-sm:w-3.5 max-sm:h-3.5" />
-                <span className="group-hover:text-[#0E121B] transition-colors max-md:text-xs max-sm:text-[10px]">
+                <CheckCircle2 className="w-5 h-5 text-brand-primary mt-[2px] group-hover:scale-110 transition-transform flex-shrink-0 max-md:w-4 max-md:h-4 max-sm:w-3.5 max-sm:h-3.5" />
+                <span className="group-hover:text-text-primary transition-colors max-md:text-xs max-sm:text-[10px]">
                   {benefit}
                 </span>
               </li>
@@ -235,19 +235,19 @@ const SearchBox = () => {
         </div>
 
         {/* QR Code Card */}
-        <div className="bg-gradient-to-br from-[#00A896]/10 to-[#028678]/10 border border-[#E5E7EB] rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center text-center max-md:rounded-xl max-md:p-6 max-sm:rounded-lg max-sm:p-4">
+        <div className="bg-gradient-to-br from-brand-secondary/10 to-brand-primary/10 border border-border-light rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center text-center max-md:rounded-xl max-md:p-6 max-sm:rounded-lg max-sm:p-4">
           <div className="mb-6 max-md:mb-4 max-sm:mb-3">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full mb-4 border border-[#E5E7EB] shadow-sm max-md:px-3 max-md:py-1.5 max-md:gap-1.5 max-md:mb-3 max-sm:px-2 max-sm:py-1 max-sm:gap-1 max-sm:mb-2">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full mb-4 border border-border-light shadow-sm max-md:px-3 max-md:py-1.5 max-md:gap-1.5 max-md:mb-3 max-sm:px-2 max-sm:py-1 max-sm:gap-1 max-sm:mb-2">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse max-md:w-1.5 max-md:h-1.5 max-sm:w-1 max-sm:h-1"></div>
-              <span className="text-sm font-semibold text-[#0E121B] max-md:text-xs max-sm:text-[10px]">
+              <span className="text-sm font-semibold text-text-primary max-md:text-xs max-sm:text-[10px]">
                 Scan Ready
               </span>
             </div>
 
-            <h3 className="text-xl font-bold text-[#0E121B] mb-2 max-md:text-lg max-md:mb-1.5 max-sm:text-base max-sm:mb-1">
+            <h3 className="text-xl font-bold text-text-primary mb-2 max-md:text-lg max-md:mb-1.5 max-sm:text-base max-sm:mb-1">
               Continue on Mobile
             </h3>
-            <p className="text-sm text-[#6B7280] max-md:text-xs max-sm:text-[10px]">
+            <p className="text-sm text-text-tertiary max-md:text-xs max-sm:text-[10px]">
               Scan the QR code to Download App
             </p>
           </div>
@@ -265,7 +265,7 @@ const SearchBox = () => {
             </div>
           </div>
 
-          <div className="mt-6 flex items-center gap-2 text-sm text-[#6B7280] max-md:mt-4 max-md:gap-1.5 max-md:text-xs max-sm:mt-3 max-sm:gap-1 max-sm:text-[10px]">
+          <div className="mt-6 flex items-center gap-2 text-sm text-text-tertiary max-md:mt-4 max-md:gap-1.5 max-md:text-xs max-sm:mt-3 max-sm:gap-1 max-sm:text-[10px]">
             <div className="w-8 h-[1px] bg-gradient-to-r from-transparent to-[#E5E7EB] max-md:w-6 max-sm:w-4"></div>
             <span>Open camera & scan</span>
             <div className="w-8 h-[1px] bg-gradient-to-l from-transparent to-[#E5E7EB] max-md:w-6 max-sm:w-4"></div>

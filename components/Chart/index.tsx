@@ -64,7 +64,7 @@ const Chart = ({}) => {
                 </div>
                 <div className="flex items-center gap-2 mb-4">
                     <div className="text-h5 max-md:text-[1.5rem]">$94,112</div>
-                    <div className="flex items-center text-label-xs text-[#009934]">
+                    <div className="flex items-center text-label-xs text-status-success">
                         <Icon
                             className="-rotate-90 !size-4 fill-[#009934]"
                             name="arrow"

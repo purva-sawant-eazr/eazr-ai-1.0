@@ -11,8 +11,8 @@ const Speed = () => {
     <HeadlessSwitch
       className={`relative group inline-flex w-16 h-6 p-0.75 rounded-full overflow-hidden border transition-all duration-300 ${
         checked
-          ? "bg-gradient-to-r from-[#00A896] to-[#028678] border-[#00A896]/60 shadow-[0_0_10px_#00A89655]"
-          : "bg-[#E7FBF4] border-[#00A896]/20"
+          ? "bg-gradient-to-r from-brand-secondary to-brand-primary border-brand-secondary/60 shadow-[0_0_10px_#00A89655]"
+          : "bg-[#E7FBF4] border-brand-secondary/20"
       }`}
       checked={checked}
       onChange={setChecked}
@@ -29,7 +29,7 @@ const Speed = () => {
         className={`relative z-10 flex items-center justify-center w-12 h-4.5 rounded-full text-p-xs font-semibold transition-all duration-300 ${
           checked
             ? "bg-white/20 text-white translate-x-2.5"
-            : "bg-white text-[#028678]"
+            : "bg-white text-brand-primary"
         }`}
       >
         Speed

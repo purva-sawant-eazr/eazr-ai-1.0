@@ -24,7 +24,7 @@ const features = [
 
 const CareerCTA = () => {
   return (
-    <section className="relative overflow-hidden bg-linear-to-br from-[#028678] via-[#00A896] to-[#05665B] py-24 max-md:py-16 max-sm:py-12">
+    <section className="relative overflow-hidden bg-linear-to-br from-brand-primary via-brand-secondary to-brand-dark py-24 max-md:py-16 max-sm:py-12">
       {/* Decorative Elements */}
       <div className="absolute top-0 left-0 w-full h-full opacity-10">
         <div className="absolute top-10 left-10 w-64 h-64 bg-white rounded-full blur-3xl"></div>

@@ -35,7 +35,7 @@
 //   return (
 //     <div className="mt-4 bg-gradient-to-br from-white to-gray-50 border border-gray-200 rounded-2xl shadow-lg overflow-hidden">
 //       {/* Header */}
-//       <div className="bg-gradient-to-r from-[#028678] to-[#00A896] p-6 text-white">
+//       <div className="bg-gradient-to-r from-brand-primary to-brand-secondary p-6 text-white">
 //         <div className="flex items-start justify-between mb-2">
 //           <div>
 //             <h2 className="text-2xl font-bold mb-1">{title}</h2>
@@ -53,7 +53,7 @@
 //           onClick={() => setActiveTab("coverage")}
 //           className={`px-4 py-3 text-sm font-medium border-b-2 transition-colors ${
 //             activeTab === "coverage"
-//               ? "border-[#028678] text-[#028678]"
+//               ? "border-brand-primary text-brand-primary"
 //               : "border-transparent text-gray-500 hover:text-gray-700"
 //           }`}
 //         >
@@ -63,7 +63,7 @@
 //           onClick={() => setActiveTab("features")}
 //           className={`px-4 py-3 text-sm font-medium border-b-2 transition-colors ${
 //             activeTab === "features"
-//               ? "border-[#028678] text-[#028678]"
+//               ? "border-brand-primary text-brand-primary"
 //               : "border-transparent text-gray-500 hover:text-gray-700"
 //           }`}
 //         >
@@ -73,7 +73,7 @@
 //           onClick={() => setActiveTab("eligibility")}
 //           className={`px-4 py-3 text-sm font-medium border-b-2 transition-colors ${
 //             activeTab === "eligibility"
-//               ? "border-[#028678] text-[#028678]"
+//               ? "border-brand-primary text-brand-primary"
 //               : "border-transparent text-gray-500 hover:text-gray-700"
 //           }`}
 //         >
@@ -86,9 +86,9 @@
 //         {activeTab === "coverage" && coverage_details.length > 0 && (
 //           <div className="space-y-3">
 //             {coverage_details.map((detail, idx) => (
-//               <div key={idx} className="flex items-start bg-white p-4 rounded-lg border border-gray-100 hover:border-[#028678]/30 transition-colors">
-//                 <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#028678]/10 flex items-center justify-center mr-3 mt-0.5">
-//                   <svg className="w-3.5 h-3.5 text-[#028678]" fill="currentColor" viewBox="0 0 20 20">
+//               <div key={idx} className="flex items-start bg-white p-4 rounded-lg border border-gray-100 hover:border-brand-primary/30 transition-colors">
+//                 <div className="flex-shrink-0 w-6 h-6 rounded-full bg-brand-primary/10 flex items-center justify-center mr-3 mt-0.5">
+//                   <svg className="w-3.5 h-3.5 text-brand-primary" fill="currentColor" viewBox="0 0 20 20">
 //                     <path
 //                       fillRule="evenodd"
 //                       d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -105,8 +105,8 @@
 //         {activeTab === "features" && features.length > 0 && (
 //           <div className="space-y-3">
 //             {features.map((feature, idx) => (
-//               <div key={idx} className="flex items-start bg-white p-4 rounded-lg border border-gray-100 hover:border-[#028678]/30 transition-colors">
-//                 <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-br from-[#028678] to-[#00A896] flex items-center justify-center mr-3 mt-0.5">
+//               <div key={idx} className="flex items-start bg-white p-4 rounded-lg border border-gray-100 hover:border-brand-primary/30 transition-colors">
+//                 <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-br from-brand-primary to-brand-secondary flex items-center justify-center mr-3 mt-0.5">
 //                   <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 //                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
 //                   </svg>
@@ -120,7 +120,7 @@
 //         {activeTab === "eligibility" && eligibility.length > 0 && (
 //           <div className="space-y-3">
 //             {eligibility.map((criteria, idx) => (
-//               <div key={idx} className="flex items-start bg-white p-4 rounded-lg border border-gray-100 hover:border-[#028678]/30 transition-colors">
+//               <div key={idx} className="flex items-start bg-white p-4 rounded-lg border border-gray-100 hover:border-brand-primary/30 transition-colors">
 //                 <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center mr-3 mt-0.5">
 //                   <svg className="w-3.5 h-3.5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 //                     <path
@@ -200,7 +200,7 @@
 //                   next_action.title
 //                 )
 //               }
-//               className="px-6 py-2 bg-gradient-to-r from-[#028678] to-[#00A896] text-white text-sm font-medium rounded-lg hover:shadow-lg transition-all duration-200 flex items-center gap-2"
+//               className="px-6 py-2 bg-gradient-to-r from-brand-primary to-brand-secondary text-white text-sm font-medium rounded-lg hover:shadow-lg transition-all duration-200 flex items-center gap-2"
 //             >
 //               {next_action.title}
 //               <svg
@@ -270,7 +270,7 @@ const PolicyDetails = ({
   return (
     <div className="mt-4 bg-gradient-to-br from-white to-gray-50 border border-gray-200 rounded-2xl shadow-lg overflow-hidden w-full max-w-full">
       {/* Header */}
-      <div className="bg-gradient-to-r from-[#028678] to-[#00A896] p-4 sm:p-6 text-white">
+      <div className="bg-gradient-to-r from-brand-primary to-brand-secondary p-4 sm:p-6 text-white">
         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-2">
           <div>
             <h2 className="text-xl sm:text-2xl font-bold mb-1 break-words">{title}</h2>
@@ -288,7 +288,7 @@ const PolicyDetails = ({
           onClick={() => setActiveTab("coverage")}
           className={`px-3 sm:px-4 py-3 text-sm font-medium border-b-2 whitespace-nowrap transition-colors ${
             activeTab === "coverage"
-              ? "border-[#028678] text-[#028678]"
+              ? "border-brand-primary text-brand-primary"
               : "border-transparent text-gray-500 hover:text-gray-700"
           }`}
         >
@@ -298,7 +298,7 @@ const PolicyDetails = ({
           onClick={() => setActiveTab("features")}
           className={`px-3 sm:px-4 py-3 text-sm font-medium border-b-2 whitespace-nowrap transition-colors ${
             activeTab === "features"
-              ? "border-[#028678] text-[#028678]"
+              ? "border-brand-primary text-brand-primary"
               : "border-transparent text-gray-500 hover:text-gray-700"
           }`}
         >
@@ -308,7 +308,7 @@ const PolicyDetails = ({
           onClick={() => setActiveTab("eligibility")}
           className={`px-3 sm:px-4 py-3 text-sm font-medium border-b-2 whitespace-nowrap transition-colors ${
             activeTab === "eligibility"
-              ? "border-[#028678] text-[#028678]"
+              ? "border-brand-primary text-brand-primary"
               : "border-transparent text-gray-500 hover:text-gray-700"
           }`}
         >
@@ -321,9 +321,9 @@ const PolicyDetails = ({
         {activeTab === "coverage" && coverage_details.length > 0 && (
           <div className="space-y-3">
             {coverage_details.map((detail, idx) => (
-              <div key={idx} className="flex items-start bg-white p-4 rounded-lg border border-gray-100 hover:border-[#028678]/30 transition-colors">
-                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#028678]/10 flex items-center justify-center mr-3 mt-0.5">
-                  <svg className="w-3.5 h-3.5 text-[#028678]" fill="currentColor" viewBox="0 0 20 20">
+              <div key={idx} className="flex items-start bg-white p-4 rounded-lg border border-gray-100 hover:border-brand-primary/30 transition-colors">
+                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-brand-primary/10 flex items-center justify-center mr-3 mt-0.5">
+                  <svg className="w-3.5 h-3.5 text-brand-primary" fill="currentColor" viewBox="0 0 20 20">
                     <path
                       fillRule="evenodd"
                       d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -340,8 +340,8 @@ const PolicyDetails = ({
         {activeTab === "features" && features.length > 0 && (
           <div className="space-y-3">
             {features.map((feature, idx) => (
-              <div key={idx} className="flex items-start bg-white p-4 rounded-lg border border-gray-100 hover:border-[#028678]/30 transition-colors">
-                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-br from-[#028678] to-[#00A896] flex items-center justify-center mr-3 mt-0.5">
+              <div key={idx} className="flex items-start bg-white p-4 rounded-lg border border-gray-100 hover:border-brand-primary/30 transition-colors">
+                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-br from-brand-primary to-brand-secondary flex items-center justify-center mr-3 mt-0.5">
                   <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
@@ -355,7 +355,7 @@ const PolicyDetails = ({
         {activeTab === "eligibility" && eligibility.length > 0 && (
           <div className="space-y-3">
             {eligibility.map((criteria, idx) => (
-              <div key={idx} className="flex items-start bg-white p-4 rounded-lg border border-gray-100 hover:border-[#028678]/30 transition-colors">
+              <div key={idx} className="flex items-start bg-white p-4 rounded-lg border border-gray-100 hover:border-brand-primary/30 transition-colors">
                 <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center mr-3 mt-0.5">
                   <svg className="w-3.5 h-3.5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path
@@ -435,7 +435,7 @@ const PolicyDetails = ({
                   next_action.title
                 )
               }
-              className="px-6 py-2 bg-gradient-to-r from-[#028678] to-[#00A896] text-white text-sm font-medium rounded-lg hover:shadow-lg transition-all duration-200 flex items-center gap-2 w-full sm:w-auto"
+              className="px-6 py-2 bg-gradient-to-r from-brand-primary to-brand-secondary text-white text-sm font-medium rounded-lg hover:shadow-lg transition-all duration-200 flex items-center gap-2 w-full sm:w-auto"
             >
               {next_action.title}
               <svg

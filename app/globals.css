@@ -184,6 +184,36 @@
     --breakpoint-2xl: 1419px;
     --breakpoint-3xl: 1719px;
     --breakpoint-4xl: 1899px;
+
+    /* Common Brand Colors - Easily accessible via Tailwind classes */
+    --color-brand-primary: #028678;
+    --color-brand-secondary: #00A896;
+    --color-brand-dark: #05665B;
+    --color-brand-light: #F3F7F6;
+
+    /* Common Text Colors */
+    --color-text-primary: #0E121B;
+    --color-text-secondary: #4B5563;
+    --color-text-tertiary: #6B7280;
+    --color-text-disabled: #9CA3AF;
+
+    /* Common Background Colors */
+    --color-bg-white: #FFFFFF;
+    --color-bg-light: #F9FAFB;
+    --color-bg-gray: #E5E7EB;
+
+    /* Common Border Colors */
+    --color-border-light: #E5E7EB;
+    --color-border-medium: #D1D5DB;
+    --color-border-dark: #9CA3AF;
+
+    /* Status Colors */
+    --color-status-error: #FB3748;
+    --color-status-success: #009934;
+    --color-status-warning: #F59E0B;
+    --color-status-info: #3B82F6;
+
+    /* Existing theme variables */
     --color-static-white: var(--static-white);
     --color-static-black: var(--static-black);
     --color-white-0: var(--white-0);

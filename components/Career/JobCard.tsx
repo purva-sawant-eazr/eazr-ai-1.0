@@ -15,17 +15,17 @@ const JobCard = ({ title, type, location, description }: JobCardProps) => {
   return (
     <motion.div
       whileHover={{ y: -8, scale: 1.02 }}
-      className="group bg-white border border-[#E5E7EB] rounded-2xl p-6 max-sm:p-5 shadow-lg hover:shadow-2xl hover:border-[#028678]/40 transition-all duration-300"
+      className="group bg-white border border-border-light rounded-2xl p-6 max-sm:p-5 shadow-lg hover:shadow-2xl hover:border-brand-primary/40 transition-all duration-300"
     >
       <div className="flex flex-col h-full">
         {/* Header */}
         <div className="flex items-start justify-between mb-4 max-sm:mb-3">
           <div className="flex-1">
-            <h3 className="text-xl font-bold text-strong-950 mb-2 max-sm:text-lg group-hover:text-[#028678] transition-colors duration-300">
+            <h3 className="text-xl font-bold text-strong-950 mb-2 max-sm:text-lg group-hover:text-brand-primary transition-colors duration-300">
               {title}
             </h3>
             <div className="flex flex-wrap gap-2 max-sm:gap-1.5">
-              <span className="inline-flex items-center gap-1.5 bg-[#028678]/10 text-[#028678] rounded-full px-3 py-1 text-xs font-medium">
+              <span className="inline-flex items-center gap-1.5 bg-brand-primary/10 text-brand-primary rounded-full px-3 py-1 text-xs font-medium">
                 <Briefcase className="w-3.5 h-3.5" />
                 {type}
               </span>
@@ -45,11 +45,11 @@ const JobCard = ({ title, type, location, description }: JobCardProps) => {
         )}
 
         {/* Action Button */}
-        <div className="mt-auto pt-4 border-t border-[#E5E7EB]">
+        <div className="mt-auto pt-4 border-t border-border-light">
           <Button
             as="link"
             href="#apply"
-            className="w-full bg-linear-to-r from-[#028678] to-[#00A896] text-white hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
+            className="w-full bg-linear-to-r from-brand-primary to-brand-secondary text-white hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
           >
             Apply Now
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />

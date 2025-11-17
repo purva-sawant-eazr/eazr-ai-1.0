@@ -19,7 +19,7 @@ const PdfViewer = ({ reportUrl, title = "Report", onDownload }: PdfViewerProps) 
   return (
     <div className="mt-4 bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden">
       {/* Header */}
-      <div className="bg-gradient-to-r from-[#028678] to-[#00A896] p-4 text-white">
+      <div className="bg-gradient-to-r from-brand-primary to-brand-secondary p-4 text-white">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <svg
@@ -64,7 +64,7 @@ const PdfViewer = ({ reportUrl, title = "Report", onDownload }: PdfViewerProps) 
         {isLoading && (
           <div className="absolute inset-0 flex items-center justify-center bg-gray-50">
             <div className="text-center">
-              <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-[#028678] border-t-transparent"></div>
+              <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-brand-primary border-t-transparent"></div>
               <p className="mt-2 text-sm text-gray-600">Loading PDF...</p>
             </div>
           </div>
@@ -83,7 +83,7 @@ const PdfViewer = ({ reportUrl, title = "Report", onDownload }: PdfViewerProps) 
         <div className="flex items-center justify-between text-sm text-gray-600">
           <div className="flex items-center gap-2">
             <svg
-              className="w-4 h-4 text-[#028678]"
+              className="w-4 h-4 text-brand-primary"
               fill="currentColor"
               viewBox="0 0 20 20"
             >
@@ -99,7 +99,7 @@ const PdfViewer = ({ reportUrl, title = "Report", onDownload }: PdfViewerProps) 
             href={reportUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#028678] hover:text-[#00A896] font-medium flex items-center gap-1"
+            className="text-brand-primary hover:text-brand-secondary font-medium flex items-center gap-1"
           >
             Open in new tab
             <svg

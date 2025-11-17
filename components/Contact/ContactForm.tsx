@@ -37,9 +37,9 @@ const ContactForm = () => {
   };
 
   return (
-    <section className="relative py-24 max-md:py-16 max-sm:py-12 bg-linear-to-br from-[#F9FAFB] via-white to-[#F3F7F6]">
+    <section className="relative py-24 max-md:py-16 max-sm:py-12 bg-linear-to-br from-bg-light via-white to-brand-light">
       {/* Decorative blob */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#028678]/5 rounded-full blur-3xl"></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-primary/5 rounded-full blur-3xl"></div>
 
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -50,9 +50,9 @@ const ContactForm = () => {
         >
           {/* Section Header */}
           <div className="text-center mb-12 max-md:mb-10 max-sm:mb-8">
-            <div className="inline-flex items-center gap-2 bg-white border border-[#028678]/20 rounded-full px-4 py-2 mb-4 shadow-sm">
-              <MessageSquare className="w-4 h-4 text-[#028678]" />
-              <span className="text-sm font-medium text-[#028678]">Send us a Message</span>
+            <div className="inline-flex items-center gap-2 bg-white border border-brand-primary/20 rounded-full px-4 py-2 mb-4 shadow-sm">
+              <MessageSquare className="w-4 h-4 text-brand-primary" />
+              <span className="text-sm font-medium text-brand-primary">Send us a Message</span>
             </div>
             <h2 className="text-5xl font-bold text-strong-950 mb-4 max-lg:text-4xl max-md:text-3xl max-sm:text-2xl">
               Drop Us a Line
@@ -63,7 +63,7 @@ const ContactForm = () => {
           </div>
 
           {/* Form Card */}
-          <div className="bg-white border border-[#E5E7EB] rounded-2xl p-8 max-md:p-6 max-sm:p-5 shadow-xl">
+          <div className="bg-white border border-border-light rounded-2xl p-8 max-md:p-6 max-sm:p-5 shadow-xl">
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Name Field */}
               <div>
@@ -85,7 +85,7 @@ const ContactForm = () => {
                     onChange={handleChange}
                     required
                     placeholder="John Doe"
-                    className="w-full pl-12 pr-4 py-3 max-sm:py-2.5 rounded-xl border border-[#E5E7EB] focus:border-[#028678] focus:outline-none focus:ring-2 focus:ring-[#028678]/20 transition-all duration-300 text-base max-sm:text-sm"
+                    className="w-full pl-12 pr-4 py-3 max-sm:py-2.5 rounded-xl border border-border-light focus:border-brand-primary focus:outline-none focus:ring-2 focus:ring-[#028678]/20 transition-all duration-300 text-base max-sm:text-sm"
                   />
                 </div>
               </div>
@@ -110,7 +110,7 @@ const ContactForm = () => {
                     onChange={handleChange}
                     required
                     placeholder="john@example.com"
-                    className="w-full pl-12 pr-4 py-3 max-sm:py-2.5 rounded-xl border border-[#E5E7EB] focus:border-[#028678] focus:outline-none focus:ring-2 focus:ring-[#028678]/20 transition-all duration-300 text-base max-sm:text-sm"
+                    className="w-full pl-12 pr-4 py-3 max-sm:py-2.5 rounded-xl border border-border-light focus:border-brand-primary focus:outline-none focus:ring-2 focus:ring-[#028678]/20 transition-all duration-300 text-base max-sm:text-sm"
                   />
                 </div>
               </div>
@@ -131,7 +131,7 @@ const ContactForm = () => {
                   onChange={handleChange}
                   required
                   placeholder="How can we help you?"
-                  className="w-full px-4 py-3 max-sm:py-2.5 rounded-xl border border-[#E5E7EB] focus:border-[#028678] focus:outline-none focus:ring-2 focus:ring-[#028678]/20 transition-all duration-300 text-base max-sm:text-sm"
+                  className="w-full px-4 py-3 max-sm:py-2.5 rounded-xl border border-border-light focus:border-brand-primary focus:outline-none focus:ring-2 focus:ring-[#028678]/20 transition-all duration-300 text-base max-sm:text-sm"
                 />
               </div>
 
@@ -151,7 +151,7 @@ const ContactForm = () => {
                   required
                   rows={6}
                   placeholder="Tell us more about your inquiry..."
-                  className="w-full px-4 py-3 max-sm:py-2.5 rounded-xl border border-[#E5E7EB] focus:border-[#028678] focus:outline-none focus:ring-2 focus:ring-[#028678]/20 transition-all duration-300 resize-none text-base max-sm:text-sm"
+                  className="w-full px-4 py-3 max-sm:py-2.5 rounded-xl border border-border-light focus:border-brand-primary focus:outline-none focus:ring-2 focus:ring-[#028678]/20 transition-all duration-300 resize-none text-base max-sm:text-sm"
                 />
               </div>
 
@@ -159,7 +159,7 @@ const ContactForm = () => {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-linear-to-r from-[#028678] to-[#00A896] text-white hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                className="w-full bg-linear-to-r from-brand-primary to-brand-secondary text-white hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
                 {isSubmitting ? (
                   <>

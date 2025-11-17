@@ -40,24 +40,24 @@ export const whyEazrValues: WhyEazrValue[] = [
     title: "Powered by People",
     description:
       "Leveraging the collective skills, creativity, and dedication of individuals to drive innovation and success.",
-    gradient: "from-[#028678] to-[#00A896]",
+    gradient: "from-brand-primary to-brand-secondary",
   },
   {
     title: "Inspire and Provoke",
     description:
       "Encouraging new ideas and challenging the status quo to drive growth and transformation.",
-    gradient: "from-[#00A896] to-[#05665B]",
+    gradient: "from-brand-secondary to-brand-dark",
   },
   {
     title: "Driven by Purpose",
     description:
       "We bring together passionate people who believe in making credit simple, fair, and accessible. Every skill, idea, and effort here fuels impact that touches lives at scale.",
-    gradient: "from-[#05665B] to-[#028678]",
+    gradient: "from-brand-dark to-brand-primary",
   },
   {
     title: "Think Bold, Act Smarter",
     description:
       "We challenge norms, question limits, and craft solutions that redefine how finance works. Your ideas here don't just get heard — they get built.",
-    gradient: "from-[#028678] to-[#00A896]",
+    gradient: "from-brand-primary to-brand-secondary",
   },
 ];

@@ -9,7 +9,7 @@ const contactInfo = [
     title: "Email Us",
     details: "support@eazr.in",
     subtitle: "We'll respond within 24 hours",
-    gradient: "from-[#028678] to-[#00A896]",
+    gradient: "from-brand-primary to-brand-secondary",
     link: "mailto:support@eazr.in",
   },
   {
@@ -69,7 +69,7 @@ const ContactInfo = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ y: -12, scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
-                className="group relative bg-white border-2 border-[#E5E7EB] rounded-2xl p-6 max-sm:p-5 shadow-lg hover:shadow-2xl hover:border-[#028678] transition-all duration-300 cursor-pointer overflow-hidden"
+                className="group relative bg-white border-2 border-border-light rounded-2xl p-6 max-sm:p-5 shadow-lg hover:shadow-2xl hover:border-brand-primary transition-all duration-300 cursor-pointer overflow-hidden"
               >
                 {/* Gradient Overlay on Hover */}
                 <div className={`absolute inset-0 bg-linear-to-br ${info.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>
@@ -100,10 +100,10 @@ const ContactInfo = () => {
                 </div>
 
                 {/* Content */}
-                <h3 className="text-lg font-bold text-strong-950 mb-2 max-sm:text-base group-hover:text-[#028678] transition-colors duration-300">
+                <h3 className="text-lg font-bold text-strong-950 mb-2 max-sm:text-base group-hover:text-brand-primary transition-colors duration-300">
                   {info.title}
                 </h3>
-                <p className="text-xl font-semibold text-[#028678] mb-1 max-sm:text-lg wrap-break-word">
+                <p className="text-xl font-semibold text-brand-primary mb-1 max-sm:text-lg wrap-break-word">
                   {info.details}
                 </p>
                 <p className="text-sm font-normal text-sub-600 max-sm:text-xs">
@@ -116,8 +116,8 @@ const ContactInfo = () => {
                   initial={{ x: -10 }}
                   whileHover={{ x: 0 }}
                 >
-                  <div className="w-8 h-8 bg-[#028678]/10 rounded-full flex items-center justify-center">
-                    <svg className="w-4 h-4 text-[#028678]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <div className="w-8 h-8 bg-brand-primary/10 rounded-full flex items-center justify-center">
+                    <svg className="w-4 h-4 text-brand-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
                   </div>
@@ -135,9 +135,9 @@ const ContactInfo = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center"
         >
-          <div className="inline-flex items-center gap-2 bg-linear-to-r from-[#028678]/10 to-[#00A896]/10 rounded-full px-4 py-2 mb-6">
-            <Clock className="w-4 h-4 text-[#028678]" />
-            <span className="text-sm font-medium text-[#028678]">Follow Us</span>
+          <div className="inline-flex items-center gap-2 bg-linear-to-r from-brand-primary/10 to-brand-secondary/10 rounded-full px-4 py-2 mb-6">
+            <Clock className="w-4 h-4 text-brand-primary" />
+            <span className="text-sm font-medium text-brand-primary">Follow Us</span>
           </div>
 
           <h3 className="text-3xl font-bold text-strong-950 mb-4 max-md:text-2xl max-sm:text-xl">
@@ -163,10 +163,10 @@ const ContactInfo = () => {
                   transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
                   whileHover={{ scale: 1.15, y: -6, rotate: [0, -5, 5, 0] }}
                   whileTap={{ scale: 0.95 }}
-                  className="group flex items-center justify-center w-14 h-14 max-sm:w-12 max-sm:h-12 bg-white border-2 border-[#E5E7EB] rounded-xl hover:border-[#028678] shadow-md hover:shadow-xl transition-all duration-300 relative overflow-hidden"
+                  className="group flex items-center justify-center w-14 h-14 max-sm:w-12 max-sm:h-12 bg-white border-2 border-border-light rounded-xl hover:border-brand-primary shadow-md hover:shadow-xl transition-all duration-300 relative overflow-hidden"
                 >
                   {/* Background gradient on hover */}
-                  <div className="absolute inset-0 bg-linear-to-br from-[#028678]/5 to-[#00A896]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-linear-to-br from-brand-primary/5 to-brand-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
                   <SocialIcon className={`w-6 h-6 max-sm:w-5 max-sm:h-5 ${social.color} relative z-10 transition-transform duration-300 group-hover:scale-110`} />
 

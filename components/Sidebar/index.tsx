@@ -135,10 +135,10 @@
 //             className={`flex items-center gap-2 h-10 mb-4 w-full px-3 rounded-xl font-medium transition-all duration-200 ${
 //               chatListLoading
 //                 ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-//                 : "bg-[#00A896]/10 text-[#028678] hover:bg-[#028678]/20 shadow-sm"
+//                 : "bg-brand-secondary/10 text-brand-primary hover:bg-brand-primary/20 shadow-sm"
 //             }`}
 //           >
-//             <Icon className="fill-[#028678]" name="plus" />
+//             <Icon className="fill-brand-primary" name="plus" />
 //             <span>{chatListLoading ? "Starting..." : "New Chat"}</span>
 //           </button>
 
@@ -337,10 +337,10 @@ const Sidebar = ({ visible, onClose, onClickNewChat }: Props) => {
             className={`flex items-center gap-2 h-10 mb-4 w-full px-3 rounded-xl font-medium transition-all duration-200 ${
               chatListLoading
                 ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-                : "bg-[#00A896]/10 text-[#028678] hover:bg-[#028678]/20 shadow-sm"
+                : "bg-brand-secondary/10 text-brand-primary hover:bg-brand-primary/20 shadow-sm"
             }`}
           >
-            <Icon className="fill-[#028678]" name="plus" />
+            <Icon className="fill-brand-primary" name="plus" />
             <span>{chatListLoading ? "Starting..." : "New Chat"}</span>
           </button>
 

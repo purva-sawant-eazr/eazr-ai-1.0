@@ -287,7 +287,7 @@ const ProfilePage = () => {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#00A896] mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-secondary mx-auto mb-4"></div>
           <p className="text-sub-600">Loading profile...</p>
         </div>
       </div>
@@ -304,7 +304,7 @@ const ProfilePage = () => {
           </p>
           <button
             onClick={() => router.push("/")}
-            className="px-4 py-2 bg-[#00A896] text-white rounded-lg hover:bg-[#028678]"
+            className="px-4 py-2 bg-brand-secondary text-white rounded-lg hover:bg-brand-primary"
           >
             Go to Home
           </button>
@@ -339,8 +339,8 @@ const ProfilePage = () => {
               <button
                 onClick={handleEditToggle}
                 className="flex items-center gap-1 px-3 py-1.5 text-sm 
-               bg-[#00A896] text-white rounded-md 
-               hover:bg-[#028678] transition-colors"
+               bg-brand-secondary text-white rounded-md 
+               hover:bg-brand-primary transition-colors"
               >
                 <Icon className="fill-white w-4 h-4" name="edit" />
                 Edit
@@ -360,8 +360,8 @@ const ProfilePage = () => {
                   onClick={handleSubmit}
                   disabled={updateLoading}
                   className="flex items-center gap-1 px-3 py-1.5 text-sm 
-                 bg-[#00A896] text-white rounded-md 
-                 hover:bg-[#028678] transition-colors disabled:opacity-50"
+                 bg-brand-secondary text-white rounded-md 
+                 hover:bg-brand-primary transition-colors disabled:opacity-50"
                 >
                   {updateLoading ? (
                     <>
@@ -470,7 +470,7 @@ const ProfilePage = () => {
         {/* Personal Information - Editable */}
         <div className="bg-white rounded-2xl shadow-sm p-6 mb-6">
           <h3 className="text-lg font-semibold text-strong-950 mb-4 flex items-center gap-2">
-            <Icon className="fill-[#00A896]" name="user" />
+            <Icon className="fill-brand-secondary" name="user" />
             Personal Information
           </h3>
 
@@ -545,7 +545,7 @@ const ProfilePage = () => {
         {eazrProfile.isCreditActivated && (
           <div className="bg-white rounded-2xl shadow-sm p-6 mb-6">
             <h3 className="text-lg font-semibold text-strong-950 mb-4 flex items-center gap-2">
-              <Icon className="fill-[#00A896]" name="card" />
+              <Icon className="fill-brand-secondary" name="card" />
               Credit Information
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

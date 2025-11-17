@@ -23,7 +23,7 @@
 //       onClick={onClick}
 //     >
 //       <Icon
-//         className="fill-[#6B7280] transition-colors group-hover:fill-[#00A896]"
+//         className="fill-text-tertiary transition-colors group-hover:fill-brand-secondary"
 //         name={icon}
 //       />
 //     </button>
@@ -56,14 +56,14 @@
 //   return (
 //     <form
 //       onSubmit={handleSubmit}
-//       className="relative z-3 mx-7.5 mb-5.5 shrink-0 rounded-xl border border-[#00A896]/30 bg-gradient-to-br from-white to-[#E7FBF4]/50 shadow-[0_0_15px_rgba(0,168,150,0.08)] max-md:m-0 transition-all duration-300"
+//       className="relative z-3 mx-7.5 mb-5.5 shrink-0 rounded-xl border border-brand-secondary/30 bg-gradient-to-br from-white to-[#E7FBF4]/50 shadow-[0_0_15px_rgba(0,168,150,0.08)] max-md:m-0 transition-all duration-300"
 //     >
 //       <Note />
 //       <div className="px-3 py-3.5 max-md:px-4 max-md:py-2.5">
 //         {/* Textarea */}
 //         <div className="min-h-12 text-0 mb-3">
 //           <TextareaAutosize
-//             className="w-full h-12 text-p-md text-[#0E121B] outline-none resize-none placeholder:text-[#9CA3AF]"
+//             className="w-full h-12 text-p-md text-text-primary outline-none resize-none placeholder:text-text-disabled"
 //             maxRows={5}
 //             value={message}
 //             onChange={(e) => setMessage(e.target.value)}
@@ -75,18 +75,18 @@
 //         {/* Toolbar */}
 //         <div className="flex items-center gap-2.5">
 //           <Speed />
-//           <div className="w-0.25 h-5 bg-[#00A896]/20"></div>
+//           <div className="w-0.25 h-5 bg-brand-secondary/20"></div>
 //           <Menu />
 //           <Button icon="link" onClick={() => {}} />
 //           <Search />
 //           <Button icon="image" onClick={() => {}} />
 //           <Link className="group text-0" href="/research">
 //             <Icon
-//               className="fill-[#6B7280] transition-colors group-hover:fill-[#00A896]"
+//               className="fill-text-tertiary transition-colors group-hover:fill-brand-secondary"
 //               name="voice"
 //             />
 //           </Link>
-//           <div className="w-0.25 h-5 bg-[#00A896]/20"></div>
+//           <div className="w-0.25 h-5 bg-brand-secondary/20"></div>
 
 //           {/* Send Button */}
 //           <button
@@ -100,7 +100,7 @@
 //             onClick={handleSubmit}
 //           >
 //             <div className="relative">
-//               <div className="absolute inset-0 bg-gradient-to-r from-[#00A896] to-[#028678] rounded-full blur-sm opacity-40 group-hover:opacity-60 transition-opacity"></div>
+//               <div className="absolute inset-0 bg-gradient-to-r from-brand-secondary to-brand-primary rounded-full blur-sm opacity-40 group-hover:opacity-60 transition-opacity"></div>
 //               <Image
 //                 className="w-5 relative z-10"
 //                 src="/images/sent.svg"
@@ -141,7 +141,7 @@ const Button = ({ className, icon, onClick }: ButtonProps) => {
   return (
     <button className={`group text-0 ${className || ""}`} onClick={onClick}>
       <Icon
-        className="fill-[#6B7280] transition-colors group-hover:fill-[#00A896]"
+        className="fill-text-tertiary transition-colors group-hover:fill-brand-secondary"
         name={icon}
       />
     </button>
@@ -206,7 +206,7 @@ const PanelMessage = ({ onSend, isLoading = false }: Props) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="relative z-3 mx-7.5 mb-5.5 shrink-0 rounded-xl border border-[#00A896]/30 bg-gradient-to-br from-white to-[#E7FBF4]/50 shadow-[0_0_15px_rgba(0,168,150,0.08)] max-md:m-0 transition-all duration-300"
+      className="relative z-3 mx-7.5 mb-5.5 shrink-0 rounded-xl border border-brand-secondary/30 bg-gradient-to-br from-white to-[#E7FBF4]/50 shadow-[0_0_15px_rgba(0,168,150,0.08)] max-md:m-0 transition-all duration-300"
     >
       <Note />
       <div className="px-3 py-3.5 max-md:px-4 max-md:py-2.5">
@@ -257,7 +257,7 @@ const PanelMessage = ({ onSend, isLoading = false }: Props) => {
         {/* Textarea */}
         <div className="min-h-12 text-0 mb-3">
           <TextareaAutosize
-            className="w-full h-12 text-p-md text-[#0E121B] outline-none resize-none placeholder:text-[#9CA3AF]"
+            className="w-full h-12 text-p-md text-text-primary outline-none resize-none placeholder:text-text-disabled"
             maxRows={5}
             value={message}
             onChange={(e) => setMessage(e.target.value)}
@@ -290,13 +290,13 @@ const PanelMessage = ({ onSend, isLoading = false }: Props) => {
               title="Add image or photo"
             >
               <Icon
-                className="fill-[#6B7280] transition-colors group-hover:fill-[#00A896]"
+                className="fill-text-tertiary transition-colors group-hover:fill-brand-secondary"
                 name="image"
               />
             </button>
             <Link className="group text-0" href="/research">
               <Icon
-                className="fill-[#6B7280] transition-colors group-hover:fill-[#00A896]"
+                className="fill-text-tertiary transition-colors group-hover:fill-brand-secondary"
                 name="voice"
               />
             </Link>
@@ -313,7 +313,7 @@ const PanelMessage = ({ onSend, isLoading = false }: Props) => {
             disabled={(!message.trim() && uploadedFiles.length === 0) || isLoading}
           >
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-[#00A896] to-[#028678] rounded-full blur-sm opacity-40 group-hover:opacity-60 transition-opacity"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-brand-secondary to-brand-primary rounded-full blur-sm opacity-40 group-hover:opacity-60 transition-opacity"></div>
               <Image
                 className="w-5 relative z-10"
                 src="/images/sent.svg"

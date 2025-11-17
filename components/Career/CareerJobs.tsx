@@ -43,7 +43,7 @@ const CareerJobs = () => {
   return (
     <section
       id="openings"
-      className="relative py-24 max-md:py-16 max-sm:py-12 bg-linear-to-br from-[#F9FAFB] via-white to-[#F3F7F6]"
+      className="relative py-24 max-md:py-16 max-sm:py-12 bg-linear-to-br from-bg-light via-white to-brand-light"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -54,9 +54,9 @@ const CareerJobs = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16 max-md:mb-12 max-sm:mb-8"
         >
-          <div className="inline-flex items-center gap-2 bg-linear-to-r from-[#028678]/10 to-[#00A896]/10 rounded-full px-4 py-2 mb-4">
-            <Briefcase className="w-4 h-4 text-[#028678]" />
-            <span className="text-sm font-medium text-[#028678]">Open Positions</span>
+          <div className="inline-flex items-center gap-2 bg-linear-to-r from-brand-primary/10 to-brand-secondary/10 rounded-full px-4 py-2 mb-4">
+            <Briefcase className="w-4 h-4 text-brand-primary" />
+            <span className="text-sm font-medium text-brand-primary">Open Positions</span>
           </div>
           <h2 className="text-5xl font-bold text-strong-950 mb-4 max-lg:text-4xl max-md:text-3xl max-sm:text-2xl">
             Jobs Opening
@@ -91,9 +91,9 @@ const CareerJobs = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="max-w-3xl mx-auto"
         >
-          <div className="bg-linear-to-br from-white to-[#F9FAFB] border border-[#028678]/20 rounded-2xl p-8 max-md:p-6 max-sm:p-5 shadow-xl">
+          <div className="bg-linear-to-br from-white to-bg-light border border-brand-primary/20 rounded-2xl p-8 max-md:p-6 max-sm:p-5 shadow-xl">
             <div className="text-center mb-6 max-sm:mb-5">
-              <div className="inline-flex items-center justify-center w-14 h-14 max-sm:w-12 max-sm:h-12 bg-linear-to-br from-[#028678] to-[#00A896] rounded-xl mb-4 max-sm:mb-3">
+              <div className="inline-flex items-center justify-center w-14 h-14 max-sm:w-12 max-sm:h-12 bg-linear-to-br from-brand-primary to-brand-secondary rounded-xl mb-4 max-sm:mb-3">
                 <Bell className="w-7 h-7 max-sm:w-6 max-sm:h-6 text-white" />
               </div>
               <h3 className="text-3xl font-bold text-strong-950 mb-2 max-sm:text-xl">
@@ -111,11 +111,11 @@ const CareerJobs = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email address"
                 required
-                className="flex-1 px-5 py-3 max-sm:px-4 max-sm:py-2.5 rounded-full border border-[#E5E7EB] focus:border-[#028678] focus:outline-none focus:ring-2 focus:ring-[#028678]/20 transition-all duration-300 text-base max-sm:text-sm"
+                className="flex-1 px-5 py-3 max-sm:px-4 max-sm:py-2.5 rounded-full border border-border-light focus:border-brand-primary focus:outline-none focus:ring-2 focus:ring-[#028678]/20 transition-all duration-300 text-base max-sm:text-sm"
               />
               <Button
                 type="submit"
-                className="bg-linear-to-r from-[#028678] to-[#00A896] text-white hover:shadow-lg transition-all duration-300 whitespace-nowrap"
+                className="bg-linear-to-r from-brand-primary to-brand-secondary text-white hover:shadow-lg transition-all duration-300 whitespace-nowrap"
               >
                 Notify Me
               </Button>

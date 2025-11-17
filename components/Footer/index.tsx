@@ -18,24 +18,24 @@
 //   const currentYear = new Date().getFullYear();
 
 //   return (
-//     <footer className="relative w-full border-t border-[#E5E7EB] bg-gradient-to-b from-white via-[#F9FAFB] to-[#F3F7F6] mt-20 overflow-hidden">
+//     <footer className="relative w-full border-t border-border-light bg-gradient-to-b from-white via-bg-light to-brand-light mt-20 overflow-hidden">
 //      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
  
 
 //         {/* Bottom Section */}
 //         <div className="py-10 flex flex-col md:flex-row justify-between items-center gap-6">
 //           {/* Copyright */}
-//           <div className="flex flex-col md:flex-row items-center gap-3 text-sm text-[#6B7280]">
+//           <div className="flex flex-col md:flex-row items-center gap-3 text-sm text-text-tertiary">
 //             <p className="flex items-center gap-2 font-medium">
 //               © {currentYear}{" "}
-//               <span className="text-[#028678] font-semibold">Eazr AI</span>
+//               <span className="text-brand-primary font-semibold">Eazr AI</span>
 //               <span className="hidden sm:inline">•</span>
 //               <span className="hidden sm:inline">All rights reserved</span>
 //             </p>
 //             <span className="hidden md:inline text-[#E5E7EB]">•</span>
 //             <p className="flex items-center gap-2">
 //               Made with
-//               <Heart className="w-4 h-4 text-[#028678] fill-[#028678] animate-pulse" />
+//               <Heart className="w-4 h-4 text-brand-primary fill-brand-primary animate-pulse" />
 //               <span className="font-medium">by developers, for developers</span>
 //             </p>
 //           </div>
@@ -47,25 +47,25 @@
 //                 href: "https://twitter.com",
 //                 icon: Twitter,
 //                 label: "Twitter",
-//                 gradient: "from-[#028678] to-[#00A896]",
+//                 gradient: "from-brand-primary to-brand-secondary",
 //               },
 //               {
 //                 href: "https://github.com",
 //                 icon: Github,
 //                 label: "GitHub",
-//                 gradient: "from-[#00A896] to-[#05665B]",
+//                 gradient: "from-brand-secondary to-brand-dark",
 //               },
 //               {
 //                 href: "https://linkedin.com",
 //                 icon: Linkedin,
 //                 label: "LinkedIn",
-//                 gradient: "from-[#05665B] to-[#028678]",
+//                 gradient: "from-brand-dark to-brand-primary",
 //               },
 //               {
 //                 href: "mailto:hello@eazr.ai",
 //                 icon: Mail,
 //                 label: "Email",
-//                 gradient: "from-[#028678] to-[#00A896]",
+//                 gradient: "from-brand-primary to-brand-secondary",
 //               },
 //             ].map((social, index) => (
 //               <Link
@@ -74,7 +74,7 @@
 //                 target="_blank"
 //                 rel="noopener noreferrer"
 //                 aria-label={social.label}
-//                 className="group relative p-3 rounded-xl border-2 border-[#E5E7EB] text-[#6B7280] hover:border-transparent transition-all duration-300 hover:scale-110 hover:shadow-lg hover:-translate-y-1"
+//                 className="group relative p-3 rounded-xl border-2 border-border-light text-text-tertiary hover:border-transparent transition-all duration-300 hover:scale-110 hover:shadow-lg hover:-translate-y-1"
 //               >
 //                 {/* Gradient Background on Hover */}
 //                 <div
@@ -82,7 +82,7 @@
 //                 ></div>
 
 //                 {/* Icon */}
-//                 <social.icon className="relative w-5 h-5 group-hover:text-[#028678] transition-colors duration-300" />
+//                 <social.icon className="relative w-5 h-5 group-hover:text-brand-primary transition-colors duration-300" />
 
 //                 {/* Tooltip */}
 //                 <span className="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-[#0E121B] text-white text-xs font-medium rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none whitespace-nowrap">
@@ -102,8 +102,8 @@
 
    {/* Background Decorations */}
       {/* <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#028678]/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#00A896]/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-brand-primary/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-brand-secondary/5 rounded-full blur-3xl"></div>
       </div> */}
 
        
@@ -113,9 +113,9 @@
             <Link href="/" className="flex items-center gap-3 group mb-6">
               <div className="relative">
                
-                <div className="absolute inset-0 bg-gradient-to-r from-[#028678] to-[#00A896] rounded-xl blur-md opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-brand-primary to-brand-secondary rounded-xl blur-md opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
                 
-                <div className="relative size-12 flex items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br from-[#028678]/10 to-[#00A896]/10 group-hover:scale-105 transition-transform duration-300">
+                <div className="relative size-12 flex items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br from-brand-primary/10 to-brand-secondary/10 group-hover:scale-105 transition-transform duration-300">
                   <Image
                     src="/images/logo/eazr_logo.png"
                     alt="Eazr AI Logo"
@@ -128,16 +128,16 @@
 
              
               <div className="flex flex-col">
-                <span className="text-2xl font-bold bg-gradient-to-r from-[#028678] to-[#00A896] bg-clip-text text-transparent group-hover:from-[#00A896] group-hover:to-[#05665B] transition-all duration-300">
+                <span className="text-2xl font-bold bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent group-hover:from-brand-secondary group-hover:to-brand-dark transition-all duration-300">
                   Eazr AI
                 </span>
-                <span className="text-sm text-[#6B7280] font-medium -mt-0.5">
+                <span className="text-sm text-text-tertiary font-medium -mt-0.5">
                   Build with AI
                 </span>
               </div>
             </Link>
 
-            <p className="text-[#6B7280] text-sm leading-relaxed mb-6 max-w-sm">
+            <p className="text-text-tertiary text-sm leading-relaxed mb-6 max-w-sm">
               Empowering developers to build incredible web applications with
               the power of AI. Fast, reliable, and innovative solutions for the
               modern web.
@@ -149,8 +149,8 @@
 
        
           <div className="lg:col-span-3">
-            <h3 className="text-[#0E121B] font-bold text-base mb-6 flex items-center gap-2">
-              <div className="w-1 h-6 bg-gradient-to-b from-[#028678] to-[#00A896] rounded-full"></div>
+            <h3 className="text-text-primary font-bold text-base mb-6 flex items-center gap-2">
+              <div className="w-1 h-6 bg-gradient-to-b from-brand-primary to-brand-secondary rounded-full"></div>
               Company
             </h3>
             <ul className="space-y-3.5">
@@ -162,9 +162,9 @@
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-[#6B7280] hover:text-[#028678] transition-all duration-200 text-sm flex items-center gap-2 group hover:translate-x-1"
+                    className="text-text-tertiary hover:text-brand-primary transition-all duration-200 text-sm flex items-center gap-2 group hover:translate-x-1"
                   >
-                    <span className="w-0 h-px bg-[#028678] group-hover:w-3 transition-all duration-200"></span>
+                    <span className="w-0 h-px bg-brand-primary group-hover:w-3 transition-all duration-200"></span>
                     {link.label}
                     <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-all duration-200" />
                   </Link>
@@ -175,8 +175,8 @@
 
         
           <div className="lg:col-span-3">
-            <h3 className="text-[#0E121B] font-bold text-base mb-6 flex items-center gap-2">
-              <div className="w-1 h-6 bg-gradient-to-b from-[#00A896] to-[#05665B] rounded-full"></div>
+            <h3 className="text-text-primary font-bold text-base mb-6 flex items-center gap-2">
+              <div className="w-1 h-6 bg-gradient-to-b from-brand-secondary to-brand-dark rounded-full"></div>
               Legal
             </h3>
             <ul className="space-y-3.5">
@@ -189,9 +189,9 @@
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-[#6B7280] hover:text-[#028678] transition-all duration-200 text-sm flex items-center gap-2 group hover:translate-x-1"
+                    className="text-text-tertiary hover:text-brand-primary transition-all duration-200 text-sm flex items-center gap-2 group hover:translate-x-1"
                   >
-                    <span className="w-0 h-px bg-[#028678] group-hover:w-3 transition-all duration-200"></span>
+                    <span className="w-0 h-px bg-brand-primary group-hover:w-3 transition-all duration-200"></span>
                     {link.label}
                     <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-all duration-200" />
                   </Link>
@@ -202,7 +202,7 @@
         </div>
         <div className="relative h-px">
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#E5E7EB] to-transparent"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#028678]/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-brand-primary/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500"></div>
         </div> */}
 
 
@@ -213,28 +213,28 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative w-full border-t border-[#E5E7EB] bg-gradient-to-b from-white via-[#F9FAFB] to-[#F3F7F6] mt-20 overflow-hidden">
+    <footer className="relative w-full border-t border-border-light bg-gradient-to-b from-white via-bg-light to-brand-light mt-20 overflow-hidden">
       {/* Decorative Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-24 -left-24 w-96 h-96 bg-gradient-to-br from-[#028678]/10 to-[#00A896]/5 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-gradient-to-br from-[#00A896]/10 to-[#028678]/5 rounded-full blur-3xl"></div>
+        <div className="absolute -top-24 -left-24 w-96 h-96 bg-gradient-to-br from-brand-primary/10 to-brand-secondary/5 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-gradient-to-br from-brand-secondary/10 to-brand-primary/5 rounded-full blur-3xl"></div>
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Bottom Section */}
         <div className="py-10 flex flex-col justify-center items-center gap-6">
           {/* Copyright - Centered */}
-          <div className="flex flex-col md:flex-row items-center gap-3 text-sm text-[#6B7280]">
+          <div className="flex flex-col md:flex-row items-center gap-3 text-sm text-text-tertiary">
             <p className="flex items-center gap-2 font-medium">
               © {currentYear}{" "}
-              <span className="text-[#028678] font-semibold">Eazr AI</span>
+              <span className="text-brand-primary font-semibold">Eazr AI</span>
               <span className="hidden sm:inline">•</span>
               <span className="hidden sm:inline">All rights reserved</span>
             </p>
             <span className="hidden md:inline text-[#E5E7EB]">•</span>
             <p className="flex items-center gap-2">
               Made with
-              <Heart className="w-4 h-4 text-[#028678] fill-[#028678] animate-pulse" />
+              <Heart className="w-4 h-4 text-brand-primary fill-brand-primary animate-pulse" />
               <span className="font-medium">by developers, for better insurance experiences</span>
             </p>
           </div>
@@ -246,19 +246,19 @@ const Footer = () => {
                 href: "https://www.instagram.com/eazrlife/",
                 icon: Instagram,
                 label: "Instagram",
-                gradient: "from-[#00A896] to-[#05665B]",
+                gradient: "from-brand-secondary to-brand-dark",
               },
               {
                 href: "https://www.linkedin.com/company/eazr",
                 icon: Linkedin,
                 label: "LinkedIn",
-                gradient: "from-[#05665B] to-[#028678]",
+                gradient: "from-brand-dark to-brand-primary",
               },
               {
                 href: "mailto:hello@eazr.ai",
                 icon: Mail,
                 label: "Email",
-                gradient: "from-[#028678] to-[#00A896]",
+                gradient: "from-brand-primary to-brand-secondary",
               },
             ].map((social, index) => (
               <Link
@@ -267,7 +267,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.label}
-                className="group relative p-3 rounded-xl border-2 border-[#E5E7EB] text-[#6B7280] hover:border-transparent transition-all duration-300 hover:scale-110 hover:shadow-lg hover:-translate-y-1"
+                className="group relative p-3 rounded-xl border-2 border-border-light text-text-tertiary hover:border-transparent transition-all duration-300 hover:scale-110 hover:shadow-lg hover:-translate-y-1"
               >
                 {/* Gradient Background on Hover */}
                 <div
@@ -275,7 +275,7 @@ const Footer = () => {
                 ></div>
 
                 {/* Icon */}
-                <social.icon className="relative w-5 h-5 group-hover:text-[#028678] transition-colors duration-300" />
+                <social.icon className="relative w-5 h-5 group-hover:text-brand-primary transition-colors duration-300" />
 
                 {/* Tooltip */}
                 <span className="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-[#0E121B] text-white text-xs font-medium rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none whitespace-nowrap">

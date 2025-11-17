@@ -172,13 +172,13 @@ const WriteCopyPage = () => {
         {messages.length === 0 && !isLoading ? (
           <div className="flex items-center justify-center h-full">
             <div className="text-center max-w-md">
-              <div className="inline-flex items-center justify-center size-16 bg-gradient-to-br from-[#028678] to-[#00A896] rounded-2xl mb-4 shadow-lg">
+              <div className="inline-flex items-center justify-center size-16 bg-gradient-to-br from-brand-primary to-brand-secondary rounded-2xl mb-4 shadow-lg">
                 <span className="text-3xl">🤖</span>
               </div>
-              <h3 className="text-2xl font-bold text-[#0E121B] mb-2">
+              <h3 className="text-2xl font-bold text-text-primary mb-2">
                 Start a Conversation
               </h3>
-              <p className="text-[#6B7280] text-sm leading-relaxed">
+              <p className="text-text-tertiary text-sm leading-relaxed">
                 Ask me anything! I can help you with insurance, loans, or
                 account assistance — powered by Eazr AI.
               </p>
@@ -205,7 +205,7 @@ const WriteCopyPage = () => {
                     </Question>
                   ) : (
                     <Answer>
-                      <div className="text-label-sm leading-relaxed text-[#0E121B] whitespace-pre-line">
+                      <div className="text-label-sm leading-relaxed text-text-primary whitespace-pre-line">
                         {message.content}
                       </div>
 
@@ -285,7 +285,7 @@ const WriteCopyPage = () => {
                             <button
                               key={i}
                               onClick={() => handleSuggestionClick(sug)}
-                              className="px-3 py-1.5 text-sm bg-white border border-[#E5E7EB] rounded-lg text-[#028678] hover:bg-[#028678] hover:text-white transition-all duration-200 shadow-sm"
+                              className="px-3 py-1.5 text-sm bg-white border border-border-light rounded-lg text-brand-primary hover:bg-brand-primary hover:text-white transition-all duration-200 shadow-sm"
                             >
                               {sug}
                             </button>

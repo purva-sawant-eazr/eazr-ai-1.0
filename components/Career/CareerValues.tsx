@@ -9,7 +9,7 @@ const values = [
     title: "Powered by People",
     description:
       "Leveraging the collective skills, creativity, and dedication of individuals to drive innovation and success.",
-    gradient: "from-[#028678] to-[#00A896]",
+    gradient: "from-brand-primary to-brand-secondary",
   },
   {
     icon: Zap,
@@ -30,7 +30,7 @@ const values = [
     title: "Think Bold, Act Smarter",
     description:
       "We challenge norms, question limits, and craft solutions that redefine how finance works. Your ideas here don't just get heard — they get built.",
-    gradient: "from-[#1fc16b] to-[#00A896]",
+    gradient: "from-[#1fc16b] to-brand-secondary",
   },
 ];
 
@@ -46,9 +46,9 @@ const CareerValues = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16 max-md:mb-12 max-sm:mb-8"
         >
-          <div className="inline-flex items-center gap-2 bg-linear-to-r from-[#028678]/10 to-[#00A896]/10 rounded-full px-4 py-2 mb-4">
-            <Heart className="w-4 h-4 text-[#028678]" />
-            <span className="text-sm font-medium text-[#028678]">Our Culture</span>
+          <div className="inline-flex items-center gap-2 bg-linear-to-r from-brand-primary/10 to-brand-secondary/10 rounded-full px-4 py-2 mb-4">
+            <Heart className="w-4 h-4 text-brand-primary" />
+            <span className="text-sm font-medium text-brand-primary">Our Culture</span>
           </div>
           <h2 className="text-5xl font-bold text-strong-950 mb-4 max-lg:text-4xl max-md:text-3xl max-sm:text-2xl">
             Why Eazr
@@ -70,7 +70,7 @@ const CareerValues = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ y: -8, scale: 1.02 }}
-                className="group bg-white border border-[#E5E7EB] rounded-2xl p-8 max-md:p-6 max-sm:p-5 shadow-lg hover:shadow-2xl hover:border-[#028678]/30 transition-all duration-300"
+                className="group bg-white border border-border-light rounded-2xl p-8 max-md:p-6 max-sm:p-5 shadow-lg hover:shadow-2xl hover:border-brand-primary/30 transition-all duration-300"
               >
                 {/* Icon Container */}
                 <div

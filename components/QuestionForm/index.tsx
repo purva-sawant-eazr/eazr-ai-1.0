@@ -74,7 +74,7 @@
 //   return (
 //     <div className="mt-4 bg-white border border-gray-200 rounded-2xl shadow-md overflow-hidden">
 //       {/* Header with Progress */}
-//       <div className="bg-gradient-to-r from-[#028678] to-[#00A896] p-4 text-white">
+//       <div className="bg-gradient-to-r from-brand-primary to-brand-secondary p-4 text-white">
 //         <div className="flex items-center justify-between mb-2">
 //           <div>
 //             {title && <h3 className="text-lg font-semibold">{title}</h3>}
@@ -128,15 +128,15 @@
 //                   disabled
 //                     ? "border-gray-200 bg-gray-100 text-gray-400 cursor-not-allowed opacity-60"
 //                     : selectedAnswer === option
-//                     ? "border-[#028678] bg-[#028678]/5 text-[#028678] font-medium"
-//                     : "border-gray-200 hover:border-[#028678]/50 hover:bg-gray-50"
+//                     ? "border-brand-primary bg-brand-primary/5 text-brand-primary font-medium"
+//                     : "border-gray-200 hover:border-brand-primary/50 hover:bg-gray-50"
 //                 }`}
 //               >
 //                 <div className="flex items-center justify-between">
 //                   <span className="text-sm">{option}</span>
 //                   {selectedAnswer === option && (
 //                     <svg
-//                       className="w-5 h-5 text-[#028678]"
+//                       className="w-5 h-5 text-brand-primary"
 //                       fill="currentColor"
 //                       viewBox="0 0 20 20"
 //                     >
@@ -167,7 +167,7 @@
 //                 className={`w-full px-4 py-3 border-2 rounded-lg outline-none transition-all ${
 //                   disabled
 //                     ? "border-gray-200 bg-gray-100 text-gray-400 cursor-not-allowed"
-//                     : "border-gray-200 focus:border-[#028678] focus:ring-2 focus:ring-[#028678]/20"
+//                     : "border-gray-200 focus:border-brand-primary focus:ring-2 focus:ring-[#028678]/20"
 //                 }`}
 //               />
 //             </div>
@@ -177,7 +177,7 @@
 //               className={`w-full px-6 py-3 font-medium rounded-lg transition-all duration-200 ${
 //                 disabled
 //                   ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-//                   : "bg-gradient-to-r from-[#028678] to-[#00A896] text-white hover:shadow-lg"
+//                   : "bg-gradient-to-r from-brand-primary to-brand-secondary text-white hover:shadow-lg"
 //               }`}
 //             >
 //               Submit Answer
@@ -199,7 +199,7 @@
 //                 className={`w-full px-4 py-3 border-2 rounded-lg outline-none transition-all ${
 //                   disabled
 //                     ? "border-gray-200 bg-gray-100 text-gray-400 cursor-not-allowed"
-//                     : "border-gray-200 focus:border-[#028678] focus:ring-2 focus:ring-[#028678]/20"
+//                     : "border-gray-200 focus:border-brand-primary focus:ring-2 focus:ring-[#028678]/20"
 //                 }`}
 //               />
 //             </div>
@@ -209,7 +209,7 @@
 //               className={`w-full px-6 py-3 font-medium rounded-lg transition-all duration-200 ${
 //                 disabled
 //                   ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-//                   : "bg-gradient-to-r from-[#028678] to-[#00A896] text-white hover:shadow-lg"
+//                   : "bg-gradient-to-r from-brand-primary to-brand-secondary text-white hover:shadow-lg"
 //               }`}
 //             >
 //               Submit Answer
@@ -230,7 +230,7 @@
 //                 className={`w-full px-4 py-3 border-2 rounded-lg outline-none transition-all ${
 //                   disabled
 //                     ? "border-gray-200 bg-gray-100 text-gray-400 cursor-not-allowed"
-//                     : "border-gray-200 focus:border-[#028678] focus:ring-2 focus:ring-[#028678]/20"
+//                     : "border-gray-200 focus:border-brand-primary focus:ring-2 focus:ring-[#028678]/20"
 //                 }`}
 //               />
 //             </div>
@@ -240,7 +240,7 @@
 //               className={`w-full px-6 py-3 font-medium rounded-lg transition-all duration-200 ${
 //                 disabled
 //                   ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-//                   : "bg-gradient-to-r from-[#028678] to-[#00A896] text-white hover:shadow-lg"
+//                   : "bg-gradient-to-r from-brand-primary to-brand-secondary text-white hover:shadow-lg"
 //               }`}
 //             >
 //               Submit Answer
@@ -332,7 +332,7 @@ const QuestionForm = ({
     <div className="mt-4 bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden w-full max-w-full">
 
       {/* HEADER */}
-      <div className="bg-gradient-to-r from-[#028678] to-[#00A896] p-4 sm:p-5 text-white">
+      <div className="bg-gradient-to-r from-brand-primary to-brand-secondary p-4 sm:p-5 text-white">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <div className="space-y-1">
             {title && <h3 className="text-lg sm:text-xl font-semibold leading-tight">{title}</h3>}
@@ -385,13 +385,13 @@ const QuestionForm = ({
                 disabled={disabled}
                 className={`w-full flex justify-between items-center px-4 py-3 rounded-lg border text-sm transition-all ${
                   selectedAnswer === option
-                    ? "border-[#028678] bg-[#028678]/10 text-[#028678] font-medium"
-                    : "border-gray-200 hover:border-[#028678]/40 bg-gray-50"
+                    ? "border-brand-primary bg-brand-primary/10 text-brand-primary font-medium"
+                    : "border-gray-200 hover:border-brand-primary/40 bg-gray-50"
                 } ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
               >
                 {option}
                 {selectedAnswer === option && (
-                  <svg className="w-5 h-5 text-[#028678]" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-5 h-5 text-brand-primary" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                 )}
@@ -413,7 +413,7 @@ const QuestionForm = ({
               className={`w-full px-4 py-3 text-sm sm:text-base border-2 rounded-lg transition-all ${
                 disabled
                   ? "border-gray-200 bg-gray-100 text-gray-400 cursor-not-allowed"
-                  : "border-gray-200 focus:border-[#028678] focus:ring-2 focus:ring-[#028678]/30"
+                  : "border-gray-200 focus:border-brand-primary focus:ring-2 focus:ring-[#028678]/30"
               }`}
             />
 
@@ -423,7 +423,7 @@ const QuestionForm = ({
               className={`w-full py-3 text-sm sm:text-base font-medium rounded-lg transition-all ${
                 disabled
                   ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                  : "bg-gradient-to-r from-[#028678] to-[#00A896] text-white hover:shadow-md"
+                  : "bg-gradient-to-r from-brand-primary to-brand-secondary text-white hover:shadow-md"
               }`}
             >
               Submit Answer

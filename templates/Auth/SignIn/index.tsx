@@ -111,7 +111,7 @@ const SignIn = ({ isOpen = true, onClose, onSwitchToSignUp }: SignInProps) => {
           Don't have an account?{" "}
           <button
             onClick={onSwitchToSignUp}
-            className="text-[#0E121B] font-medium"
+            className="text-text-primary font-medium"
           >
             Sign up
           </button>

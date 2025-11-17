@@ -82,7 +82,7 @@
 //           <div className="size-12 rounded-xl bg-gradient-to-br from-[#0E121B] to-[#1a1f2e] flex items-center justify-center shadow-lg mb-4">
 //             <UserPlus className="size-6 text-white" />
 //           </div>
-//           <h2 className="text-2xl font-semibold text-[#0E121B] mb-1">
+//           <h2 className="text-2xl font-semibold text-text-primary mb-1">
 //             Create Account
 //           </h2>
 //           <p className="text-sm text-gray-500">
@@ -96,7 +96,7 @@
 //           <div>
 //             <label
 //               htmlFor="name"
-//               className="block text-sm font-medium text-[#0E121B] mb-2"
+//               className="block text-sm font-medium text-text-primary mb-2"
 //             >
 //               Full Name
 //             </label>
@@ -110,7 +110,7 @@
 //                 onChange={handleChange}
 //                 placeholder="Enter your full name"
 //                 required
-//                 className="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 text-[#0E121B] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0E121B] focus:border-transparent transition-all duration-200"
+//                 className="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 text-text-primary placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0E121B] focus:border-transparent transition-all duration-200"
 //               />
 //             </div>
 //           </div>
@@ -119,7 +119,7 @@
 //           <div>
 //             <label
 //               htmlFor="signup-email"
-//               className="block text-sm font-medium text-[#0E121B] mb-2"
+//               className="block text-sm font-medium text-text-primary mb-2"
 //             >
 //               Email
 //             </label>
@@ -133,7 +133,7 @@
 //                 onChange={handleChange}
 //                 placeholder="Enter your email"
 //                 required
-//                 className="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 text-[#0E121B] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0E121B] focus:border-transparent transition-all duration-200"
+//                 className="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 text-text-primary placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0E121B] focus:border-transparent transition-all duration-200"
 //               />
 //             </div>
 //           </div>
@@ -142,7 +142,7 @@
 //           <div>
 //             <label
 //               htmlFor="signup-password"
-//               className="block text-sm font-medium text-[#0E121B] mb-2"
+//               className="block text-sm font-medium text-text-primary mb-2"
 //             >
 //               Password
 //             </label>
@@ -157,12 +157,12 @@
 //                 placeholder="Create a password"
 //                 required
 //                 minLength={8}
-//                 className="w-full pl-11 pr-12 py-3 rounded-xl border border-gray-200 text-[#0E121B] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0E121B] focus:border-transparent transition-all duration-200"
+//                 className="w-full pl-11 pr-12 py-3 rounded-xl border border-gray-200 text-text-primary placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0E121B] focus:border-transparent transition-all duration-200"
 //               />
 //               <button
 //                 type="button"
 //                 onClick={() => setShowPassword(!showPassword)}
-//                 className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#0E121B] transition-colors"
+//                 className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-text-primary transition-colors"
 //               >
 //                 {showPassword ? (
 //                   <EyeOff className="size-5" />
@@ -180,7 +180,7 @@
 //           <div>
 //             <label
 //               htmlFor="confirmPassword"
-//               className="block text-sm font-medium text-[#0E121B] mb-2"
+//               className="block text-sm font-medium text-text-primary mb-2"
 //             >
 //               Confirm Password
 //             </label>
@@ -194,14 +194,14 @@
 //                 onChange={handleChange}
 //                 placeholder="Confirm your password"
 //                 required
-//                 className="w-full pl-11 pr-12 py-3 rounded-xl border border-gray-200 text-[#0E121B] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0E121B] focus:border-transparent transition-all duration-200"
+//                 className="w-full pl-11 pr-12 py-3 rounded-xl border border-gray-200 text-text-primary placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0E121B] focus:border-transparent transition-all duration-200"
 //               />
 //               <button
 //                 type="button"
 //                 onClick={() =>
 //                   setShowConfirmPassword(!showConfirmPassword)
 //                 }
-//                 className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#0E121B] transition-colors"
+//                 className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-text-primary transition-colors"
 //               >
 //                 {showConfirmPassword ? (
 //                   <EyeOff className="size-5" />
@@ -221,20 +221,20 @@
 //                 checked={formData.agreeToTerms}
 //                 onChange={handleChange}
 //                 required
-//                 className="size-4 rounded border-gray-300 text-[#0E121B] focus:ring-2 focus:ring-[#0E121B] cursor-pointer mt-0.5"
+//                 className="size-4 rounded border-gray-300 text-text-primary focus:ring-2 focus:ring-[#0E121B] cursor-pointer mt-0.5"
 //               />
-//               <span className="text-sm text-gray-600 group-hover:text-[#0E121B] transition-colors">
+//               <span className="text-sm text-gray-600 group-hover:text-text-primary transition-colors">
 //                 I agree to the{" "}
 //                 <Link
 //                   href="/terms"
-//                   className="text-[#0E121B] hover:text-[#1a1f2e] font-medium"
+//                   className="text-text-primary hover:text-[#1a1f2e] font-medium"
 //                 >
 //                   Terms of Service
 //                 </Link>{" "}
 //                 and{" "}
 //                 <Link
 //                   href="/privacy"
-//                   className="text-[#0E121B] hover:text-[#1a1f2e] font-medium"
+//                   className="text-text-primary hover:text-[#1a1f2e] font-medium"
 //                 >
 //                   Privacy Policy
 //                 </Link>
@@ -256,7 +256,7 @@
 //           Already have an account?{" "}
 //           <button
 //             onClick={onSwitchToSignIn}
-//             className="text-[#0E121B] hover:text-[#1a1f2e] font-medium transition-colors"
+//             className="text-text-primary hover:text-[#1a1f2e] font-medium transition-colors"
 //           >
 //             Sign in
 //           </button>
@@ -356,7 +356,7 @@
 //           <div className="size-12 rounded-xl bg-gradient-to-br from-[#0E121B] to-[#1a1f2e] flex items-center justify-center shadow-lg mb-4 mx-auto">
 //             <Shield className="size-6 text-white" />
 //           </div>
-//           <h2 className="text-2xl font-semibold text-[#0E121B] mb-1">
+//           <h2 className="text-2xl font-semibold text-text-primary mb-1">
 //             Create Account
 //           </h2>
 //           <p className="text-sm text-gray-500">
@@ -373,7 +373,7 @@
 //           <div>
 //             <label
 //               htmlFor="phone"
-//               className="block text-sm font-medium text-[#0E121B] mb-2"
+//               className="block text-sm font-medium text-text-primary mb-2"
 //             >
 //               Phone Number
 //             </label>
@@ -390,7 +390,7 @@
 //                 placeholder="Enter your phone number"
 //                 required
 //                 disabled={otpSent}
-//                 className="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 text-[#0E121B] placeholder:text-gray-400 focus:ring-2 focus:ring-[#0E121B] transition-all"
+//                 className="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 text-text-primary placeholder:text-gray-400 focus:ring-2 focus:ring-[#0E121B] transition-all"
 //               />
 //             </div>
 //           </div>
@@ -400,7 +400,7 @@
 //             <div>
 //               <label
 //                 htmlFor="otp"
-//                 className="block text-sm font-medium text-[#0E121B] mb-2"
+//                 className="block text-sm font-medium text-text-primary mb-2"
 //               >
 //                 Enter OTP
 //               </label>
@@ -415,7 +415,7 @@
 //                 placeholder="Enter the OTP"
 //                 maxLength={6}
 //                 required
-//                 className="w-full px-4 py-3 rounded-xl border border-gray-200 text-[#0E121B] placeholder:text-gray-400 focus:ring-2 focus:ring-[#0E121B]"
+//                 className="w-full px-4 py-3 rounded-xl border border-gray-200 text-text-primary placeholder:text-gray-400 focus:ring-2 focus:ring-[#0E121B]"
 //               />
 //               <div className="text-xs text-gray-500 mt-2 text-right">
 //                 {timer > 0 ? (
@@ -427,7 +427,7 @@
 //                       dispatch(sendOtp(formData.phone));
 //                       setTimer(30);
 //                     }}
-//                     className="text-[#0E121B] underline font-medium"
+//                     className="text-text-primary underline font-medium"
 //                   >
 //                     Resend OTP
 //                   </button>
@@ -460,7 +460,7 @@
 //           Already have an account?{" "}
 //           <button
 //             onClick={onSwitchToSignIn}
-//             className="text-[#0E121B] hover:text-[#1a1f2e] font-medium transition-colors"
+//             className="text-text-primary hover:text-[#1a1f2e] font-medium transition-colors"
 //           >
 //             Sign in
 //           </button>
@@ -567,7 +567,7 @@ const SignUp = ({ isOpen = true, onClose = () => {}, onSwitchToSignIn }: SignUpP
           Already have an account?{" "}
           <button
             onClick={onSwitchToSignIn}
-            className="text-[#0E121B] font-medium"
+            className="text-text-primary font-medium"
           >
             Sign in
           </button>

@@ -5,10 +5,10 @@ import { MessageSquare, ArrowDown, Sparkles } from "lucide-react";
 
 const ContactHero = () => {
   return (
-    <section className="relative overflow-hidden bg-linear-to-br from-[#F9FAFB] via-white to-[#F3F7F6] pt-32 pb-20 max-md:pt-24 max-md:pb-16 max-sm:pt-20 max-sm:pb-12">
+    <section className="relative overflow-hidden bg-linear-to-br from-bg-light via-white to-brand-light pt-32 pb-20 max-md:pt-24 max-md:pb-16 max-sm:pt-20 max-sm:pb-12">
       {/* Decorative Background Elements */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-[#028678]/10 rounded-full blur-3xl animate-pulse max-md:w-48 max-md:h-48"></div>
-      <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#00A896]/10 rounded-full blur-3xl animate-pulse max-md:w-64 max-md:h-64"></div>
+      <div className="absolute top-20 left-10 w-72 h-72 bg-brand-primary/10 rounded-full blur-3xl animate-pulse max-md:w-48 max-md:h-48"></div>
+      <div className="absolute bottom-10 right-10 w-96 h-96 bg-brand-secondary/10 rounded-full blur-3xl animate-pulse max-md:w-64 max-md:h-64"></div>
 
       {/* Floating Elements */}
       <motion.div
@@ -54,11 +54,11 @@ const ContactHero = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             whileHover={{ scale: 1.05 }}
-            className="inline-flex items-center gap-2 bg-white border border-[#028678]/20 rounded-full px-4 py-2 mb-6 shadow-md hover:shadow-lg transition-all duration-300"
+            className="inline-flex items-center gap-2 bg-white border border-brand-primary/20 rounded-full px-4 py-2 mb-6 shadow-md hover:shadow-lg transition-all duration-300"
           >
-            <MessageSquare className="w-4 h-4 text-[#028678]" />
-            <span className="text-sm font-medium text-[#028678]">Get in Touch</span>
-            <Sparkles className="w-3 h-3 text-[#028678] animate-pulse" />
+            <MessageSquare className="w-4 h-4 text-brand-primary" />
+            <span className="text-sm font-medium text-brand-primary">Get in Touch</span>
+            <Sparkles className="w-3 h-3 text-brand-primary animate-pulse" />
           </motion.div>
 
           {/* Main Heading */}
@@ -70,11 +70,11 @@ const ContactHero = () => {
           >
             Let's Start a{" "}
             <span className="relative inline-block">
-              <span className="bg-linear-to-r from-[#028678] to-[#00A896] bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
                 Conversation
               </span>
               <motion.div
-                className="absolute -bottom-2 left-0 right-0 h-1 bg-linear-to-r from-[#028678] to-[#00A896] rounded-full"
+                className="absolute -bottom-2 left-0 right-0 h-1 bg-linear-to-r from-brand-primary to-brand-secondary rounded-full"
                 initial={{ width: 0 }}
                 animate={{ width: "100%" }}
                 transition={{ duration: 0.8, delay: 0.8 }}
@@ -107,7 +107,7 @@ const ContactHero = () => {
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-              className="flex flex-col items-center gap-2 text-sub-600 cursor-pointer hover:text-[#028678] transition-colors duration-300"
+              className="flex flex-col items-center gap-2 text-sub-600 cursor-pointer hover:text-brand-primary transition-colors duration-300"
               onClick={() => document.getElementById('contact-info')?.scrollIntoView({ behavior: 'smooth' })}
             >
               <span className="text-sm font-medium">Scroll to explore</span>

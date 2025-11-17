@@ -18,10 +18,10 @@ export default function TeamCard({ member, index }: TeamCardProps) {
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       whileHover={{ y: -8 }}
-      className="relative bg-white rounded-2xl p-8 max-md:p-6 max-sm:p-5 border-2 border-[#E5E7EB] hover:border-[#028678]/30 transition-all duration-300 shadow-lg hover:shadow-2xl group overflow-hidden"
+      className="relative bg-white rounded-2xl p-8 max-md:p-6 max-sm:p-5 border-2 border-border-light hover:border-brand-primary/30 transition-all duration-300 shadow-lg hover:shadow-2xl group overflow-hidden"
     >
       {/* Background gradient on hover */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#028678]/0 to-[#00A896]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/0 to-brand-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
       {/* Content */}
       <div className="relative">
@@ -37,19 +37,19 @@ export default function TeamCard({ member, index }: TeamCardProps) {
         </div>
 
         {/* Name */}
-        <h3 className="text-2xl max-md:text-xl max-sm:text-lg font-bold text-[#0E121B] mb-2 group-hover:text-[#028678] transition-colors duration-300">
+        <h3 className="text-2xl max-md:text-xl max-sm:text-lg font-bold text-text-primary mb-2 group-hover:text-brand-primary transition-colors duration-300">
           {member.name}
         </h3>
 
         {/* Role Badge */}
-        <div className="inline-flex items-center px-3 py-1.5 bg-[#028678]/10 rounded-lg mb-4 max-md:mb-3">
-          <p className="text-[#028678] font-semibold text-sm max-sm:text-xs">
+        <div className="inline-flex items-center px-3 py-1.5 bg-brand-primary/10 rounded-lg mb-4 max-md:mb-3">
+          <p className="text-brand-primary font-semibold text-sm max-sm:text-xs">
             {member.role}
           </p>
         </div>
 
         {/* Description */}
-        <p className="text-[#4B5563] leading-relaxed mb-5 max-md:mb-4 text-base max-md:text-sm max-sm:text-xs">
+        <p className="text-text-secondary leading-relaxed mb-5 max-md:mb-4 text-base max-md:text-sm max-sm:text-xs">
           {member.description}
         </p>
 
@@ -61,9 +61,9 @@ export default function TeamCard({ member, index }: TeamCardProps) {
           href={`https://twitter.com/${member.handle}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-[#028678] hover:text-[#00A896] transition-all duration-300 font-medium group/link"
+          className="inline-flex items-center gap-2 text-brand-primary hover:text-brand-secondary transition-all duration-300 font-medium group/link"
         >
-          <div className="p-2 bg-[#028678]/10 rounded-lg group-hover/link:bg-[#028678]/20 transition-colors duration-300">
+          <div className="p-2 bg-brand-primary/10 rounded-lg group-hover/link:bg-brand-primary/20 transition-colors duration-300">
             <Twitter className="w-4 h-4" />
           </div>
           <span className="text-sm max-sm:text-xs">@{member.handle}</span>
@@ -72,7 +72,7 @@ export default function TeamCard({ member, index }: TeamCardProps) {
       </div>
 
       {/* Decorative corner element */}
-      <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-[#028678]/5 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500" />
+      <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-brand-primary/5 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500" />
     </motion.div>
   );
 }

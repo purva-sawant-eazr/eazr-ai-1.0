@@ -68,7 +68,7 @@ const Header = ({ onOpenSidebar }: Props) => {
           {loggedIn ? (
             <button
               onClick={handleLogout}
-              className="px-3 py-1.5 rounded-xl bg-[#028678] text-white font-semibold text-sm hover:bg-[#02695D] active:scale-95 transition-all duration-200 shadow-sm flex items-center gap-2 max-md:px-2 max-md:gap-1.5"
+              className="px-3 py-1.5 rounded-xl bg-brand-primary text-white font-semibold text-sm hover:bg-brand-dark active:scale-95 transition-all duration-200 shadow-sm flex items-center gap-2 max-md:px-2 max-md:gap-1.5"
               title="Logout"
             >
               <LogOut className="w-4 h-4" />
@@ -77,7 +77,7 @@ const Header = ({ onOpenSidebar }: Props) => {
           ) : (
             <button
               onClick={handleLogin}
-              className="px-3 py-1.5 rounded-xl bg-[#028678] text-white font-semibold text-sm hover:bg-[#02695D] active:scale-95 transition-all duration-200 shadow-sm flex items-center gap-2 max-md:px-2 max-md:gap-1.5"
+              className="px-3 py-1.5 rounded-xl bg-brand-primary text-white font-semibold text-sm hover:bg-brand-dark active:scale-95 transition-all duration-200 shadow-sm flex items-center gap-2 max-md:px-2 max-md:gap-1.5"
               title="Login"
             >
               <LogIn className="w-4 h-4" />

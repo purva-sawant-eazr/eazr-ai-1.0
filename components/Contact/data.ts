@@ -15,7 +15,7 @@ export const contactInfo: ContactInfoItem[] = [
     title: "Email Us",
     details: "support@eazr.in",
     subtitle: "We'll respond within 24 hours",
-    gradient: "from-[#028678] to-[#00A896]",
+    gradient: "from-brand-primary to-brand-secondary",
     link: "mailto:support@eazr.in",
   },
   {
@@ -23,7 +23,7 @@ export const contactInfo: ContactInfoItem[] = [
     title: "Call Us",
     details: "+91 (800) 123-4567",
     subtitle: "Mon-Fri, 9AM to 6PM IST",
-    gradient: "from-[#00A896] to-[#05665B]",
+    gradient: "from-brand-secondary to-brand-dark",
     link: "tel:+918001234567",
   },
   {
@@ -31,7 +31,7 @@ export const contactInfo: ContactInfoItem[] = [
     title: "Visit Us",
     details: "Mumbai, India",
     subtitle: "Headquarters",
-    gradient: "from-[#05665B] to-[#028678]",
+    gradient: "from-brand-dark to-brand-primary",
     link: "#",
   },
 ];

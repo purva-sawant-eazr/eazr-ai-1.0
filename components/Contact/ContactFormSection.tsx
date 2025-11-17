@@ -40,11 +40,11 @@ export default function ContactFormSection() {
   };
 
   return (
-    <section id="contact-form" className="relative py-24 max-md:py-16 max-sm:py-12 bg-gradient-to-br from-[#F9FAFB] via-white to-[#F3F7F6] overflow-hidden">
+    <section id="contact-form" className="relative py-24 max-md:py-16 max-sm:py-12 bg-gradient-to-br from-bg-light via-white to-brand-light overflow-hidden">
       {/* Decorative blob */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#028678]/5 rounded-full blur-3xl -z-10"></div>
-      <div className="absolute top-20 right-10 w-72 h-72 bg-[#00A896]/5 rounded-full blur-3xl -z-10" />
-      <div className="absolute bottom-20 left-10 w-96 h-96 bg-[#05665B]/5 rounded-full blur-3xl -z-10" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-primary/5 rounded-full blur-3xl -z-10"></div>
+      <div className="absolute top-20 right-10 w-72 h-72 bg-brand-secondary/5 rounded-full blur-3xl -z-10" />
+      <div className="absolute bottom-20 left-10 w-96 h-96 bg-brand-dark/5 rounded-full blur-3xl -z-10" />
 
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -55,14 +55,14 @@ export default function ContactFormSection() {
         >
           {/* Section Header */}
           <div className="text-center mb-12 max-md:mb-10 max-sm:mb-8">
-            <div className="inline-flex items-center gap-2 bg-white border border-[#028678]/20 rounded-full px-4 py-2 mb-4 shadow-sm">
-              <MessageSquare className="w-4 h-4 text-[#028678]" />
-              <span className="text-sm font-semibold text-[#028678] max-sm:text-xs">Send us a Message</span>
+            <div className="inline-flex items-center gap-2 bg-white border border-brand-primary/20 rounded-full px-4 py-2 mb-4 shadow-sm">
+              <MessageSquare className="w-4 h-4 text-brand-primary" />
+              <span className="text-sm font-semibold text-brand-primary max-sm:text-xs">Send us a Message</span>
             </div>
-            <h2 className="text-5xl font-bold text-[#0E121B] mb-4 max-lg:text-4xl max-md:text-3xl max-sm:text-2xl">
+            <h2 className="text-5xl font-bold text-text-primary mb-4 max-lg:text-4xl max-md:text-3xl max-sm:text-2xl">
               Drop Us a Line
             </h2>
-            <p className="text-lg text-[#4B5563] max-md:text-base max-sm:text-sm">
+            <p className="text-lg text-text-secondary max-md:text-base max-sm:text-sm">
               Fill out the form below and we'll get back to you as soon as possible.
             </p>
           </div>
@@ -73,7 +73,7 @@ export default function ContactFormSection() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative bg-white border-2 border-[#E5E7EB] rounded-2xl p-8 max-md:p-6 max-sm:p-5 shadow-xl overflow-hidden"
+            className="relative bg-white border-2 border-border-light rounded-2xl p-8 max-md:p-6 max-sm:p-5 shadow-xl overflow-hidden"
           >
             {/* Success Message */}
             {isSuccess && (
@@ -81,7 +81,7 @@ export default function ContactFormSection() {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
-                className="absolute inset-0 bg-gradient-to-br from-[#028678]/95 to-[#00A896]/95 backdrop-blur-sm z-50 flex items-center justify-center rounded-2xl"
+                className="absolute inset-0 bg-gradient-to-br from-brand-primary/95 to-brand-secondary/95 backdrop-blur-sm z-50 flex items-center justify-center rounded-2xl"
               >
                 <div className="text-center text-white">
                   <motion.div
@@ -102,13 +102,13 @@ export default function ContactFormSection() {
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-base font-semibold text-[#0E121B] mb-2 max-sm:text-sm"
+                  className="block text-base font-semibold text-text-primary mb-2 max-sm:text-sm"
                 >
                   Full Name <span className="text-[#fb3748]">*</span>
                 </label>
                 <div className="relative">
                   <div className="absolute left-4 top-1/2 -translate-y-1/2">
-                    <User className="w-5 h-5 text-[#6B7280]" />
+                    <User className="w-5 h-5 text-text-tertiary" />
                   </div>
                   <input
                     type="text"
@@ -118,7 +118,7 @@ export default function ContactFormSection() {
                     onChange={handleChange}
                     required
                     placeholder="John Doe"
-                    className="w-full pl-12 pr-4 py-3.5 max-sm:py-3 rounded-xl border-2 border-[#E5E7EB] focus:border-[#028678] focus:outline-none focus:ring-2 focus:ring-[#028678]/20 transition-all duration-300 text-base max-sm:text-sm"
+                    className="w-full pl-12 pr-4 py-3.5 max-sm:py-3 rounded-xl border-2 border-border-light focus:border-brand-primary focus:outline-none focus:ring-2 focus:ring-[#028678]/20 transition-all duration-300 text-base max-sm:text-sm"
                   />
                 </div>
               </div>
@@ -127,13 +127,13 @@ export default function ContactFormSection() {
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-base font-semibold text-[#0E121B] mb-2 max-sm:text-sm"
+                  className="block text-base font-semibold text-text-primary mb-2 max-sm:text-sm"
                 >
                   Email Address <span className="text-[#fb3748]">*</span>
                 </label>
                 <div className="relative">
                   <div className="absolute left-4 top-1/2 -translate-y-1/2">
-                    <Mail className="w-5 h-5 text-[#6B7280]" />
+                    <Mail className="w-5 h-5 text-text-tertiary" />
                   </div>
                   <input
                     type="email"
@@ -143,7 +143,7 @@ export default function ContactFormSection() {
                     onChange={handleChange}
                     required
                     placeholder="john@example.com"
-                    className="w-full pl-12 pr-4 py-3.5 max-sm:py-3 rounded-xl border-2 border-[#E5E7EB] focus:border-[#028678] focus:outline-none focus:ring-2 focus:ring-[#028678]/20 transition-all duration-300 text-base max-sm:text-sm"
+                    className="w-full pl-12 pr-4 py-3.5 max-sm:py-3 rounded-xl border-2 border-border-light focus:border-brand-primary focus:outline-none focus:ring-2 focus:ring-[#028678]/20 transition-all duration-300 text-base max-sm:text-sm"
                   />
                 </div>
               </div>
@@ -152,7 +152,7 @@ export default function ContactFormSection() {
               <div>
                 <label
                   htmlFor="subject"
-                  className="block text-base font-semibold text-[#0E121B] mb-2 max-sm:text-sm"
+                  className="block text-base font-semibold text-text-primary mb-2 max-sm:text-sm"
                 >
                   Subject <span className="text-[#fb3748]">*</span>
                 </label>
@@ -164,7 +164,7 @@ export default function ContactFormSection() {
                   onChange={handleChange}
                   required
                   placeholder="How can we help you?"
-                  className="w-full px-4 py-3.5 max-sm:py-3 rounded-xl border-2 border-[#E5E7EB] focus:border-[#028678] focus:outline-none focus:ring-2 focus:ring-[#028678]/20 transition-all duration-300 text-base max-sm:text-sm"
+                  className="w-full px-4 py-3.5 max-sm:py-3 rounded-xl border-2 border-border-light focus:border-brand-primary focus:outline-none focus:ring-2 focus:ring-[#028678]/20 transition-all duration-300 text-base max-sm:text-sm"
                 />
               </div>
 
@@ -172,7 +172,7 @@ export default function ContactFormSection() {
               <div>
                 <label
                   htmlFor="message"
-                  className="block text-base font-semibold text-[#0E121B] mb-2 max-sm:text-sm"
+                  className="block text-base font-semibold text-text-primary mb-2 max-sm:text-sm"
                 >
                   Message <span className="text-[#fb3748]">*</span>
                 </label>
@@ -184,7 +184,7 @@ export default function ContactFormSection() {
                   required
                   rows={6}
                   placeholder="Tell us more about your inquiry..."
-                  className="w-full px-4 py-3.5 max-sm:py-3 rounded-xl border-2 border-[#E5E7EB] focus:border-[#028678] focus:outline-none focus:ring-2 focus:ring-[#028678]/20 transition-all duration-300 resize-none text-base max-sm:text-sm"
+                  className="w-full px-4 py-3.5 max-sm:py-3 rounded-xl border-2 border-border-light focus:border-brand-primary focus:outline-none focus:ring-2 focus:ring-[#028678]/20 transition-all duration-300 resize-none text-base max-sm:text-sm"
                 />
               </div>
 
@@ -192,7 +192,7 @@ export default function ContactFormSection() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-gradient-to-r from-[#028678] to-[#00A896] text-white px-8 py-4 max-sm:py-3.5 rounded-xl font-bold text-lg max-sm:text-base hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-[0.98]"
+                className="w-full bg-gradient-to-r from-brand-primary to-brand-secondary text-white px-8 py-4 max-sm:py-3.5 rounded-xl font-bold text-lg max-sm:text-base hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-[0.98]"
               >
                 {isSubmitting ? (
                   <>

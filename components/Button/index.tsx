@@ -61,7 +61,7 @@ const Button: React.FC<ButtonProps> = ({
                     : ""
             } ${
                 isRed
-                    ? "bg-[#FB3748] border-transparent text-static-white fill-static-white hover:bg-[#FB3748]/90"
+                    ? "bg-status-error border-transparent text-static-white fill-static-white hover:bg-status-error/90"
                     : ""
             } ${
                 isBlue
