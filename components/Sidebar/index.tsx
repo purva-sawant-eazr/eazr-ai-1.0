@@ -101,9 +101,9 @@
 //   return (
 //     <>
 //       <div
-//         className={`fixed top-5 left-5 bottom-5 flex flex-col w-80 bg-white rounded-3xl shadow-[0_0_1.25rem_0_rgba(0,0,0,0.03)] 
-//           max-3xl:w-65 max-lg:top-0 max-lg:left-0 max-lg:bottom-0 
-//           max-lg:z-20 max-lg:w-75 max-lg:shadow-2xl max-lg:rounded-none 
+//         className={`fixed top-5 left-5 bottom-5 flex flex-col w-80 bg-white rounded-3xl shadow-[0_0_1.25rem_0_rgba(0,0,0,0.03)]
+//           max-3xl:w-65 max-lg:top-0 max-lg:left-0 max-lg:bottom-0
+//           max-lg:z-20 max-lg:w-75 max-lg:shadow-2xl max-lg:rounded-none
 //           max-lg:transition-transform max-md:w-full max-md:p-4 ${
 //             visible ? "max-lg:translate-x-0" : "max-lg:-translate-x-full"
 //           }`}
@@ -142,8 +142,6 @@
 //             <span>{chatListLoading ? "Starting..." : "New Chat"}</span>
 //           </button>
 
-          
-
 //           {/* Example: Chat History */}
 //           <div className="mb-auto">
 //             <div className="mb-2 text-label-xs text-soft-400">Today</div>
@@ -159,8 +157,6 @@
 //             />
 //           </div>
 //         </div>
-
-       
 
 //         {/* User Section */}
 //         <User />
@@ -184,7 +180,6 @@
 // };
 
 // export default Sidebar;
-
 
 "use client";
 import { useState } from "react";
@@ -304,9 +299,9 @@ const Sidebar = ({ visible, onClose, onClickNewChat }: Props) => {
             visible ? "max-lg:translate-x-0" : "max-lg:-translate-x-full"
           }`}
       >
-        <div className="grow overflow-auto scrollbar-none p-5">
+        <div className="grow overflow-auto scrollbar-none p-2.5">
           {/* Mobile Close Button */}
-      <div className="flex items-center justify-end mb-4 lg:hidden">
+          <div className="flex items-center justify-end mb-4 lg:hidden">
             <button
               onClick={onClose}
               className="flex items-center justify-center w-8 h-8 rounded-lg hover:bg-gray-100 transition-colors"
@@ -349,11 +344,9 @@ const Sidebar = ({ visible, onClose, onClickNewChat }: Props) => {
             <span>{chatListLoading ? "Starting..." : "New Chat"}</span>
           </button>
 
-          
-
           {/* Example: Chat History */}
           <div className="mb-auto">
-          <SidebarChats />
+            <SidebarChats />
           </div>
 
           {/* Settings Button */}
@@ -364,10 +357,7 @@ const Sidebar = ({ visible, onClose, onClickNewChat }: Props) => {
               onClick={() => setOpen(true)}
             />
           </div> */}
-
         </div>
-
-       
 
         {/* User Section */}
         <User />

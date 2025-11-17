@@ -8,7 +8,6 @@ import {
   Paperclip,
   ArrowUpCircle,
   CheckCircle2,
-  Sparkles,
   Zap,
   Image as ImageIcon,
   Mic,
@@ -25,37 +24,23 @@ const SearchBox = () => {
   const [inputValue, setInputValue] = useState("");
   const [isRecording, setIsRecording] = useState(false);
 
-  //  Redirect to /write-copy after successful API response
-  // useEffect(() => {
-  //   if (askResponse && !isLoading) {
-  //     console.log("Ask Response Received:", askResponse);
+  useEffect(() => {
+    if (askResponse && !isLoading) {
+      console.log("Ask Response Received:", askResponse);
+      //Include both the user's query and AI response
+      const chatPayload = {
+        userQuery: inputValue,
+        response:
+          askResponse?.data?.data?.response || askResponse?.data?.message,
+        chat_session_id: askResponse?.data?.chat_session_id,
+        session_id: askResponse?.data?.session_id,
+      };
 
-  //     // ✅ Save the response in sessionStorage
-  //     sessionStorage.setItem("eazrChatResponse", JSON.stringify(askResponse));
+      sessionStorage.setItem("eazrChatResponse", JSON.stringify(chatPayload));
 
-  //     // Redirect to write-copy
-  //     router.push("/write-copy");
-  //   }
-  // }, [askResponse, isLoading, router]);
-
-useEffect(() => {
-  if (askResponse && !isLoading) {
-    console.log("Ask Response Received:", askResponse);
-
-    //Include both the user's query and AI response
-    const chatPayload = {
-      userQuery: inputValue,
-      response: askResponse?.data?.data?.response || askResponse?.data?.message,
-      chat_session_id: askResponse?.data?.chat_session_id,
-      session_id: askResponse?.data?.session_id,
-    };
-
-    sessionStorage.setItem("eazrChatResponse", JSON.stringify(chatPayload));
-
-    router.push("/write-copy");
-  }
-}, [askResponse, isLoading, router]);
-
+      router.push("/write-copy");
+    }
+  }, [askResponse, isLoading, router]);
 
   const handleSend = async () => {
     if (!inputValue.trim()) return;
@@ -80,15 +65,15 @@ useEffect(() => {
       {/* Hero Section - Desktop: top, Mobile: center */}
       <div className="text-center mb-12 max-w-4xl max-md:mb-8 max-sm:mb-0 max-sm:flex max-sm:flex-col max-sm:justify-center max-sm:flex-1 max-sm:pt-16 max-sm:pb-32">
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#0E121B] mb-4 leading-tight max-md:text-3xl max-md:mb-3 max-sm:text-2xl max-sm:mb-2">
-          Build Anything with{" "}
           <span className="bg-gradient-to-r from-[#028678] to-[#00A896] bg-clip-text text-transparent">
             Eazr AI
           </span>
+          -Your Intelligent Insurance Partner{" "}
         </h1>
 
         <p className="text-lg sm:text-xl text-[#6B7280] max-w-2xl mx-auto leading-relaxed max-md:text-base max-md:px-2 max-sm:text-base max-sm:px-4">
-          Transform your ideas into reality with AI-powered web applications.
-          Just describe what you want, and watch it come to life.
+          Just tell us what you need—AI finds the perfect coverage and brings
+          the right insurance plan to life.
         </p>
       </div>
 
@@ -127,7 +112,9 @@ useEffect(() => {
                 }`}
                 aria-label="Voice"
               >
-                <Mic className={`w-4 h-4 ${isRecording ? "animate-pulse" : ""}`} />
+                <Mic
+                  className={`w-4 h-4 ${isRecording ? "animate-pulse" : ""}`}
+                />
               </button>
               <button
                 onClick={handleSend}
@@ -161,25 +148,6 @@ useEffect(() => {
                   <span className="hidden sm:inline">{label}</span>
                 </button>
               ))}
-
-              {/* Mic Button */}
-              <button
-                onClick={() => setIsRecording(!isRecording)}
-                className={`flex items-center gap-2 px-2 py-1.5 rounded-lg border text-xs font-medium transition-all duration-200 shadow-sm hover:shadow group max-md:px-1.5 max-md:py-1 max-md:gap-1 max-sm:px-1 max-sm:py-0.5 ${
-                  isRecording
-                    ? "border-red-300 bg-red-50 text-red-600"
-                    : "border-[#E5E7EB] bg-white text-[#4B5563] hover:bg-[#F3F7F6] hover:border-[#00A896]/40 hover:text-[#028678]"
-                }`}
-              >
-                <Mic
-                  className={`w-4 h-4 max-md:w-3.5 max-md:h-3.5 max-sm:w-3 max-sm:h-3 ${
-                    isRecording ? "animate-pulse" : "group-hover:scale-110"
-                  } transition-transform`}
-                />
-                <span className="hidden sm:inline">
-                  {isRecording ? "Recording" : "Voice"}
-                </span>
-              </button>
             </div>
 
             {/* Send Button */}
@@ -193,8 +161,12 @@ useEffect(() => {
               }`}
               aria-label="Send"
             >
-              <span className="max-md:hidden">{isLoading ? "Eazr AI is thinking..." : "Send"}</span>
-              <span className="hidden max-md:inline">{isLoading ? "Thinking..." : "Send"}</span>
+              <span className="max-md:hidden">
+                {isLoading ? "Eazr AI is thinking..." : "Send"}
+              </span>
+              <span className="hidden max-md:inline">
+                {isLoading ? "Thinking..." : "Send"}
+              </span>
               <ArrowUpCircle className="w-5 h-5 max-md:w-4 max-md:h-4 max-sm:w-3.5 max-sm:h-3.5" />
             </button>
           </div>
@@ -213,27 +185,6 @@ useEffect(() => {
             <p>{error}</p>
           </div>
         )}
-
-        {/* Quick Suggestions - Hidden on mobile */}
-        <div className="flex items-center gap-3 mt-4 overflow-x-auto pb-2 scrollbar-hide max-md:gap-2 max-md:mt-3 max-sm:hidden">
-          <span className="text-sm text-[#6B7280] font-medium whitespace-nowrap max-md:text-xs max-sm:text-[10px]">
-            Try:
-          </span>
-          {[
-            "Build a landing page",
-            "Create a dashboard",
-            "Design a form",
-            "Make a chat app",
-          ].map((suggestion) => (
-            <button
-              key={suggestion}
-              onClick={() => handleSuggestionClick(suggestion)}
-              className="px-4 py-2 rounded-xl bg-white border border-[#E5E7EB] text-[#4B5563] text-sm font-medium hover:bg-[#028678] hover:text-white hover:border-[#028678] transition-all duration-200 whitespace-nowrap shadow-sm hover:shadow max-md:px-3 max-md:py-1.5 max-md:text-xs max-md:rounded-lg max-sm:px-2 max-sm:py-1 max-sm:text-[10px] max-sm:rounded-md"
-            >
-              {suggestion}
-            </button>
-          ))}
-        </div>
       </div>
 
       {/* Features Section - Hidden on mobile */}
@@ -257,7 +208,10 @@ useEffect(() => {
               "Access exclusive updates and early product releases.",
               "Get faster AI responses using your Eazr balance.",
             ].map((benefit, index) => (
-              <li key={index} className="flex items-start gap-3 group max-md:gap-2 max-sm:gap-1.5">
+              <li
+                key={index}
+                className="flex items-start gap-3 group max-md:gap-2 max-sm:gap-1.5"
+              >
                 <CheckCircle2 className="w-5 h-5 text-[#028678] mt-[2px] group-hover:scale-110 transition-transform flex-shrink-0 max-md:w-4 max-md:h-4 max-sm:w-3.5 max-sm:h-3.5" />
                 <span className="group-hover:text-[#0E121B] transition-colors max-md:text-xs max-sm:text-[10px]">
                   {benefit}
@@ -305,7 +259,6 @@ useEffect(() => {
           </div>
         </div>
       </div>
-      
     </div>
   );
 };

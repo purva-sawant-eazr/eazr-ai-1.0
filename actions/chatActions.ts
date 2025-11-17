@@ -58,65 +58,9 @@ export const postNewChat =
     }
   };
 
- //post= ask
-// export const postAsk =
-//   (
-//     query: string | null
-//   ) =>
-//   async (dispatch: any) => {
-//     dispatch({ type: POST_ASK_REQUEST });
 
-//     try {
-//       // Build FormData
-//       const formData = new FormData();
-//       if (query) formData.append("query", query);
-//       // if (user_session_id) formData.append("user_session_id", user_session_id);
-//       // if (chat_session_id) formData.append("chat_session_id", chat_session_id);
-//       // if (session_id) formData.append("session_id", session_id);
-//       // if (access_token) formData.append("access_token", access_token);
-//       // if (user_id) formData.append("user_id", user_id.toString());
-//       // if (user_phone) formData.append("user_phone", user_phone);
-//       // if (action) formData.append("action", action);
-//       // if (user_input) formData.append("user_input", user_input);
-//       // if (assistance_type) formData.append("assistance_type", assistance_type);
-//       // if (insurance_type) formData.append("insurance_type", insurance_type);
-//       // if (service_type) formData.append("service_type", service_type);
-//       // if (file_action) formData.append("file_action", file_action);
-//       // if (vehicle_market_value !== undefined && vehicle_market_value !== null)
-//       //   formData.append("vehicle_market_value", vehicle_market_value.toString());
-//       // if (annual_income !== undefined && annual_income !== null)
-//       //   formData.append("annual_income", annual_income.toString());
-//       // if (policy_id) formData.append("policy_id", policy_id);
-//       // if (application_id) formData.append("application_id", application_id);
-//       // if (edited_answers) formData.append("edited_answers", edited_answers);
-//       // if (model) formData.append("model", model);
+// Updated: Shows user message immediately, then fetches AI response
 
-//       // // Append multiple files (if present)
-//       // if (files && Array.isArray(files)) {
-//       //   files.forEach((f) => formData.append("files", f));
-//       // }
-
-//       // // Append single file (if present)
-//       // if (file) formData.append("file", file);
-
-//       // API Call
-
-//       const response = await axios.post(`${baseURL}/ask`, formData, {
-//         headers: {
-//           "Content-Type": "multipart/form-data",
-//           'Accept':'*/*'
-//         },
-//       });
-//       dispatch({ type: POST_ASK_SUCCESS, payload: response.data });
-//     } catch (error: any) {
-//       dispatch({ type: POST_ASK_FAILURE, payload: error.message });
-//     }
-//   };
-
-
-
-
-// ✅ Updated: Shows user message immediately, then fetches AI response
 export const postAsk =
   (query: string | null, additionalParams?: {
     action?: string;
@@ -129,11 +73,11 @@ export const postAsk =
   async (dispatch: AppDispatch, getState: any) => {
     if (!query?.trim() && !additionalParams?.action && !additionalParams?.files?.length) return;
 
-    // 🔹 Get current state
+    //  Get current state
     const { chat } = getState();
     const currentMessages = chat.messages || [];
 
-    // ✅ IMMEDIATELY add user message to UI (like Claude does)
+    //  IMMEDIATELY add user message to UI (like Claude does)
     const userMessage = { role: "user", content: query };
     const messagesWithUser = [...currentMessages, userMessage];
 
@@ -194,7 +138,7 @@ export const postAsk =
 
       const data = response.data;
 
-      // 🔹 Extract AI response safely
+      //  Extract AI response safely
       const aiText =
         data?.data?.response ||
         data?.data?.message ||
@@ -203,7 +147,7 @@ export const postAsk =
       const options = data?.data?.options || null;
       const responseType = data?.response_type || null;
 
-      // 🔹 Extract policy details if available (for policy_details response)
+      //  Extract policy details if available (for policy_details response)
       const policyDetails = data?.data?.eligibility || data?.data?.coverage_details || data?.data?.features
         ? {
             title: data?.data?.title || "",
