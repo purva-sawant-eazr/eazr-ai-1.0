@@ -55,12 +55,12 @@ const Layout = ({ children }: Props) => {
                     children
                 )}
             </div>
-            <Tools
+            {/* <Tools
                 activeId={activeId}
                 setActiveId={setActiveId}
                 visible={visibleTools}
                 onClose={() => setVisibleTools(!visibleTools)}
-            />
+            /> */}
             <div
                 className={`fixed inset-0 z-10 hidden bg-overlay backdrop-blur-sm transition-all max-lg:block max-md:hidden ${
                     visibleSidebar || !visibleTools

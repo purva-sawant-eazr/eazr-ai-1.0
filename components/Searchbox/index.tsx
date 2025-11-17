@@ -21,6 +21,7 @@ const SearchBox = () => {
     (state) => state.chat
   );
 
+  const { token } = useAppSelector((state) => state.auth);
   const [inputValue, setInputValue] = useState("");
   const [isRecording, setIsRecording] = useState(false);
 
@@ -45,7 +46,7 @@ const SearchBox = () => {
   const handleSend = async () => {
     if (!inputValue.trim()) return;
 
-    await dispatch(postAsk(inputValue)); //  send API request
+    await dispatch(postAsk(inputValue)); 
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -58,6 +59,16 @@ const SearchBox = () => {
   const handleSuggestionClick = (suggestion: string) => {
     sessionStorage.setItem("chatQuery", suggestion);
     router.push("/write-copy");
+  };
+
+  const handleAuthRequiredAction = (actionType: string) => {
+    if (!token) {
+      router.push("/auth/sign-in");
+      return;
+    }
+    // Add your logic here for when user is authenticated
+    console.log(`${actionType} clicked - User is authenticated`);
+    // TODO: Implement file attachment or image upload logic
   };
 
   return (
@@ -85,6 +96,7 @@ const SearchBox = () => {
             {/* Left action buttons - Mobile only */}
             <div className="hidden max-sm:flex items-center gap-1">
               <button
+                onClick={() => handleAuthRequiredAction("Attach")}
                 className="flex items-center justify-center w-8 h-8 rounded-full text-[#4B5563] hover:bg-gray-100 transition-all"
                 aria-label="Attach"
               >
@@ -142,6 +154,7 @@ const SearchBox = () => {
               ].map(({ icon: Icon, label }) => (
                 <button
                   key={label}
+                  onClick={() => handleAuthRequiredAction(label)}
                   className="flex items-center gap-2 px-2 py-1.5 rounded-lg border border-[#E5E7EB] bg-white text-[#4B5563] text-xs font-medium hover:bg-[#F3F7F6] hover:border-[#00A896]/40 hover:text-[#028678] transition-all duration-200 shadow-sm hover:shadow group max-md:px-1.5 max-md:py-1 max-md:gap-1 max-sm:px-1 max-sm:py-0.5"
                 >
                   <Icon className="w-4 h-4 group-hover:scale-110 transition-transform max-md:w-3.5 max-md:h-3.5 max-sm:w-3 max-sm:h-3" />

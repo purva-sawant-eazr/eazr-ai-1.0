@@ -1,11 +1,7 @@
 import { useState, useEffect } from "react";
-// import Button from "@/components/Button";
 import ModalPlan from "@/components/ModalPlan";
 import Icon from "@/components/Icon";
-// import SpecialOffer from "./SpecialOffer";
-import Link from "next/link";
-import Image from "next/image";
-import { LogOut } from "lucide-react";
+import { LogOut, LogIn } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { clearAuth } from "@/actions/authActions";
 import { useRouter } from "next/navigation";
@@ -44,6 +40,11 @@ const Header = ({ onOpenSidebar }: Props) => {
     router.push("/");
   };
 
+  // Login handler with redirect to login page
+  const handleLogin = () => {
+    router.push("/auth/sign-in");
+  };
+
   return (
     <>
       <div className="flex items-center gap-4 mb-3.5 max-md:gap-2 max-md:mb-3">
@@ -62,33 +63,9 @@ const Header = ({ onOpenSidebar }: Props) => {
           </div>
         </div>
         <div className="flex shrink-0 gap-1.5">
-          {/* add Profile icon to redirect Profile  */}
 
-          {/* <Link
-            href="/profile"
-            className="flex items-center justify-center size-10 rounded-full bg-white border border-[#E5E7EB] hover:border-[#00A896] hover:bg-[#00A896]/10 transition-all duration-200 shadow-sm overflow-hidden"
-            title="Go to Profile"
-          > */}
-            {/* <div className="relative w-8 h-8 rounded-full overflow-hidden group-hover:scale-110 transition-transform duration-200">
-              <Image
-                src="/images/logo/eazr_logo.png"
-                alt="Profile"
-                fill
-                className="object-contain"
-              />
-            </div> */}
-            {/* dummy Profile */}
-            {/* <Image
-              src="/images/logo/eazr_logo.png"
-              alt="Profile"
-              width={120}
-             height={40}
-              className="w-8 h-8 rounded-full object-contain transition-transform duration-200 group-hover:scale-110"
-            />
-          </Link> */}
-
-          {/* Logout Button */}
-          {loggedIn && (
+          {/* Login/Logout Button - Conditional */}
+          {loggedIn ? (
             <button
               onClick={handleLogout}
               className="px-3 py-1.5 rounded-xl bg-[#028678] text-white font-semibold text-sm hover:bg-[#02695D] active:scale-95 transition-all duration-200 shadow-sm flex items-center gap-2 max-md:px-2 max-md:gap-1.5"
@@ -96,6 +73,15 @@ const Header = ({ onOpenSidebar }: Props) => {
             >
               <LogOut className="w-4 h-4" />
               <span className="max-md:hidden">Logout</span>
+            </button>
+          ) : (
+            <button
+              onClick={handleLogin}
+              className="px-3 py-1.5 rounded-xl bg-[#028678] text-white font-semibold text-sm hover:bg-[#02695D] active:scale-95 transition-all duration-200 shadow-sm flex items-center gap-2 max-md:px-2 max-md:gap-1.5"
+              title="Login"
+            >
+              <LogIn className="w-4 h-4" />
+              <span className="max-md:hidden">Login</span>
             </button>
           )}
         </div>

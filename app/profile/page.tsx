@@ -2,7 +2,12 @@
 import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
-import { getUserProfile, updateUserProfile, updateUserProfileWithPicture, resetUpdateSuccess } from "@/actions/userActions";
+import {
+  getUserProfile,
+  updateUserProfile,
+  updateUserProfileWithPicture,
+  resetUpdateSuccess,
+} from "@/actions/userActions";
 import Icon from "@/components/Icon";
 import Image from "@/components/Image";
 
@@ -182,7 +187,11 @@ const ProfilePage = () => {
   };
 
   const handleSubmit = async () => {
-    if (!sessionData?.session_id || !sessionData?.access_token || !sessionData?.user_id) {
+    if (
+      !sessionData?.session_id ||
+      !sessionData?.access_token ||
+      !sessionData?.user_id
+    ) {
       alert("Session expired. Please log in again.");
       return;
     }
@@ -197,7 +206,8 @@ const ProfilePage = () => {
       const formDataToSend = new FormData();
 
       // Add all form fields to FormData
-      if (formData.full_name) formDataToSend.append("full_name", formData.full_name);
+      if (formData.full_name)
+        formDataToSend.append("full_name", formData.full_name);
       if (formData.gender) formDataToSend.append("gender", formData.gender);
       if (formData.dob) formDataToSend.append("dob", formData.dob);
 
@@ -222,7 +232,11 @@ const ProfilePage = () => {
       const updateData: any = {};
       Object.keys(formData).forEach((key) => {
         const value = formData[key as keyof typeof formData];
-        if (value !== null && value !== "" && !(Array.isArray(value) && value.length === 0)) {
+        if (
+          value !== null &&
+          value !== "" &&
+          !(Array.isArray(value) && value.length === 0)
+        ) {
           updateData[key] = value;
         }
       });
@@ -310,7 +324,7 @@ const ProfilePage = () => {
               >
                 <Icon className="fill-gray-600 rotate-90" name="chevron" />
               </button>
-              <h1 className="text-2xl font-semibold text-strong-950">
+              <h1 className="text-2xl font-semibold text-strong-950 mr-1">
                 Profile
               </h1>
             </div>
@@ -319,34 +333,40 @@ const ProfilePage = () => {
             {!isEditMode ? (
               <button
                 onClick={handleEditToggle}
-                className="flex items-center gap-2 px-4 py-2 bg-[#00A896] text-white rounded-lg hover:bg-[#028678] transition-colors"
+                className="flex items-center gap-1 px-3 py-1.5 text-sm 
+               bg-[#00A896] text-white rounded-md 
+               hover:bg-[#028678] transition-colors"
               >
-                <Icon className="fill-white" name="edit" />
-                Edit Profile
+                <Icon className="fill-white w-4 h-4" name="edit" />
+                Edit
               </button>
             ) : (
               <div className="flex gap-2">
                 <button
                   onClick={handleCancel}
                   disabled={updateLoading}
-                  className="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition-colors disabled:opacity-50"
+                  className="px-3 py-1.5 text-sm bg-gray-300 text-gray-700 rounded-md 
+                 hover:bg-gray-400 transition-colors disabled:opacity-50"
                 >
                   Cancel
                 </button>
+
                 <button
                   onClick={handleSubmit}
                   disabled={updateLoading}
-                  className="flex items-center gap-2 px-4 py-2 bg-[#00A896] text-white rounded-lg hover:bg-[#028678] transition-colors disabled:opacity-50"
+                  className="flex items-center gap-1 px-3 py-1.5 text-sm 
+                 bg-[#00A896] text-white rounded-md 
+                 hover:bg-[#028678] transition-colors disabled:opacity-50"
                 >
                   {updateLoading ? (
                     <>
-                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                      <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-white"></div>
                       Saving...
                     </>
                   ) : (
                     <>
-                      <Icon className="fill-white" name="check" />
-                      Save Changes
+                      <Icon className="fill-white w-4 h-4" name="check" />
+                      Save
                     </>
                   )}
                 </button>
@@ -373,7 +393,11 @@ const ProfilePage = () => {
             <div className="relative">
               <Image
                 className="size-20 rounded-full opacity-100"
-                src={previewUrl || displayProfile.profile_pic || "/images/avatar-1.png"}
+                src={
+                  previewUrl ||
+                  displayProfile.profile_pic ||
+                  "/images/avatar-1.png"
+                }
                 width={80}
                 height={80}
                 alt="User"
@@ -387,12 +411,21 @@ const ProfilePage = () => {
                     onChange={handleFileChange}
                     className="hidden"
                   />
-                  <button
+                  {/* <button
                     onClick={() => fileInputRef.current?.click()}
-                    className="absolute bottom-0 right-0 bg-[#00A896] rounded-full p-2 hover:bg-[#028678] transition-colors shadow-lg"
+                    className="absolute bottom-0 right-0 rounded-full p-2 transition-colors shadow-lg"
                     title="Change profile picture"
                   >
                     <Icon className="fill-white w-3 h-3" name="camera" />
+                  </button> */}
+                  {/* Camera Icon — Always visible */}
+                  <button
+                    onClick={() => fileInputRef.current?.click()}
+                    className="absolute -bottom-1 right-0 bg-black/70 p-1 flex rounded-full
+             shadow-md hover:bg-black/80 transition-all duration-200"
+                    title="Change profile picture"
+                  >
+                    <Icon className="fill-white w-6 h-6" name="camera" />
                   </button>
                 </>
               )}
@@ -501,11 +534,7 @@ const ProfilePage = () => {
               <InfoItem label="Age" value={displayProfile.age} />
             </div>
           )}
-
- 
         </div>
-
-
 
         {/* Credit Information - Read Only (if available) */}
         {eazrProfile.isCreditActivated && (

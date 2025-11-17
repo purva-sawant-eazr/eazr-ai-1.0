@@ -13,11 +13,20 @@ interface SignInProps {
   onSwitchToSignUp?: () => void;
 }
 
-const SignIn = ({ isOpen = true, onClose = () => {}, onSwitchToSignUp }: SignInProps) => {
+const SignIn = ({ isOpen = true, onClose, onSwitchToSignUp }: SignInProps) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const { isLoading, otpSent, error } = useAppSelector((state) => state.auth);
   const [phone, setPhone] = useState("");
+
+  // Default close handler that navigates back to home
+  const handleClose = () => {
+    if (onClose) {
+      onClose();
+    } else {
+      router.push("/");
+    }
+  };
 
   // useEffect(() => {
   //   if (otpSent && phone) {
@@ -47,15 +56,15 @@ const SignIn = ({ isOpen = true, onClose = () => {}, onSwitchToSignUp }: SignInP
   return (
     <div
       className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center"
-      onClick={onClose}
+      onClick={handleClose}
     >
       <div
         onClick={(e) => e.stopPropagation()}
         className="bg-white p-8 rounded-2xl w-full max-w-md relative"
       >
         <button
-          onClick={onClose}
-          className="absolute top-4 right-4 text-gray-500"
+          onClick={handleClose}
+          className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 transition-colors"
         >
           <X />
         </button>
