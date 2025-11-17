@@ -39,10 +39,15 @@ const ProfilePage = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const updateSuccessHandled = useRef(false);
 
-  // Reset update success state on mount
+  // Reset update success state on mount and unmount
   useEffect(() => {
     dispatch(resetUpdateSuccess());
     updateSuccessHandled.current = false;
+
+    // Cleanup: Reset updateSuccess when component unmounts
+    return () => {
+      dispatch(resetUpdateSuccess());
+    };
   }, [dispatch]);
 
   useEffect(() => {
