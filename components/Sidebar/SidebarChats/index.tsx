@@ -260,6 +260,7 @@ import {
   postLoadChatSession,
   getUserALLChat,
   moveChatToTop,
+  deleteChat,
 } from "@/actions/chatActions";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import Image from "next/image";
@@ -320,6 +321,38 @@ const { data, chatListLoading, error, hasLoadedChatList } = useSelector(
     }
   };
 
+  // ✅ Handle delete chat
+  const handleDeleteChat = async (session_id: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+
+    // Confirm deletion
+    if (!confirm("Are you sure you want to delete this chat?")) {
+      return;
+    }
+
+    try {
+      const stored = localStorage.getItem("session_data");
+      const session = stored ? JSON.parse(stored) : null;
+
+      if (!session?.user_id) {
+        console.error("No user_id found in session");
+        return;
+      }
+
+      // Soft delete by default (hard_delete: false)
+      await dispatch(deleteChat(session_id, session.user_id, false) as any);
+
+      // If the deleted chat was the current one, navigate to home
+      if (session.chat_session_id === session_id) {
+        localStorage.removeItem("chat_messages");
+        router.push("/");
+      }
+    } catch (err) {
+      console.error("Error deleting chat:", err);
+      alert("Failed to delete chat. Please try again.");
+    }
+  };
+
   // 🔹 Format timestamp helper
   const formatTime = (iso: string) => {
     try {
@@ -352,6 +385,7 @@ const { data, chatListLoading, error, hasLoadedChatList } = useSelector(
     key={chat.session_id}
     chat={chat}
     onOpen={handleOpenChat}
+    onDelete={handleDeleteChat}
     formatTime={formatTime}
   />
 ))}

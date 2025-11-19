@@ -18,7 +18,10 @@ import {
   PUT_CHAT_TITLE_REQUEST,
   PUT_CHAT_TITLE_SUCCESS,
   PUT_CHAT_TITLE_FAILURE,
-  ADD_NEW_CHAT_TO_LIST
+  ADD_NEW_CHAT_TO_LIST,
+  DELETE_CHAT_REQUEST,
+  DELETE_CHAT_SUCCESS,
+  DELETE_CHAT_FAILURE
 } from "@/constants/actionTypes";
 import axios from "axios";
 import { AppDispatch } from "@/store/store";
@@ -423,3 +426,39 @@ export const addNewChatToList = (chatData: any) => ({
   type: ADD_NEW_CHAT_TO_LIST,
   payload: chatData,
 });
+
+// DELETE = Delete chat session
+export const deleteChat =
+  (session_id: string, user_id: number, hard_delete: boolean = false) =>
+  async (dispatch: AppDispatch) => {
+    dispatch({ type: DELETE_CHAT_REQUEST });
+
+    try {
+      const response = await fetch(`${baseURL}/delete-chat-session`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          session_id,
+          user_id,
+          hard_delete,
+        }),
+      });
+
+      if (!response.ok) {
+        const text = await response.text();
+        throw new Error(`Failed to delete chat: ${response.status} ${text}`);
+      }
+
+      const data = await response.json();
+
+      dispatch({
+        type: DELETE_CHAT_SUCCESS,
+        payload: { session_id, data }
+      });
+
+      return { type: DELETE_CHAT_SUCCESS, payload: { session_id, data } };
+    } catch (error: any) {
+      dispatch({ type: DELETE_CHAT_FAILURE, payload: error.message });
+      return { type: DELETE_CHAT_FAILURE, payload: error.message };
+    }
+  };

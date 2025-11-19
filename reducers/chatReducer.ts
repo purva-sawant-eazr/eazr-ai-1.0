@@ -14,7 +14,10 @@ import {
   POST_LOAD_CHAT_FAILURE,
   APPEND_CHAT_MESSAGE,
   SET_ACTIVE_CHAT,
-  MOVE_CHAT_TO_TOP
+  MOVE_CHAT_TO_TOP,
+  DELETE_CHAT_REQUEST,
+  DELETE_CHAT_SUCCESS,
+  DELETE_CHAT_FAILURE
 } from "@/constants/actionTypes";
 
 // const initialState = {
@@ -73,7 +76,7 @@ export default function chatReducer(state = initialState, action: any) {
       return { ...state, messagesLoading: true, isLoading: true, error: null, isSuccess: false };
 
     case POST_ASK_REQUEST:
-      // ✅ If payload contains messages, update them immediately (for showing user message)
+      // If payload contains messages, update them immediately (for showing user message)
       return {
         ...state,
         messagesLoading: true,
@@ -118,14 +121,14 @@ export default function chatReducer(state = initialState, action: any) {
   case POST_ASK_SUCCESS: {
   const updatedMessages = action.payload?.updatedMessages || state.messages;
 
-  // 🧠 Persist to localStorage
+  //  Persist to localStorage
   try {
     localStorage.setItem("chat_messages", JSON.stringify(updatedMessages));
   } catch (e) {
     console.warn("Failed to persist chat messages:", e);
   }
 
-  // ✅ Return state WITHOUT modifying chatListLoading or data (to prevent sidebar re-render)
+  //  Return state WITHOUT modifying chatListLoading or data (to prevent sidebar re-render)
   return {
     ...state,
     messagesLoading: false,
@@ -159,7 +162,7 @@ export default function chatReducer(state = initialState, action: any) {
       const { session_id, session_info, messages = [], total_messages = 0 } =
         action.payload;
 
-      // ✅ Return state WITHOUT modifying chatListLoading or data
+      //  Return state WITHOUT modifying chatListLoading or data
       return {
         ...state,
         messagesLoading: false,
@@ -171,7 +174,7 @@ export default function chatReducer(state = initialState, action: any) {
         totalMessages: total_messages,
         chats: {
           ...state.chats,
-          [session_id]: messages, // ✅ cache messages for that chat
+          [session_id]: messages, // cache messages for that chat
         },
         error: null,
       };
@@ -194,7 +197,7 @@ export default function chatReducer(state = initialState, action: any) {
     // case APPEND_CHAT_MESSAGE:
     //   return { ...state, messages: [...state.messages, action.payload] };
 
-     // ✅ Set active chat manually (no reload)
+     // Set active chat manually (no reload)
     case SET_ACTIVE_CHAT: {
       const activeId = action.payload;
       const existingMessages = state.chats[activeId] || [];
@@ -207,7 +210,7 @@ export default function chatReducer(state = initialState, action: any) {
       };
     }
 
-    // ✅ Append new message locally (for continuation)
+    // Append new message locally (for continuation)
     case APPEND_CHAT_MESSAGE: {
       const activeId = state.currentSessionId;
       if (!activeId) return state; // no active chat yet
@@ -225,7 +228,7 @@ export default function chatReducer(state = initialState, action: any) {
       };
     }
 
-    // ✅ Move selected chat to top of the list
+    // Move selected chat to top of the list
     case MOVE_CHAT_TO_TOP: {
       const selectedSessionId = action.payload;
       if (!state.data?.chats) return state;
@@ -289,7 +292,7 @@ export default function chatReducer(state = initialState, action: any) {
       };
     }
 
-    // ✅ Update chat title locally
+    //Update chat title locally
     case "UPDATE_CHAT_TITLE_LOCAL": {
       const { sessionId, title } = action.payload;
       if (!state.data?.chats) return state;
@@ -345,7 +348,7 @@ export default function chatReducer(state = initialState, action: any) {
       };
     }
 
-    // ✅ Add new chat to list immediately (at top)
+    // Add new chat to list immediately (at top)
     case "ADD_NEW_CHAT_TO_LIST": {
       const newChat = action.payload;
       const existingChats = state.data?.chats || [];
@@ -396,6 +399,85 @@ export default function chatReducer(state = initialState, action: any) {
         },
       };
     }
+
+    //Delete chat from list
+    case DELETE_CHAT_REQUEST:
+      return { ...state, isLoading: true, error: null };
+
+    case DELETE_CHAT_SUCCESS: {
+      const deletedSessionId = action.payload.session_id;
+      if (!state.data?.chats) return state;
+
+      // Remove the deleted chat from the list
+      const updatedChats = state.data.chats.filter(
+        (chat: any) => chat.session_id !== deletedSessionId && chat.chat_session_id !== deletedSessionId
+      );
+
+      // Re-organize into time-based groups
+      const now = new Date();
+      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      const yesterday = new Date(today.getTime() - 24 * 60 * 60 * 1000);
+      const last7Days = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000);
+      const last30Days = new Date(today.getTime() - 30 * 24 * 60 * 60 * 1000);
+
+      const organized = updatedChats.reduce(
+        (acc: any, chat: any) => {
+          const lastActivity = new Date(chat.last_activity);
+
+          if (lastActivity >= today) {
+            acc.today.push(chat);
+          } else if (lastActivity >= yesterday) {
+            acc.yesterday.push(chat);
+          } else if (lastActivity >= last7Days) {
+            acc.last_7_days.push(chat);
+          } else if (lastActivity >= last30Days) {
+            acc.last_30_days.push(chat);
+          } else {
+            acc.older.push(chat);
+          }
+
+          return acc;
+        },
+        {
+          today: [],
+          yesterday: [],
+          last_7_days: [],
+          last_30_days: [],
+          older: [],
+        }
+      );
+
+      // Remove from chats cache
+      const updatedChatsCache = { ...state.chats };
+      delete updatedChatsCache[deletedSessionId];
+
+      // Clear current session if it's the deleted one
+      const shouldClearSession = state.currentSessionId === deletedSessionId;
+
+      return {
+        ...state,
+        isLoading: false,
+        data: {
+          ...state.data,
+          chats: updatedChats,
+          organized_chats: organized,
+        },
+        chats: updatedChatsCache,
+        ...(shouldClearSession && {
+          currentSessionId: null,
+          messages: [],
+          totalMessages: 0,
+          sessionInfo: null,
+        }),
+      };
+    }
+
+    case DELETE_CHAT_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
+      };
 
     case CHAT_CLEAR:
       return initialState;
