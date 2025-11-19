@@ -69,12 +69,16 @@ const WriteCopyPage = () => {
       // Only load if not already loaded
       if (!isChatAlreadyLoaded) {
         console.log("📡 Loading chat session:", chatId);
-        dispatch(postLoadChatSession(chatId));
+        dispatch(postLoadChatSession(chatId)).catch((error: any) => {
+          console.error("Failed to load chat:", error);
+          // Show error message to user
+          alert("Failed to load chat session. It may have been deleted.");
+        });
       } else {
         console.log("✅ Chat already loaded, skipping API call");
       }
     }
-  }, [chatId, dispatch]);
+  }, [chatId, dispatch, currentSessionId, chats]);
 
   // 🔹 Send message to API
   const handleSendMessage = (message: string, files?: File[]) => {

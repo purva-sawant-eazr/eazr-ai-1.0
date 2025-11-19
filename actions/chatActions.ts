@@ -292,9 +292,27 @@ const getSessionData = () => {
   }
 };
 
+// 🧩 Helper: Transform loaded messages to match the format from postAsk
+const transformLoadedMessage = (msg: any) => {
+  // If already transformed (has questionData, reviewData, etc.), return as-is
+  if (msg.questionData || msg.reviewData || msg.policyDetails) {
+    return msg;
+  }
+
+  // Base message structure - just preserve content and role
+  // Note: The API doesn't send structured data (forms, options, etc.) when loading old chats
+  // It only sends the text content, so we can only show the conversation history
+  const transformed: any = {
+    role: msg.role,
+    content: msg.content || "",
+  };
+
+  return transformed;
+};
+
 // 🟦 POST = Load Chat Session
 export const postLoadChatSession =
-  (session_id: string, user_id?: number, message_limit: number | null = 10) =>
+  (session_id: string, user_id?: number, message_limit: number | null = null) =>
   async (dispatch: AppDispatch) => {
     dispatch({ type: POST_LOAD_CHAT_REQUEST });
     try {
@@ -304,11 +322,16 @@ export const postLoadChatSession =
       const uid = user_id || session?.user_id;
       if (!session_id || !uid) throw new Error("Missing session_id or user_id");
 
-      const body = {
+      // Build request body - only include message_limit if it's not null
+      const body: any = {
         session_id,
         user_id: uid,
-        message_limit,
       };
+
+      // Only add message_limit if it's explicitly set (not null)
+      if (message_limit !== null) {
+        body.message_limit = message_limit;
+      }
 
       const response = await fetch(`${baseURL}/load-chat-session`, {
         method: "POST",
@@ -317,8 +340,21 @@ export const postLoadChatSession =
       });
 
       if (!response.ok) {
-        const text = await response.text();
-        throw new Error(`HTTP ${response.status}: ${text}`);
+        const errorText = await response.text();
+        console.error(" Load chat failed:", {
+          status: response.status,
+          session_id,
+          user_id: uid,
+          error: errorText
+        });
+
+        // If chat not found, clear it from localStorage and redirect
+        if (response.status === 404) {
+          localStorage.removeItem("chat_messages");
+          throw new Error("Chat session not found. It may have been deleted.");
+        }
+
+        throw new Error(`HTTP ${response.status}: ${errorText}`);
       }
 
       const data = await response.json();
@@ -326,6 +362,9 @@ export const postLoadChatSession =
       if (!data.success) {
         throw new Error(data.message || "Failed to load chat session");
       }
+
+      // 🔹 Transform loaded messages to match postAsk format
+      const transformedMessages = (data.messages || []).map(transformLoadedMessage);
 
       //Update localStorage with current chat_session_id
       const updated = {
@@ -335,13 +374,16 @@ export const postLoadChatSession =
       };
       localStorage.setItem("session_data", JSON.stringify(updated));
 
+      // 🔹 Also persist transformed messages to localStorage
+      localStorage.setItem("chat_messages", JSON.stringify(transformedMessages));
+
       //Dispatch Success
       dispatch({
         type: POST_LOAD_CHAT_SUCCESS,
         payload: {
           session_id: data.session_id,
           session_info: data.session_info,
-          messages: data.messages || [],
+          messages: transformedMessages,
           total_messages: data.total_messages || 0,
         },
       });
