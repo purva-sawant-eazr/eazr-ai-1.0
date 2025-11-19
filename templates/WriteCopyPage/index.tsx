@@ -78,7 +78,8 @@ const WriteCopyPage = () => {
         console.log("✅ Chat already loaded, skipping API call");
       }
     }
-  }, [chatId, dispatch, currentSessionId, chats]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [chatId]);
 
   // 🔹 Send message to API
   const handleSendMessage = (message: string, files?: File[]) => {
