@@ -54,7 +54,7 @@ const ChatItem = React.memo(({ chat, onOpen, onDelete, formatTime }: ChatItemPro
           <button
             onClick={handleDelete}
             disabled={isDeleting}
-            className="opacity-0 group-hover:opacity-100 p-1.5 rounded-md hover:bg-red-50 transition-all disabled:opacity-50"
+            className="max-md:opacity-100 opacity-0 group-hover:opacity-100 p-1.5 rounded-md hover:bg-red-50 transition-all disabled:opacity-50"
             title="Delete chat"
             aria-label="Delete chat"
           >

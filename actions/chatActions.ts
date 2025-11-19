@@ -504,3 +504,8 @@ export const deleteChat =
       return { type: DELETE_CHAT_FAILURE, payload: error.message };
     }
   };
+
+// CLEAR = Clear all chat state (used on logout)
+export const clearChat = () => ({
+  type: "CHAT_CLEAR",
+});
