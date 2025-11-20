@@ -19,7 +19,6 @@ const isLocal = typeof window !== "undefined" && window.location.hostname === "l
 export const sendOtp = (phone: string) => async (dispatch: AppDispatch) => {
   dispatch({ type: SEND_OTP_REQUEST });
   try {
-    //  Use local proxy in dev, real API in production
     const endpoint = isLocal ? "/api/send-otp" : `${baseURL}/send-otp`;
 
     const response = await fetch(endpoint, {

@@ -6,14 +6,18 @@ interface ChatItemProps {
   chat: any;
   onOpen: (id: string) => void;
   onDelete: (id: string, e: React.MouseEvent) => void;
+  onRename: (id: string, newTitle: string) => void;
   formatTime: (iso: string) => string;
 }
 
 const ChatItem = React.memo(
-  ({ chat, onOpen, onDelete, formatTime }: ChatItemProps) => {
+  ({ chat, onOpen, onDelete, onRename, formatTime }: ChatItemProps) => {
     const [isDeleting, setIsDeleting] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isRenaming, setIsRenaming] = useState(false);
+    const [renameValue, setRenameValue] = useState("");
     const menuRef = useRef<HTMLDivElement>(null);
+    const inputRef = useRef<HTMLInputElement>(null);
 
     const handleDelete = async (e: React.MouseEvent) => {
       e.stopPropagation();
@@ -27,7 +31,7 @@ const ChatItem = React.memo(
     };
 
     const handleClick = () => {
-      if (!isDeleting) {
+      if (!isDeleting && !isRenaming) {
         onOpen(chat.session_id);
       }
     };
@@ -35,6 +39,32 @@ const ChatItem = React.memo(
     const handleMenuToggle = (e: React.MouseEvent) => {
       e.stopPropagation();
       setIsMenuOpen(!isMenuOpen);
+    };
+
+    const handleRenameClick = (e: React.MouseEvent) => {
+      e.stopPropagation();
+      setIsMenuOpen(false);
+      setRenameValue(chat.title || chat.first_message_preview || "Untitled Chat");
+      setIsRenaming(true);
+    };
+
+    const handleRenameSubmit = (e: React.FormEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (renameValue.trim()) {
+        onRename(chat.session_id, renameValue.trim());
+        setIsRenaming(false);
+      }
+    };
+
+    const handleRenameCancel = (e: React.MouseEvent) => {
+      e.stopPropagation();
+      setIsRenaming(false);
+      setRenameValue("");
+    };
+
+    const handleInputClick = (e: React.MouseEvent) => {
+      e.stopPropagation();
     };
 
     // Close menu when clicking outside
@@ -54,6 +84,14 @@ const ChatItem = React.memo(
       };
     }, [isMenuOpen]);
 
+    // Focus input when renaming starts
+    useEffect(() => {
+      if (isRenaming && inputRef.current) {
+        inputRef.current.focus();
+        inputRef.current.select();
+      }
+    }, [isRenaming]);
+
     return (
       <div
         onClick={handleClick}
@@ -61,11 +99,42 @@ const ChatItem = React.memo(
       >
         <div className="flex items-center justify-between w-full ">
           <div className="flex items-center overflow-hidden flex-1 min-w-0">
-            <span className="font-medium text-[13px] text-gray-900 truncate">
-              {chat.title || chat.first_message_preview || "Untitled Chat"}
-            </span>
+            {isRenaming ? (
+              <form onSubmit={handleRenameSubmit} className="flex items-center gap-2 w-full">
+                <input
+                  ref={inputRef}
+                  type="text"
+                  value={renameValue}
+                  onChange={(e) => setRenameValue(e.target.value)}
+                  onClick={handleInputClick}
+                  className="flex-1 px-2 py-1 text-[13px] font-medium text-gray-900 border border-blue-500 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  maxLength={100}
+                />
+                <button
+                  type="submit"
+                  onClick={handleInputClick}
+                  className="p-1 text-green-600 hover:text-green-700"
+                  title="Save"
+                >
+                  <Icon className="fill-green-600" name="check" />
+                </button>
+                <button
+                  type="button"
+                  onClick={handleRenameCancel}
+                  className="p-1 text-red-600 hover:text-red-700"
+                  title="Cancel"
+                >
+                  <Icon className="fill-red-600" name="close" />
+                </button>
+              </form>
+            ) : (
+              <span className="font-medium text-[13px] text-gray-900 truncate">
+                {chat.title || chat.first_message_preview || "Untitled Chat"}
+              </span>
+            )}
           </div>
-          <div className="flex items-center gap-1.5 ml-2 flex-shrink-0 relative" ref={menuRef}>
+          {!isRenaming && (
+            <div className="flex items-center gap-1.5 ml-2 flex-shrink-0 relative" ref={menuRef}>
             {/* Three-dot menu button */}
             <button
               onClick={handleMenuToggle}
@@ -95,11 +164,7 @@ const ChatItem = React.memo(
                 </button>
 
                 <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setIsMenuOpen(false);
-                    // TODO: Implement rename functionality
-                  }}
+                  onClick={handleRenameClick}
                   className="flex items-center gap-3 w-full px-4 py-2.5 text-sm text-strong-950 hover:bg-weak-100 transition-all duration-200"
                 >
                   <Icon className="fill-sub-600" name="edit" />
@@ -119,7 +184,7 @@ const ChatItem = React.memo(
                   <Icon className="fill-sub-600 ml-auto" name="chevron" />
                 </button> */}
 
-                <button
+                {/* <button
                   onClick={(e) => {
                     e.stopPropagation();
                     setIsMenuOpen(false);
@@ -129,7 +194,7 @@ const ChatItem = React.memo(
                 >
                   <Icon className="fill-sub-600" name="archive" />
                   <span className="font-medium">Archive</span>
-                </button>
+                </button> */}
 
                 <button
                   onClick={handleDelete}
@@ -142,6 +207,7 @@ const ChatItem = React.memo(
               </div>
             )}
           </div>
+          )}
         </div>
 
         {/* <div className="text-[12px] text-gray-500 truncate pl-[26px]">

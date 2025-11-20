@@ -48,14 +48,14 @@ const Question = ({ children }: Props) => {
   return (
     <div className="flex items-start justify-end mb-6">
       {/* Message Content */}
-      <div className="mr-3 max-w-[60%] bg-gradient-to-r from-brand-primary to-brand-secondary text-white rounded-2xl px-4 py-2 shadow-md hover:shadow-lg transition-all duration-300">
+      <div className="mr-1.5 max-w-[60%] bg-gradient-to-r from-brand-primary to-brand-secondary text-white rounded-2xl px-4 py-2 shadow-md hover:shadow-lg transition-all duration-300">
         <div className="text-label-sm leading-[1.6]">{children}</div>
       </div>
 
       {/* Avatar Right */}
       <div className="shrink-0">
         <Image
-          className="size-9 rounded-full object-cover ring-2 ring-[#00A896] ring-offset-2 ring-offset-white"
+          className="size-7 rounded-full object-cover ring-2 ring-[#00A896] ring-offset-2 ring-offset-white"
           src={profilePic}
           width={36}
           height={36}

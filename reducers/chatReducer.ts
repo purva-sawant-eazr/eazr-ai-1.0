@@ -9,7 +9,7 @@ import {
   POST_ASK_REQUEST,
   POST_ASK_SUCCESS,
   POST_ASK_FAILURE,
-    POST_LOAD_CHAT_REQUEST,
+  POST_LOAD_CHAT_REQUEST,
   POST_LOAD_CHAT_SUCCESS,
   POST_LOAD_CHAT_FAILURE,
   APPEND_CHAT_MESSAGE,
@@ -54,7 +54,7 @@ const initialState: ChatState = {
   user: null,
   error: null,
   askResponse: null,
-   currentSessionId: null,
+  currentSessionId: null,
   sessionInfo: null,
   messages: [],
   totalMessages: 0,
@@ -110,14 +110,6 @@ export default function chatReducer(state = initialState, action: any) {
         error: null,
       };
 
-    //sucess response for ask 
-    // case POST_ASK_SUCCESS:
-    //   return{
-    //    ...state,
-    //    isLoading:false,
-    //    isSuccess:true,
-    //    askResponse:action.payload,
-    //   }
   case POST_ASK_SUCCESS: {
   const updatedMessages = action.payload?.updatedMessages || state.messages;
 

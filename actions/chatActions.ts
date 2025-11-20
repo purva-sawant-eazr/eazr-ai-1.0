@@ -21,7 +21,7 @@ import {
   ADD_NEW_CHAT_TO_LIST,
   DELETE_CHAT_REQUEST,
   DELETE_CHAT_SUCCESS,
-  DELETE_CHAT_FAILURE
+  DELETE_CHAT_FAILURE,
 } from "@/constants/actionTypes";
 import axios from "axios";
 import { AppDispatch } from "@/store/store";
@@ -48,7 +48,9 @@ export const postNewChat =
 
       if (!response.ok) {
         const text = await response.text();
-        throw new Error(`Failed to create new chat: ${response.status} ${text}`);
+        throw new Error(
+          `Failed to create new chat: ${response.status} ${text}`
+        );
       }
 
       const data = await response.json();
@@ -61,20 +63,28 @@ export const postNewChat =
     }
   };
 
-
 // Updated: Shows user message immediately, then fetches AI response
-
 export const postAsk =
-  (query: string | null, additionalParams?: {
-    action?: string;
-    policy_id?: string;
-    insurance_type?: string;
-    application_id?: string;
-    edited_answers?: Array<{ field_key: string; value: string }> | Record<string, string>;
-    files?: File[];
-  }) =>
+  (
+    query: string | null,
+    additionalParams?: {
+      action?: string;
+      policy_id?: string;
+      insurance_type?: string;
+      application_id?: string;
+      edited_answers?:
+        | Array<{ field_key: string; value: string }>
+        | Record<string, string>;
+      files?: File[];
+    }
+  ) =>
   async (dispatch: AppDispatch, getState: any) => {
-    if (!query?.trim() && !additionalParams?.action && !additionalParams?.files?.length) return;
+    if (
+      !query?.trim() &&
+      !additionalParams?.action &&
+      !additionalParams?.files?.length
+    )
+      return;
 
     //  Get current state
     const { chat } = getState();
@@ -94,7 +104,7 @@ export const postAsk =
       const formData = new FormData();
       formData.append("query", query || "");
 
-      // 🔹 Get session info (for continuity)
+      //Get session info (for continuity)
       const sessionData = localStorage.getItem("session_data");
       let session = sessionData ? JSON.parse(sessionData) : null;
 
@@ -107,7 +117,7 @@ export const postAsk =
         formData.append("access_token", session.access_token);
       }
 
-      // 🔹 Add additional parameters if provided (for policy selection, etc.)
+      //Add additional parameters if provided (for policy selection, etc.)
       if (additionalParams?.action) {
         formData.append("action", additionalParams.action);
       }
@@ -121,17 +131,20 @@ export const postAsk =
         formData.append("application_id", additionalParams.application_id);
       }
       if (additionalParams?.edited_answers) {
-        formData.append("edited_answers", JSON.stringify(additionalParams.edited_answers));
+        formData.append(
+          "edited_answers",
+          JSON.stringify(additionalParams.edited_answers)
+        );
       }
 
-      // 🔹 Add files if provided
+      //Add files if provided
       if (additionalParams?.files && additionalParams.files.length > 0) {
         additionalParams.files.forEach((file) => {
           formData.append("files", file);
         });
       }
 
-      // 🔹 Make API call
+      //Make API call
       const response = await axios.post(`${baseURL}/ask`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -151,46 +164,55 @@ export const postAsk =
       const responseType = data?.response_type || null;
 
       //  Extract policy details if available (for policy_details response)
-      const policyDetails = data?.data?.eligibility || data?.data?.coverage_details || data?.data?.features
-        ? {
-            title: data?.data?.title || "",
-            productName: data?.data?.productName || "",
-            category: data?.data?.category || "",
-            eligibility: data?.data?.eligibility || [],
-            coverage_details: data?.data?.coverage_details || [],
-            features: data?.data?.features || [],
-            next_action: data?.data?.next_action || null,
-            back_action: data?.data?.back_action || null,
-          }
-        : null;
+      const policyDetails =
+        data?.data?.eligibility ||
+        data?.data?.coverage_details ||
+        data?.data?.features
+          ? {
+              title: data?.data?.title || "",
+              productName: data?.data?.productName || "",
+              category: data?.data?.category || "",
+              eligibility: data?.data?.eligibility || [],
+              coverage_details: data?.data?.coverage_details || [],
+              features: data?.data?.features || [],
+              next_action: data?.data?.next_action || null,
+              back_action: data?.data?.back_action || null,
+            }
+          : null;
 
       // 🔹 Extract question data if available (for question response_type, but NOT review types)
-      const questionData = data?.response_type === "question" && data?.data && data?.data?.type !== "review_and_edit_application"
-        ? {
-            message: data.data.message || "",
-            title: data.data.title || "",
-            options: data.data.options || [],
-            input_type: data.data.input_type || "text",
-            required: data.data.required !== false,
-            question_number: data.data.question_number || null,
-            total_questions: data.data.total_questions || null,
-            progress: data.data.progress || null,
-            exit_option: data.data.exit_option || null,
-            input_hint: data.data.input_hint || null,
-          }
-        : null;
+      const questionData =
+        data?.response_type === "question" &&
+        data?.data &&
+        data?.data?.type !== "review_and_edit_application"
+          ? {
+              message: data.data.message || "",
+              title: data.data.title || "",
+              options: data.data.options || [],
+              input_type: data.data.input_type || "text",
+              required: data.data.required !== false,
+              question_number: data.data.question_number || null,
+              total_questions: data.data.total_questions || null,
+              progress: data.data.progress || null,
+              exit_option: data.data.exit_option || null,
+              input_hint: data.data.input_hint || null,
+            }
+          : null;
 
       // 🔹 Extract review data if available (for review response_type or review_and_edit_application type)
-      const reviewData = (data?.response_type === "review" || data?.data?.type === "review_and_edit_application") && data?.data?.editable_fields
-        ? {
-            title: data.data.title || "Review and Submit",
-            subtitle: data.data.subtitle || "",
-            application_data: data.data.application_data || {},
-            editable_fields: data.data.editable_fields || [],
-            next_action: data.data.next_action || null,
-            back_action: data.data.back_action || null,
-          }
-        : null;
+      const reviewData =
+        (data?.response_type === "review" ||
+          data?.data?.type === "review_and_edit_application") &&
+        data?.data?.editable_fields
+          ? {
+              title: data.data.title || "Review and Submit",
+              subtitle: data.data.subtitle || "",
+              application_data: data.data.application_data || {},
+              editable_fields: data.data.editable_fields || [],
+              next_action: data.data.next_action || null,
+              back_action: data.data.back_action || null,
+            }
+          : null;
 
       // 🔹 Save session continuity
       if (data?.session_id && data?.chat_session_id && session) {
@@ -204,9 +226,10 @@ export const postAsk =
 
       // 🔹 Extract report URL if available (for insurance_analysis response_type)
       const reportUrl = data?.data?.report_url || null;
-      const reportTitle = data?.data?.type === "insurance_analysis"
-        ? "Insurance Gap Analysis Report"
-        : "Report";
+      const reportTitle =
+        data?.data?.type === "insurance_analysis"
+          ? "Insurance Gap Analysis Report"
+          : "Report";
 
       // 🔹 Add AI response to messages
       const aiMessage = {
@@ -227,14 +250,21 @@ export const postAsk =
       localStorage.setItem("chat_messages", JSON.stringify(updatedMessages));
 
       // 🔹 Auto-update chat title if this is the first message
-      if (currentMessages.length === 0 && query && session?.chat_session_id && session?.user_id) {
+      if (
+        currentMessages.length === 0 &&
+        query &&
+        session?.chat_session_id &&
+        session?.user_id
+      ) {
         const generatedTitle = generateChatTitle(query, aiText);
 
         // Update title locally immediately
         dispatch(updateChatTitleLocal(session.chat_session_id, generatedTitle));
 
         // Update on server (async, no need to await)
-        dispatch(putChatTitle(session.chat_session_id, generatedTitle, session.user_id));
+        dispatch(
+          putChatTitle(session.chat_session_id, generatedTitle, session.user_id)
+        );
       }
 
       // 🔹 Dispatch success
@@ -250,7 +280,6 @@ export const postAsk =
       dispatch({ type: POST_ASK_FAILURE, payload: error.message });
     }
   };
-
 
 // GET= Get User Chat Sessions Endpoint
 export const getUserALLChat =
@@ -280,9 +309,7 @@ export const getUserALLChat =
     }
   };
 
-
-
-  // 🧩 Helper: Read session data safely
+// Helper: Read session data safely
 const getSessionData = () => {
   try {
     const stored = localStorage.getItem("session_data");
@@ -292,16 +319,12 @@ const getSessionData = () => {
   }
 };
 
-// 🧩 Helper: Transform loaded messages to match the format from postAsk
+// Helper: Transform loaded messages to match the format from postAsk
 const transformLoadedMessage = (msg: any) => {
   // If already transformed (has questionData, reviewData, etc.), return as-is
   if (msg.questionData || msg.reviewData || msg.policyDetails) {
     return msg;
   }
-
-  // Base message structure - just preserve content and role
-  // Note: The API doesn't send structured data (forms, options, etc.) when loading old chats
-  // It only sends the text content, so we can only show the conversation history
   const transformed: any = {
     role: msg.role,
     content: msg.content || "",
@@ -310,7 +333,7 @@ const transformLoadedMessage = (msg: any) => {
   return transformed;
 };
 
-// 🟦 POST = Load Chat Session
+// POST = Load Chat Session
 export const postLoadChatSession =
   (session_id: string, user_id?: number, message_limit: number | null = null) =>
   async (dispatch: AppDispatch) => {
@@ -345,7 +368,7 @@ export const postLoadChatSession =
           status: response.status,
           session_id,
           user_id: uid,
-          error: errorText
+          error: errorText,
         });
 
         // If chat not found, clear it from localStorage and redirect
@@ -364,7 +387,9 @@ export const postLoadChatSession =
       }
 
       // 🔹 Transform loaded messages to match postAsk format
-      const transformedMessages = (data.messages || []).map(transformLoadedMessage);
+      const transformedMessages = (data.messages || []).map(
+        transformLoadedMessage
+      );
 
       //Update localStorage with current chat_session_id
       const updated = {
@@ -375,7 +400,10 @@ export const postLoadChatSession =
       localStorage.setItem("session_data", JSON.stringify(updated));
 
       // 🔹 Also persist transformed messages to localStorage
-      localStorage.setItem("chat_messages", JSON.stringify(transformedMessages));
+      localStorage.setItem(
+        "chat_messages",
+        JSON.stringify(transformedMessages)
+      );
 
       //Dispatch Success
       dispatch({
@@ -422,31 +450,32 @@ export const updateChatTitleLocal = (sessionId: string, title: string) => ({
 
 // PUT = Update chat title on server
 export const putChatTitle =
-  (session_id: string, title: string, user_id: number) =>
+  (session_id: string, new_title: string, user_id: number) =>
   async (dispatch: AppDispatch) => {
     dispatch({ type: PUT_CHAT_TITLE_REQUEST });
 
     try {
-      const formBody = new URLSearchParams();
-      formBody.append("session_id", session_id);
-      formBody.append("title", title);
-      formBody.append("user_id", String(user_id));
-
       const response = await fetch(`${baseURL}/update-chat-title`, {
         method: "PUT",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: formBody.toString(),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          session_id,
+          new_title,
+          user_id,
+        }),
       });
 
       if (!response.ok) {
         const text = await response.text();
-        throw new Error(`Failed to update chat title: ${response.status} ${text}`);
+        throw new Error(
+          `Failed to update chat title: ${response.status} ${text}`
+        );
       }
 
       const data = await response.json();
 
       // Update locally first for immediate UI feedback
-      dispatch(updateChatTitleLocal(session_id, title));
+      dispatch(updateChatTitleLocal(session_id, new_title));
 
       dispatch({ type: PUT_CHAT_TITLE_SUCCESS, payload: data });
       return { type: PUT_CHAT_TITLE_SUCCESS, payload: data };
@@ -457,7 +486,10 @@ export const putChatTitle =
   };
 
 // Helper function to generate title from first message
-export const generateChatTitle = (userMessage: string, aiResponse: string): string => {
+export const generateChatTitle = (
+  userMessage: string,
+  aiResponse: string
+): string => {
   // Take first 50 characters of user message, or first line of AI response
   const title = userMessage.trim().slice(0, 50);
   return title.length < userMessage.trim().length ? `${title}...` : title;
@@ -495,7 +527,7 @@ export const deleteChat =
 
       dispatch({
         type: DELETE_CHAT_SUCCESS,
-        payload: { session_id, data }
+        payload: { session_id, data },
       });
 
       return { type: DELETE_CHAT_SUCCESS, payload: { session_id, data } };

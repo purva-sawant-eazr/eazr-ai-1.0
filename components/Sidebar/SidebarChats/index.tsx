@@ -6,6 +6,7 @@ import {
   getUserALLChat,
   moveChatToTop,
   deleteChat,
+  putChatTitle,
 } from "@/actions/chatActions";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import Image from "next/image";
@@ -98,6 +99,25 @@ const { data, chatListLoading, error, hasLoadedChatList } = useSelector(
     }
   };
 
+  // ✅ Handle rename chat
+  const handleRenameChat = async (session_id: string, newTitle: string) => {
+    try {
+      const stored = localStorage.getItem("session_data");
+      const session = stored ? JSON.parse(stored) : null;
+
+      if (!session?.user_id) {
+        console.error("No user_id found in session");
+        return;
+      }
+
+      // Call the API to update the chat title
+      await dispatch(putChatTitle(session_id, newTitle, session.user_id) as any);
+    } catch (err) {
+      console.error("Error renaming chat:", err);
+      alert("Failed to rename chat. Please try again.");
+    }
+  };
+
   // 🔹 Format timestamp helper
   const formatTime = (iso: string) => {
     try {
@@ -131,6 +151,7 @@ const { data, chatListLoading, error, hasLoadedChatList } = useSelector(
     chat={chat}
     onOpen={handleOpenChat}
     onDelete={handleDeleteChat}
+    onRename={handleRenameChat}
     formatTime={formatTime}
   />
 ))}
