@@ -208,7 +208,7 @@ const PanelMessage = ({ onSend, isLoading = false }: Props) => {
       onSubmit={handleSubmit}
       className="relative z-3 mx-7.5 mb-5.5 shrink-0 rounded-xl border border-brand-secondary/30 bg-gradient-to-br from-white to-[#E7FBF4]/50 shadow-[0_0_15px_rgba(0,168,150,0.08)] max-md:m-0 transition-all duration-300"
     >
-      <Note />
+      {/* <Note /> */}
       <div className="px-3 py-3.5 max-md:px-4 max-md:py-2.5">
         {/* File Previews */}
         {uploadedFiles.length > 0 && (
@@ -255,7 +255,7 @@ const PanelMessage = ({ onSend, isLoading = false }: Props) => {
         )}
 
         {/* Textarea */}
-        <div className="min-h-12 text-0 mb-3">
+        <div className="min-h-5 text-0 mb-3">
           <TextareaAutosize
             className="w-full h-12 text-p-md text-text-primary outline-none resize-none placeholder:text-text-disabled"
             maxRows={5}
@@ -294,12 +294,12 @@ const PanelMessage = ({ onSend, isLoading = false }: Props) => {
                 name="image"
               />
             </button>
-            <Link className="group text-0" href="/research">
+            {/* <Link className="group text-0" href="/research">
               <Icon
                 className="fill-text-tertiary transition-colors group-hover:fill-brand-secondary"
                 name="voice"
               />
-            </Link>
+            </Link> */}
           </div>
 
           {/* Send Button */}

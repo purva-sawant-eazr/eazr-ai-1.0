@@ -81,7 +81,7 @@ const WriteCopyPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chatId]);
 
-  // 🔹 Send message to API
+  //  Send message to API
   const handleSendMessage = (message: string, files?: File[]) => {
     if (!message.trim() && (!files || files.length === 0)) return;
 
@@ -177,9 +177,6 @@ const WriteCopyPage = () => {
         {messages.length === 0 && !isLoading ? (
           <div className="flex items-center justify-center h-full">
             <div className="text-center max-w-md">
-              <div className="inline-flex items-center justify-center size-16 bg-gradient-to-br from-brand-primary to-brand-secondary rounded-2xl mb-4 shadow-lg">
-                <span className="text-3xl">🤖</span>
-              </div>
               <h3 className="text-2xl font-bold text-text-primary mb-2">
                 Start a Conversation
               </h3>

@@ -410,7 +410,7 @@
         @apply font-inter;
     }
     .chat-wrapper {
-        @apply flex flex-col h-[calc(100svh-8.25rem)] bg-white-0 rounded-3xl shadow-[0_0_1.25rem_0_rgba(0,0,0,0.03)] max-2xl:h-[calc(100svh-7.125rem)] max-lg:h-[calc(100svh-6.125rem)] max-md:h-[calc(100svh-5rem)] max-md:rounded-xl;
+        @apply flex flex-col h-screen bg-white-0 shadow-[0_0_1.25rem_0_rgba(0,0,0,0.03)];
     }
     .content h3 {
         @apply mb-5 text-h3 max-2xl:text-[2rem] max-md:text-[1.6rem];
@@ -423,6 +423,21 @@
     }
     .recharts-sector {
         @apply stroke-transparent outline-none;
+    }
+
+    /* Sidebar Scrollbar */
+    .sidebar-scrollbar::-webkit-scrollbar {
+        width: 4px;
+    }
+    .sidebar-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    .sidebar-scrollbar::-webkit-scrollbar-thumb {
+        background: #d1d5db;
+        border-radius: 10px;
+    }
+    .sidebar-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #9ca3af;
     }
 }
 

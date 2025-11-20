@@ -26,10 +26,10 @@ const Answer = ({ children, isLoading = false }: Props) => (
     </div>
 
     {/* Message Content */}
-    <div className="ml-3 max-w-[80%] bg-white text-text-primary border border-brand-secondary/40 rounded-2xl px-4 py-2 shadow-sm hover:shadow-md transition-all duration-200">
-      <div className="mb-1 text-label-sm font-semibold text-brand-primary">
+    <div className="ml-3 max-w-[60%] bg-white text-text-primary border border-brand-secondary/40 rounded-2xl px-4 py-2 shadow-sm hover:shadow-md transition-all duration-200">
+      {/* <div className="mb-1 text-label-sm font-semibold text-brand-primary">
       Eazr AI
-      </div>
+      </div> */}
       <div className="text-label-sm leading-[1.6]">{children}</div>
     </div>
   </div>

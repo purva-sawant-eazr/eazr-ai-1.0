@@ -42,7 +42,7 @@ const Head = ({ title }: Props) => {
     
     return (
         <>
-            <div className="flex items-center shrink-0 h-13 px-3 border-b border-stroke-soft-200">
+            <div className="flex items-center shrink-0 h-13  border-b border-stroke-soft-200">
                      <button onClick={handleBack} className="group text-0">
                     <Icon
                         className="fill-strong-950 transition-colors group-hover:fill-blue-500"

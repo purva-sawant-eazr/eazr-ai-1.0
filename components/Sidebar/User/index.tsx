@@ -1,18 +1,30 @@
 "use client";
-import { useEffect, useState } from "react";
-import Link from "next/link";
+import { useEffect, useState, useRef } from "react";
 import Image from "@/components/Image";
 import Icon from "@/components/Icon";
-import { useAppSelector } from "@/store/hook";
+import { LogOut, LogIn, User as UserIcon } from "lucide-react";
+import { useAppSelector, useAppDispatch } from "@/store/hook";
+import { clearAuth } from "@/actions/authActions";
+import { clearChat } from "@/actions/chatActions";
+import { useRouter } from "next/navigation";
 
-const User = () => {
+type UserProps = {
+  isCollapsed?: boolean;
+};
+
+const User = ({ isCollapsed = false }: UserProps) => {
   const [userData, setUserData] = useState({
     user_name: "User",
     user_phone: "",
     full_name: "",
   });
   const [profilePic, setProfilePic] = useState<string>("/images/avatar-1.png");
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const { profile } = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
+  const router = useRouter();
 
   useEffect(() => {
     // Get user data from localStorage
@@ -25,9 +37,13 @@ const User = () => {
           user_phone: session.user_phone || "",
           full_name: "",
         });
+        setLoggedIn(true);
       } catch (error) {
         console.error("Error parsing session data:", error);
+        setLoggedIn(false);
       }
+    } else {
+      setLoggedIn(false);
     }
   }, []);
 
@@ -46,31 +62,153 @@ const User = () => {
     }
   }, [profile]);
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    if (isDropdownOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isDropdownOpen]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("session_data");
+    localStorage.removeItem("chat_messages");
+    dispatch(clearAuth());
+    dispatch(clearChat());
+    setLoggedIn(false);
+    setIsDropdownOpen(false);
+    router.push("/");
+  };
+
+  const handleLogin = () => {
+    setIsDropdownOpen(false);
+    router.push("/auth/sign-in");
+  };
+
+  const handleProfileClick = () => {
+    setIsDropdownOpen(false);
+    router.push("/profile");
+  };
+
+  if (isCollapsed) {
+    return (
+      <div className="relative flex-none border-t border-stroke-soft-200 p-2" ref={dropdownRef}>
+        <button
+          onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+          className="group flex items-center justify-center w-full hover:bg-weak-100 rounded-xl transition-all duration-200 p-2"
+        >
+          <Image
+            className="size-9 rounded-full ring-2 ring-transparent group-hover:ring-brand-primary/20 transition-all duration-200"
+            src={profilePic}
+            width={36}
+            height={36}
+            alt="User"
+          />
+        </button>
+
+        {/* Dropdown Menu for Collapsed State */}
+        {isDropdownOpen && (
+          <div className="absolute bottom-full left-full ml-2 mb-2 w-48 bg-white border border-stroke-soft-200 rounded-xl shadow-xl overflow-hidden z-50">
+            <button
+              onClick={handleProfileClick}
+              className="flex items-center gap-3 w-full px-4 py-2.5 text-sm text-strong-950 hover:bg-weak-100 transition-all duration-200"
+            >
+              <UserIcon className="w-4 h-4 text-sub-600" />
+              <span className="font-medium">Profile</span>
+            </button>
+
+            {loggedIn ? (
+              <button
+                onClick={handleLogout}
+                className="flex items-center gap-3 w-full px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 transition-all duration-200 border-t border-stroke-soft-200"
+              >
+                <LogOut className="w-4 h-4" />
+                <span className="font-medium">Logout</span>
+              </button>
+            ) : (
+              <button
+                onClick={handleLogin}
+                className="flex items-center gap-3 w-full px-4 py-2.5 text-sm text-brand-primary hover:bg-brand-secondary/10 transition-all duration-200 border-t border-stroke-soft-200"
+              >
+                <LogIn className="w-4 h-4" />
+                <span className="font-medium">Login</span>
+              </button>
+            )}
+          </div>
+        )}
+      </div>
+    );
+  }
+
   return (
-    <Link
-      className="group flex items-center shrink-0 gap-2 mx-5 pt-3 px-3 pb-5 border-t border-stroke-soft-200"
-      href="/profile"
-    >
-      <div className="">
+    <div className="relative flex-none px-3 py-3 border-t border-stroke-soft-200" ref={dropdownRef}>
+      <button
+        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+        className="group flex items-center gap-3 w-full p-2 hover:bg-weak-100 rounded-xl transition-all duration-200"
+      >
         <Image
-          className="size-10 rounded-full opacity-100"
+          className="size-10 rounded-full ring-2 ring-transparent group-hover:ring-brand-primary/20 transition-all duration-200"
           src={profilePic}
           width={40}
           height={40}
           alt="User"
         />
-      </div>
-      <div className="text-label-sm">
-        <div className="">{userData.full_name || userData.user_name}</div>
-        {!userData.full_name && (
-          <div className="text-sub-600">{userData.user_phone}</div>
-        )}
-      </div>
-      <Icon
-        className="ml-auto fill-sub-600 -rotate-90 transition-transform group-hover:translate-x-0.5"
-        name="chevron"
-      />
-    </Link>
+        <div className="flex-1 text-left min-w-0">
+          <div className="text-sm font-semibold text-strong-950 truncate">
+            {userData.full_name || userData.user_name}
+          </div>
+          {!userData.full_name && userData.user_phone && (
+            <div className="text-xs text-sub-600 truncate">{userData.user_phone}</div>
+          )}
+        </div>
+        <Icon
+          className={`shrink-0 fill-sub-600 transition-transform duration-200 ${
+            isDropdownOpen ? "-rotate-90" : "rotate-90"
+          }`}
+          name="chevron"
+        />
+      </button>
+
+      {/* Dropdown Menu */}
+      {isDropdownOpen && (
+        <div className="absolute bottom-full left-0 right-0 mb-2 mx-3 bg-white border border-stroke-soft-200 rounded-xl shadow-xl overflow-hidden z-50 animate-in slide-in-from-bottom-2 duration-200">
+          <button
+            onClick={handleProfileClick}
+            className="flex items-center gap-3 w-full px-4 py-2.5 text-sm text-strong-950 hover:bg-weak-100 transition-all duration-200"
+          >
+            <UserIcon className="w-4 h-4 text-sub-600" />
+            <span className="font-medium">Profile</span>
+          </button>
+
+          {loggedIn ? (
+            <button
+              onClick={handleLogout}
+              className="flex items-center gap-3 w-full px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 transition-all duration-200 border-t border-stroke-soft-200"
+            >
+              <LogOut className="w-4 h-4" />
+              <span className="font-medium">Logout</span>
+            </button>
+          ) : (
+            <button
+              onClick={handleLogin}
+              className="flex items-center gap-3 w-full px-4 py-2.5 text-sm text-brand-primary hover:bg-brand-secondary/10 transition-all duration-200 border-t border-stroke-soft-200"
+            >
+              <LogIn className="w-4 h-4" />
+              <span className="font-medium">Login</span>
+            </button>
+          )}
+        </div>
+      )}
+    </div>
   );
 };
 

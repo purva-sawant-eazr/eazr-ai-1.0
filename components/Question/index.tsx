@@ -48,10 +48,7 @@ const Question = ({ children }: Props) => {
   return (
     <div className="flex items-start justify-end mb-6">
       {/* Message Content */}
-      <div className="mr-3 max-w-[80%] bg-gradient-to-r from-brand-primary to-brand-secondary text-white rounded-2xl px-4 py-2 shadow-md hover:shadow-lg transition-all duration-300">
-        <div className="flex items-center gap-2 mb-1">
-          <div className="text-label-sm font-semibold">{userName}</div>
-        </div>
+      <div className="mr-3 max-w-[60%] bg-gradient-to-r from-brand-primary to-brand-secondary text-white rounded-2xl px-4 py-2 shadow-md hover:shadow-lg transition-all duration-300">
         <div className="text-label-sm leading-[1.6]">{children}</div>
       </div>
 
