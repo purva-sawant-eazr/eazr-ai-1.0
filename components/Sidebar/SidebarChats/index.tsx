@@ -14,18 +14,23 @@ import ChatItem from "../ChatItem";
 import { shallowEqual, useSelector } from "react-redux";
 import type { RootState } from "@/store/store";
 
+type SidebarChatsProps = {
+  searchQuery?: string;
+};
 
-const SidebarChats = memo(() => {
+const SidebarChats = memo(({ searchQuery = "" }: SidebarChatsProps) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
 
   //  Chat list state from Redux (isolated from messages)
-const { data, chatListLoading, error, hasLoadedChatList } = useSelector(
+const { data, chatListLoading, error, hasLoadedChatList, searchResults, searchLoading } = useSelector(
   (state: RootState) => ({
     data: state.chat.data,
     chatListLoading: state.chat.chatListLoading,
     error: state.chat.error,
     hasLoadedChatList: state.chat.hasLoadedChatList,
+    searchResults: state.chat.searchResults,
+    searchLoading: state.chat.searchLoading,
   }),
   shallowEqual //  prevents re-render unless one of these values changes
 );
@@ -204,6 +209,83 @@ const { data, chatListLoading, error, hasLoadedChatList } = useSelector(
 
   const organized = data?.organized_chats || {};
   const allChats = data?.chats || [];
+
+  // 🔹 If search query exists and has results, show search results
+  if (searchQuery.trim().length >= 2) {
+    if (searchLoading) {
+      return (
+        <div className="flex flex-col gap-4 px-3 py-4">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="animate-pulse">
+              <div className="flex items-center gap-2.5 mb-2">
+                <div className="w-5 h-5 bg-gray-200 rounded-md"></div>
+                <div className="h-4 bg-gray-200 rounded w-32"></div>
+              </div>
+              <div className="h-3 bg-gray-100 rounded w-full ml-7"></div>
+            </div>
+          ))}
+        </div>
+      );
+    }
+
+    if (searchResults?.success && searchResults?.results?.length > 0) {
+      // Convert search results to chat format
+      const searchChats = searchResults.results.map((result: any) => ({
+        session_id: result.session_id,
+        chat_session_id: result.session_id,
+        title: result.session_info?.title || "Untitled Chat",
+        last_activity: result.session_info?.last_activity,
+        created_at: result.session_info?.created_at,
+        user_id: result.session_info?.user_id,
+        matched_messages: result.matched_messages,
+      }));
+
+      return (
+        <div className="h-full overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent hover:scrollbar-thumb-gray-400 py-1.5">
+          <div className="mb-4">
+            <h3 className="text-[11px] font-semibold uppercase text-gray-500 tracking-wider px-3 mb-2">
+              Search Results ({searchResults.total_results})
+            </h3>
+            <div className="flex flex-col gap-0.5">
+              {searchChats.map((chat: any) => (
+                <ChatItem
+                  key={chat.session_id}
+                  chat={chat}
+                  onOpen={handleOpenChat}
+                  onDelete={handleDeleteChat}
+                  onRename={handleRenameChat}
+                  formatTime={formatTime}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    // No search results found
+    return (
+      <div className="flex flex-col items-center justify-center px-6 py-12 text-center">
+        <div className="w-12 h-12 mb-3 rounded-full bg-gray-100 flex items-center justify-center">
+          <svg
+            className="w-6 h-6 text-gray-400"
+            fill="none"
+            strokeWidth="2"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
+          </svg>
+        </div>
+        <p className="text-sm text-gray-600 font-medium mb-1">No results found</p>
+        <p className="text-xs text-gray-400">Try a different search term</p>
+      </div>
+    );
+  }
 
   // 🔹 Empty state
   if (!allChats.length) {

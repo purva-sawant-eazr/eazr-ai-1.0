@@ -12,7 +12,7 @@ import { useRouter } from "next/navigation";
 import { useAppSelector, useAppDispatch } from "@/store/hook";
 import Image from "next/image";
 import SidebarChats from "./SidebarChats";
-import { postNewChat, addNewChatToList } from "@/actions/chatActions";
+import { postNewChat, addNewChatToList, searchChats } from "@/actions/chatActions";
 
 type Props = {
   visible: boolean;
@@ -24,12 +24,13 @@ type Props = {
 const Sidebar = ({ visible, onClose, onClickNewChat, onCollapseChange }: Props) => {
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const { chatListLoading } = useAppSelector((state) => state.chat);
+  const { chatListLoading, searchLoading } = useAppSelector((state) => state.chat);
 
   const [open, setOpen] = useState(false);
   const [openModalShare, setOpenModalShare] = useState(false);
   const [openModalInvite, setOpenModalInvite] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleCollapse = (collapsed: boolean) => {
     setIsCollapsed(collapsed);
@@ -103,6 +104,33 @@ const Sidebar = ({ visible, onClose, onClickNewChat, onCollapseChange }: Props) 
       console.error("New Chat Error:", err);
       alert("Something went wrong while creating a new chat.");
     }
+  };
+
+  const handleSearchChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+
+    // Only search if query has at least 2 characters
+    if (query.trim().length >= 2) {
+      try {
+        const stored = localStorage.getItem("session_data");
+        if (!stored) return;
+
+        const session = JSON.parse(stored);
+        const user_id = session.user_id;
+
+        if (!user_id) return;
+
+        // Dispatch search action
+        await dispatch(searchChats(user_id, query.trim(), 20));
+      } catch (err) {
+        console.error("Search Error:", err);
+      }
+    }
+  };
+
+  const handleClearSearch = () => {
+    setSearchQuery("");
   };
 
   return (
@@ -207,17 +235,17 @@ const Sidebar = ({ visible, onClose, onClickNewChat, onCollapseChange }: Props) 
 
           {/* New Chat Button */}
           {!isCollapsed && (
-            <div className="px-3 pb-3">
+            <div className="px-2 pb-2">
               <button
                 onClick={handleNewChatClick}
                 disabled={chatListLoading}
-                className={`flex items-center justify-start gap-2 h-10 w-full px-3 rounded-xl font-medium transition-all duration-200 ${
+                className={`flex items-center justify-start gap-2 h-8 w-full px-3 rounded-xl font-medium transition-all duration-200 ${
                   chatListLoading
                     ? "bg-gray-200 text-gray-500 cursor-not-allowed"
                     : "bg-brand-secondary/10 text-brand-primary hover:bg-brand-primary/20 shadow-sm"
                 }`}
               >
-                <span className="material-symbols-outlined text-brand-primary text-[20px]">
+                <span className="material-symbols-outlined text-brand-primary text-[15px]">
                   chat_add_on
                 </span>
                 <span>{chatListLoading ? "Starting..." : "New Chat"}</span>
@@ -225,9 +253,42 @@ const Sidebar = ({ visible, onClose, onClickNewChat, onCollapseChange }: Props) 
             </div>
           )}
 
+          {/* Search Input */}
+          {!isCollapsed && (
+            <div className="px-2 pb-3">
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Search chats..."
+                  value={searchQuery}
+                  onChange={handleSearchChange}
+                  className="w-full h-8 pl-10 pr-10 rounded-xl border border-stroke-soft-200 focus:border-brand-primary focus:outline-none focus:ring-1 focus:ring-brand-primary/20 transition-all duration-200 text-sm"
+                />
+                <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-[15px]">
+                  search
+                </span>
+                {searchQuery && (
+                  <button
+                    onClick={handleClearSearch}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 p-1 rounded-lg  transition-colors"
+                  >
+                    <span className="material-symbols-outlined text-gray-400 text-[8px]">
+                      close
+                    </span>
+                  </button>
+                )}
+                {searchLoading && (
+                  <div className="absolute right-2 top-1/2 -translate-y-1/2">
+                    <div className="w-4 h-4 border-2 border-brand-primary border-t-transparent rounded-full animate-spin"></div>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
           {/* Collapsed New Chat Icon */}
           {isCollapsed && (
-            <div className="px-2 pb-3">
+            <div className="px-2 pb-2">
               <button
                 onClick={handleNewChatClick}
                 disabled={chatListLoading}
@@ -244,13 +305,30 @@ const Sidebar = ({ visible, onClose, onClickNewChat, onCollapseChange }: Props) 
               </button>
             </div>
           )}
+
+          {/* Collapsed Search Icon */}
+          {isCollapsed && (
+            <div className="px-2 pb-3">
+              <button
+                className="flex items-center justify-center w-12 h-12 mx-auto rounded-xl transition-all duration-200 bg-brand-secondary/10 hover:bg-brand-primary/20"
+                title="Search (Expand sidebar to search)"
+                onClick={() => handleCollapse(false)}
+              >
+                <span className="material-symbols-outlined text-brand-primary text-[20px]">
+                  search
+                </span>
+              </button>
+            </div>
+          )}
+
+          
         </div>
 
         {/* Scrollable Middle Section - Chat History */}
         <div className="flex-1 overflow-y-auto sidebar-scrollbar">
           {!isCollapsed ? (
             <div className="px-3 py-2">
-              <SidebarChats />
+              <SidebarChats searchQuery={searchQuery} />
             </div>
           ) : (
             <div className="flex flex-col items-center gap-2 px-2 py-2">

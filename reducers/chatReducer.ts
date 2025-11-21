@@ -17,7 +17,10 @@ import {
   MOVE_CHAT_TO_TOP,
   DELETE_CHAT_REQUEST,
   DELETE_CHAT_SUCCESS,
-  DELETE_CHAT_FAILURE
+  DELETE_CHAT_FAILURE,
+  POST_SEARCH_CHAT_REQUEST,
+  POST_SEARCH_CHAT_SUCCESS,
+  POST_SEARCH_CHAT_FAILURE
 } from "@/constants/actionTypes";
 
 // const initialState = {
@@ -45,6 +48,9 @@ interface ChatState {
   hasLoadedChatList: boolean; // Track if chat list has been fetched
   chatListLoading: boolean; // Separate loading state for chat list
   messagesLoading: boolean; // Separate loading state for messages
+  searchResults: any; // Search results
+  searchLoading: boolean; // Search loading state
+  searchError: string | null; // Search error
 }
 
 const initialState: ChatState = {
@@ -62,6 +68,9 @@ const initialState: ChatState = {
   hasLoadedChatList: false,
   chatListLoading: false,
   messagesLoading: false,
+  searchResults: null,
+  searchLoading: false,
+  searchError: null,
 };
 
 export default function chatReducer(state = initialState, action: any) {
@@ -469,6 +478,31 @@ export default function chatReducer(state = initialState, action: any) {
         ...state,
         isLoading: false,
         error: action.payload,
+      };
+
+    // Search chat cases
+    case POST_SEARCH_CHAT_REQUEST:
+      return {
+        ...state,
+        searchLoading: true,
+        searchError: null,
+        searchResults: null,
+      };
+
+    case POST_SEARCH_CHAT_SUCCESS:
+      return {
+        ...state,
+        searchLoading: false,
+        searchResults: action.payload,
+        searchError: null,
+      };
+
+    case POST_SEARCH_CHAT_FAILURE:
+      return {
+        ...state,
+        searchLoading: false,
+        searchError: action.payload,
+        searchResults: null,
       };
 
     case CHAT_CLEAR:

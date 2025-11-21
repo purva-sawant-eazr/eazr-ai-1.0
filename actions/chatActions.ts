@@ -22,6 +22,9 @@ import {
   DELETE_CHAT_REQUEST,
   DELETE_CHAT_SUCCESS,
   DELETE_CHAT_FAILURE,
+  POST_SEARCH_CHAT_REQUEST,
+  POST_SEARCH_CHAT_SUCCESS,
+  POST_SEARCH_CHAT_FAILURE,
 } from "@/constants/actionTypes";
 import axios from "axios";
 import { AppDispatch } from "@/store/store";
@@ -534,6 +537,43 @@ export const deleteChat =
     } catch (error: any) {
       dispatch({ type: DELETE_CHAT_FAILURE, payload: error.message });
       return { type: DELETE_CHAT_FAILURE, payload: error.message };
+    }
+  };
+
+// POST = Search Chats
+export const searchChats =
+  (user_id: number, search_query: string, limit: number | null = 20) =>
+  async (dispatch: AppDispatch) => {
+    dispatch({ type: POST_SEARCH_CHAT_REQUEST });
+
+    try {
+      const response = await fetch(`${baseURL}/search-chats`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          user_id,
+          search_query,
+          limit,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to search chats");
+      }
+
+      const data = await response.json();
+
+      dispatch({ type: POST_SEARCH_CHAT_SUCCESS, payload: data });
+      return { type: POST_SEARCH_CHAT_SUCCESS, payload: data };
+    } catch (error: unknown) {
+      const message =
+        error instanceof Error ? error.message : "Unexpected error occurred";
+
+      dispatch({
+        type: POST_SEARCH_CHAT_FAILURE,
+        payload: message,
+      });
+      return { type: POST_SEARCH_CHAT_FAILURE, payload: message };
     }
   };
 
