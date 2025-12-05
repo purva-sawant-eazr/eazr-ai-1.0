@@ -101,6 +101,7 @@ const User = ({ isCollapsed = false }: UserProps) => {
   const handleLogout = () => {
     localStorage.removeItem("session_data");
     localStorage.removeItem("chat_messages");
+    dispatch({ type: "RESET_STORE" });
     dispatch(clearAuth());
     dispatch(clearChat());
     setLoggedIn(false);

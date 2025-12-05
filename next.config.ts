@@ -15,6 +15,14 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async rewrites() {
+    return [
+      {
+        source: "/api/proxy/:path*",
+        destination: "https://eazr.ai.eazr.in/:path*",
+      },
+    ];
+  },
 };
 
 export default nextConfig;

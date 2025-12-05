@@ -29,7 +29,8 @@ import {
 import axios from "axios";
 import { AppDispatch } from "@/store/store";
 
-const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
+const isLocalhost = typeof window !== "undefined" && window.location.hostname === "localhost";
+const baseURL = isLocalhost ? "/api/proxy" : process.env.NEXT_PUBLIC_BASE_URL;
 
 //post = new chat
 export const postNewChat =
