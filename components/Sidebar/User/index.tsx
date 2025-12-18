@@ -99,14 +99,20 @@ const User = ({ isCollapsed = false }: UserProps) => {
   }, [isDropdownOpen]);
 
   const handleLogout = () => {
-    localStorage.removeItem("session_data");
-    localStorage.removeItem("chat_messages");
+    // Clear all localStorage data
+    localStorage.clear();
+
+    // Reset Redux store
     dispatch({ type: "RESET_STORE" });
     dispatch(clearAuth());
     dispatch(clearChat());
+
+    // Update local state
     setLoggedIn(false);
     setIsDropdownOpen(false);
-    router.push("/");
+
+    // Full page redirect to ensure complete cleanup
+    window.location.href = "/";
   };
 
   const handleLogin = () => {

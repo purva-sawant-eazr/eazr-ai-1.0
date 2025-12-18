@@ -96,15 +96,55 @@ export default function chatReducer(state = initialState, action: any) {
       };
 
     //sucess new chat, get all user chat
-    case GET_USER_ALL_CHAT_SUCCESS:
+    case GET_USER_ALL_CHAT_SUCCESS: {
+      const allChats = action.payload?.chats || [];
+
+      // Organize chats into time-based groups
+      const now = new Date();
+      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      const yesterday = new Date(today.getTime() - 24 * 60 * 60 * 1000);
+      const last7Days = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000);
+      const last30Days = new Date(today.getTime() - 30 * 24 * 60 * 60 * 1000);
+
+      const organized = allChats.reduce(
+        (acc: any, chat: any) => {
+          const lastActivity = new Date(chat.last_activity || chat.created_at || new Date());
+
+          if (lastActivity >= today) {
+            acc.today.push(chat);
+          } else if (lastActivity >= yesterday) {
+            acc.yesterday.push(chat);
+          } else if (lastActivity >= last7Days) {
+            acc.last_7_days.push(chat);
+          } else if (lastActivity >= last30Days) {
+            acc.last_30_days.push(chat);
+          } else {
+            acc.older.push(chat);
+          }
+
+          return acc;
+        },
+        {
+          today: [],
+          yesterday: [],
+          last_7_days: [],
+          last_30_days: [],
+          older: [],
+        }
+      );
+
       return {
         ...state,
         chatListLoading: false,
         isLoading: false,
         isSuccess: true,
-        data: action.payload,
+        data: {
+          ...action.payload,
+          organized_chats: organized,
+        },
         hasLoadedChatList: true, // Mark that chat list has been loaded
       };
+    }
 
     case POST_NEW_CHAT_SUCCESS:
       return {

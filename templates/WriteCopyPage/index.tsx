@@ -75,7 +75,7 @@ const WriteCopyPage = () => {
           alert("Failed to load chat session. It may have been deleted.");
         });
       } else {
-        console.log("✅ Chat already loaded, skipping API call");
+        console.log("Chat already loaded, skipping API call");
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

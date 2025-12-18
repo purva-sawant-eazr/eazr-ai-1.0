@@ -81,6 +81,8 @@ export const verifyOtp =
 
 //  Logout / Clear
 export const clearAuth = () => {
+  // Clear all session-related data from localStorage
   localStorage.removeItem("session_data");
+  localStorage.removeItem("chat_messages");
   return { type: CLEAR_AUTH };
 };

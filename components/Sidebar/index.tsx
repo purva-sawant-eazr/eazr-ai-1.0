@@ -64,16 +64,49 @@ const Sidebar = ({ visible, onClose, onClickNewChat, onCollapseChange }: Props) 
 
       console.log("Creating new chat...");
 
-      // Dispatch Redux action to create new chat
-      const result: any = await dispatch(
-        postNewChat(user_session_id, user_id, access_token, "New Chat")
-      );
+      // Retry logic - attempt up to 3 times
+      const MAX_RETRIES = 3;
+      let result: any = null;
+      let lastError: string = "";
+
+      for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+        console.log(`🔄 New chat attempt ${attempt}/${MAX_RETRIES}...`);
+
+        result = await dispatch(
+          postNewChat(user_session_id, user_id, access_token, "New Chat")
+        );
+
+        // If successful, break out of retry loop
+        if (result.type !== "POST_NEW_CHAT_FAILURE") {
+          console.log(`✅ New chat created on attempt ${attempt}`);
+          break;
+        }
+
+        lastError = result.payload || "";
+        console.warn(`❌ Attempt ${attempt} failed:`, lastError);
+
+        // If it's a session/auth error, don't retry - it won't help
+        // const errorMsg = lastError?.toLowerCase() || "";
+        // if (errorMsg.includes("401") || errorMsg.includes("invalid") || errorMsg.includes("unauthorized") || errorMsg.includes("session")) {
+        //   // Clear invalid session and redirect to login
+        //   localStorage.removeItem("session_data");
+        //   localStorage.removeItem("chat_messages");
+        //   alert("Your session has expired. Please log in again.");
+        //   router.push("/");
+        //   return;
+        // }
+
+        // Wait before retrying (increasing delay: 500ms, 1000ms, 1500ms)
+        if (attempt < MAX_RETRIES) {
+          await new Promise(resolve => setTimeout(resolve, attempt * 500));
+        }
+      }
 
       console.log("🛰️ /new-chat Response:", result);
 
-      //  Handle errors
+      //  Handle errors after all retries exhausted
       if (result.type === "POST_NEW_CHAT_FAILURE") {
-        alert("Failed to create new chat. Please try again.");
+        alert("Failed to create new chat after multiple attempts. Please try again later.");
         return;
       }
 
@@ -98,8 +131,8 @@ const Sidebar = ({ visible, onClose, onClickNewChat, onCollapseChange }: Props) 
       };
       dispatch(addNewChatToList(newChatItem));
 
-      //Redirect to new chat page
-      router.push(`/write-copy/${encodeURIComponent(data.chat_session_id)}`);
+      //Redirect to new chat page with full refresh
+      window.location.href = `/write-copy/${encodeURIComponent(data.chat_session_id)}`;
     } catch (err) {
       console.error("New Chat Error:", err);
       alert("Something went wrong while creating a new chat.");

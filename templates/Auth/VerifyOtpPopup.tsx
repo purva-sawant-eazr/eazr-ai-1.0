@@ -136,7 +136,7 @@
 
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { X, ShieldCheck } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { verifyOtp } from "@/actions/authActions";
@@ -161,6 +161,16 @@ const VerifyOtpPopup = ({
   // ✅ Refs for auto-focusing inputs
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
+  // ✅ Auto-focus first input when popup opens
+  useEffect(() => {
+    if (isOpen) {
+      // Small delay to ensure DOM is ready
+      setTimeout(() => {
+        inputRefs.current[0]?.focus();
+      }, 100);
+    }
+  }, [isOpen]);
+
   const handleChange = (value: string, index: number) => {
     const newOtp = [...otp];
     newOtp[index] = value.slice(-1); // only last digit
@@ -177,6 +187,11 @@ const VerifyOtpPopup = ({
       // ✅ Move to previous input when deleting empty
       inputRefs.current[index - 1]?.focus();
     }
+  };
+
+  // ✅ Select content on focus for easy editing
+  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    e.target.select();
   };
 
   const handleVerify = async (e: React.FormEvent) => {
@@ -251,7 +266,8 @@ const VerifyOtpPopup = ({
                 value={otp[i]}
                 onChange={(e) => handleChange(e.target.value, i)}
                 onKeyDown={(e) => handleKeyDown(e, i)}
-                className="w-12 h-12 text-center text-lg font-semibold border rounded-lg focus:ring-2 focus:ring-[#0E121B] focus:border-[#0E121B] outline-none"
+                onFocus={handleFocus}
+                className="w-12 h-12 text-center text-lg font-semibold border rounded-lg focus:ring-2 focus:ring-[#0E121B] focus:border-[#0E121B] outline-none transition-all duration-200 focus:scale-105"
               />
             ))}
           </div>
