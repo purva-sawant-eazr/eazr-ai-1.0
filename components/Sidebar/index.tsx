@@ -112,11 +112,12 @@ const Sidebar = ({ visible, onClose, onClickNewChat, onCollapseChange }: Props) 
 
       const data = result.payload;
 
-      //Update session_data for continuity
+      // Update session_data for continuity
+      // IMPORTANT: Only update chat_session_id, never overwrite session_id (user session)
       const updatedSession = {
         ...session,
         chat_session_id: data.chat_session_id,
-        session_id: data.user_session_id || session.session_id,
+        // Keep the original session_id from OTP login - never overwrite it
       };
       localStorage.setItem("session_data", JSON.stringify(updatedSession));
 

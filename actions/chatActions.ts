@@ -31,7 +31,7 @@ import { AppDispatch } from "@/store/store";
 
 const isLocalhost =
   typeof window !== "undefined" && window.location.hostname === "localhost";
-const baseURL =  process.env.NEXT_PUBLIC_BASE_URL || "https://eazr.ai.eazr.in";
+const baseURL = process.env.NEXT_PUBLIC_BASE_URL || "https://eazr.ai.eazr.in";
 
 //post = new chat
 export const postNewChat =
@@ -220,11 +220,12 @@ export const postAsk =
           : null;
 
       // 🔹 Save session continuity
-      if (data?.session_id && data?.chat_session_id && session) {
+      // IMPORTANT: Only update chat_session_id, never overwrite session_id (user session)
+      if (data?.chat_session_id && session) {
         const updatedSession = {
           ...session,
-          session_id: data.session_id,
           chat_session_id: data.chat_session_id,
+          // Keep the original session_id from OTP login - never overwrite it
         };
         localStorage.setItem("session_data", JSON.stringify(updatedSession));
       }
@@ -396,11 +397,12 @@ export const postLoadChatSession =
         transformLoadedMessage
       );
 
-      //Update localStorage with current chat_session_id
+      // Update localStorage with current chat_session_id only
+      // IMPORTANT: Never overwrite session_id (user session) - only update chat_session_id
       const updated = {
         ...session,
         chat_session_id: data.session_id,
-        session_id: data.session_info?.session_id || session?.session_id,
+        // Keep the original session_id from OTP login - never overwrite it
       };
       localStorage.setItem("session_data", JSON.stringify(updated));
 
